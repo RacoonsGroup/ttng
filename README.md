@@ -1,4 +1,4 @@
-semantic_boilerplate
+Task Tracker next generation
 ====================
 
-Rails boilerplate application with semantic-ui frontend framework
+
