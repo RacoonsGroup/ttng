@@ -29,10 +29,11 @@ class Admin::UsersController < Admin::AdminController
   private
 
   def user_params
+    fields = [:email, :admin, :first_name, :last_name, :birth_date, :position,
+              :salary, :official_salary, :hire_date, :fire_date, :inn, :snils]
     if params[:user][:password].present?
-      params.require(:user).permit(:email, :password, :password_confirmation, :admin)
-    else
-      params.require(:user).permit(:email, :admin)
+      fields.push(:password, :password_confirmation)
     end
+    params.require(:user).permit(fields)
   end
 end

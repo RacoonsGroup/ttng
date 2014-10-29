@@ -11,5 +11,13 @@ module ApplicationHelper
     end
   end
 
+  def ll(date)
+    if date.present?
+      l(date)
+    else
+      ''
+    end
+  end
+
 
 end

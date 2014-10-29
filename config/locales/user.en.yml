@@ -6,6 +6,12 @@ en:
         password: Password
         password_confirmation: Password confirmation
         admin: Admin
+        private_data: Private data
+        enterprise_data: Enterprise data
+        full_name: Full name
+        hire_date: Hire date
+        fire_date: Fire date
+        position: Position
   activerecord:
     models:
       user: User

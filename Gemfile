@@ -17,6 +17,9 @@ gem 'pinball'
 gem 'simple-navigation'
 gem 'simple-navigation-bootstrap'
 gem 'resource_manager'
+gem 'enum_help'
+gem 'money'
+gem 'bootstrap-datepicker-rails'
 
 group :development do
   gem 'spring'

@@ -36,6 +36,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.3.0.2)
+      railties (>= 3.0)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     builder (3.2.2)
@@ -68,6 +70,7 @@ GEM
       interception
     diff-lcs (1.2.5)
     docile (1.1.5)
+    enum_help (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.2)
@@ -94,6 +97,8 @@ GEM
     minitest (5.4.2)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
+    money (6.1.1)
+      i18n (~> 0.6.4)
     multi_json (1.10.1)
     open4 (1.3.4)
     orm_adapter (0.5.0)
@@ -132,7 +137,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.3.2)
-    resource_manager (0.0.1)
+    resource_manager (0.0.2)
     responders (1.1.1)
       railties (>= 3.2, < 4.2)
     rspec-core (3.1.7)
@@ -217,6 +222,7 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
+  bootstrap-datepicker-rails
   bootstrap-sass
   byebug
   cancancan
@@ -224,11 +230,13 @@ DEPENDENCIES
   database_cleaner
   devise
   did_you_mean
+  enum_help
   factory_girl
   faker
   jquery-rails
   mina
   mocha
+  money
   pg
   pinball
   pry-byebug
