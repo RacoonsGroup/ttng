@@ -1,0 +1,11 @@
+en:
+  simple_form:
+    labels:
+      user:
+        email: Email
+        password: Password
+        password_confirmation: Password confirmation
+        admin: Admin
+  activerecord:
+    models:
+      user: User

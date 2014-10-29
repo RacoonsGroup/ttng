@@ -1,0 +1,14 @@
+table.table
+  thead
+    tr
+      th=t('simple_form.labels.user.email')
+      th=t('common.labels.created_at')
+      th=t('common.labels.updated_at')
+      th=t('common.labels.actions')
+  tbody
+    -@users.each do |user|
+      tr
+        td=user.email
+        td=l(user.created_at)
+        td=l(user.updated_at)
+        td=admin_actions_for(user)

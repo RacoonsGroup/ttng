@@ -1,0 +1,11 @@
+en:
+  date:
+    formats:
+      default: '%d.%m.%Y'
+  time:
+    formats:
+      default: '%H:%M %d.%m.%Y'
+  helpers:
+    submit:
+      create: "Create %{model}"
+      update: "Update %{model}"

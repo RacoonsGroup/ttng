@@ -1,0 +1,4 @@
+h2=t('devise.headers.forgot_your_password')
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+  = f.input :email, required: true, autofocus: true, label: false, placeholder: t('devise.forms.email')
+  = f.button :submit, t('devise.buttons.send_resent_password_instructions')

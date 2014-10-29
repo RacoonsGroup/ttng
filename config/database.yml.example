@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password:  123456
+  template: template0
+
+development:
+  <<: *default
+  database: semantic-boilerplate_development
+
+test:
+  <<: *default
+  database: semantic-boilerplate_test
+
+production:
+  <<: *default
+  database: semantic-boilerplate_production
+  username: semantic-boilerplate
+  password: <%= ENV['SEMANTIC-BOILERPLATE_DATABASE_PASSWORD'] %>
