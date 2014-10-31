@@ -5,4 +5,5 @@ en:
     sign_in: Sign in
     sign_out: Sign out
     profile: Profile
-    admin: admin
+    admin: Admin
+    users: Users
