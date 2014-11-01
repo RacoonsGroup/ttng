@@ -1,0 +1,18 @@
+en:
+  simple_form:
+    labels:
+      project:
+        name: Name
+        customer: Customer
+        description: Description
+        rate: Rate
+        users: Users
+  activerecord:
+    models:
+      project: Project
+
+  project:
+    headers:
+      create: Create project
+      edit: Edit project
+      users: Users

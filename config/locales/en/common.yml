@@ -4,3 +4,6 @@ en:
       created_at: Created at
       updated_at: Updated at
       actions: Actions
+    buttons:
+      create: Create
+      save: Save

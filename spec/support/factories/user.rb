@@ -8,7 +8,7 @@ FactoryGirl.define do
     password_confirmation 'password'
 
     trait :admin do
-      admin true
+      position 'admin'
     end
 
     trait :invalid do

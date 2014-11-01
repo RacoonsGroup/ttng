@@ -1,0 +1,16 @@
+.row
+  .col-lg-3
+    =link_to t('common.buttons.create'), new_admin_customer_path, class: 'btn btn-primary'
+  .col-lg-9
+    table.table
+      thead
+        tr
+          th=t('simple_form.labels.customer.name')
+          th=t('simple_form.labels.customer.projects')
+          th=t('common.labels.actions')
+      tbody
+        -@customers.each do |customer|
+          tr
+            td=customer.name
+            td=customer.projects.count
+            td=admin_actions_for(customer)

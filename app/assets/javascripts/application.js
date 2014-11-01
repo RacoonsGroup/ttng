@@ -14,7 +14,10 @@
 //= require jquery_ujs
 
 //= require bootstrap
+//= require underscore
 //= require bootstrap-datepicker
+//= require angular
+//= require ng-rails-csrf
 //= require_tree .
 
 

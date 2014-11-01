@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, except: [:show, :new, :create]
+    resources :customers, except: [:show]
+    resources :projects, except: [:show]
   end
 
   root to: 'welcome#show'

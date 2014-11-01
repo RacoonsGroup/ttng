@@ -5,17 +5,25 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   enum position: {
-      admin: 0,
-      programmer: 1,
-      manager: 2
+      nobody: 0,
+      admin: 1,
+      programmer: 2,
+      manager: 3
   }
 
   self.per_page = 10
+
+  has_many :project_users
+  has_many :projects, through: :project_users
 
   validates :first_name, :last_name, :birth_date, :email, :position, :hire_date, presence: true
 
   def full_name
     "#{last_name} #{first_name}"
+  end
+
+  def full_name_with_position
+    "#{full_name} (#{position_i18n})"
   end
 
   def salary

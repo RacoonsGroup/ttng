@@ -21,6 +21,12 @@ gem 'resource_manager'
 gem 'enum_help'
 gem 'money'
 gem 'bootstrap-datepicker-rails'
+gem 'angularjs-rails'
+gem 'ng-rails-csrf'
+gem 'paranoia'
+gem 'gon'
+gem 'simple_presenter', github: 'zhulik/simple_presenter'
+gem 'underscore-rails'
 
 group :development do
   gem 'spring'
