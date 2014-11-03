@@ -52,7 +52,6 @@ class Admin::ProjectsController < Admin::AdminController
 
   def prepare_gon
     gon.project = @project.present? ? ProjectPresenter.new(@project).to_hash : nil
-
     gon.customers = Customer.all
     gon.users = UserPresenter.map(User.all)
   end

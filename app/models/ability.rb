@@ -9,7 +9,9 @@ class Ability
     end
 
     if user.manager?
-
+      can :manage, User
+      can :manage, Customer
+      can :manage, Project
     end
   end
 end

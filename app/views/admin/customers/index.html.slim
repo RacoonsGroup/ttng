@@ -12,5 +12,5 @@
         -@customers.each do |customer|
           tr
             td=customer.name
-            td=customer.projects.count
+            td=customer.projects.size
             td=admin_actions_for(customer)

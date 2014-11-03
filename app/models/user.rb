@@ -43,4 +43,8 @@ class User < ActiveRecord::Base
     value = Money.new(value.to_i * 100, 'RUB')
     write_attribute :official_salary_kopeks, value.cents
   end
+
+  def admin_or_manager?
+    admin? || manager?
+  end
 end
