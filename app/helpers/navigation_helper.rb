@@ -5,6 +5,7 @@ module NavigationHelper
       primary.selected_class = 'active'
 
       primary.item :key_1_1, t('navigation.home'), root_path, class: 'item', icon: 'home'
+      primary.item :key_1_2, t('navigation.tasks'), tasks_path, class: 'item'
     end
   end
 

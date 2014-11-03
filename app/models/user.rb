@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   has_many :project_users
   has_many :projects, through: :project_users
 
+  has_many :tasks, dependent: :destroy
+  has_many :time_entries, through: :tasks
+
   validates :first_name, :last_name, :birth_date, :email, :position, :hire_date, presence: true
 
   def full_name

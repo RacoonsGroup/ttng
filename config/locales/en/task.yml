@@ -1,0 +1,20 @@
+en:
+  simple_form:
+    labels:
+      task:
+        name: Name
+        project: Project
+        real_time: Real time
+        status: Status
+        type: Type
+        date: Date
+        payable: Payable
+
+  activerecord:
+    models:
+      task: Task
+
+  task:
+    headers:
+      create: Create task
+      edit: Edit task

@@ -13,5 +13,10 @@ class Ability
       can :manage, Customer
       can :manage, Project
     end
+
+    if user.programmer?
+      can :manage, Task, user_id: user.id
+      can :manage, TimeEntry, user_id: user.id
+    end
   end
 end

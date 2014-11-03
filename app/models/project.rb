@@ -8,6 +8,8 @@ class Project < ActiveRecord::Base
   has_many :project_users
   has_many :users, through: :project_users
 
+  has_many :tasks
+
   def rate
     Money.new rate_kopeks, 'RUB'
   end

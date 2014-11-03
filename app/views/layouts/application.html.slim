@@ -21,4 +21,8 @@ html
             li=link_to t('navigation.sign_in'), new_user_session_path
     .container#main
       = bootstrap_flash
-      = yield
+      .row
+        .col-lg-3
+          =render 'layouts/sidebar'
+        .col-lg-9
+          = yield

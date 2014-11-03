@@ -6,6 +6,7 @@ class CreateTasks < ActiveRecord::Migration
       t.string :name, null: false
       t.text :description
       t.string :url
+      t.date :date, null: false
       t.boolean :payable, null: false, default: false
       t.integer :status, null: false
       t.integer :type, null: false
