@@ -11,6 +11,10 @@ FactoryGirl.define do
       position 'admin'
     end
 
+    trait :programmer do
+      position 'programmer'
+    end
+
     trait :invalid do
       email nil
     end
