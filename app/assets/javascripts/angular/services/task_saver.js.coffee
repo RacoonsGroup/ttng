@@ -25,7 +25,7 @@ angular.module('gs.taskSaver', []).factory 'TaskSaver', ['$http', ($http)->
 
   create = (task, callback)->
     if task.task_id?
-      $http.post("/tasks/#{task.task_id}/time_entries", task: task).success ->
+      $http.post("/tasks/#{task.task_id}/time_entries", time_entry: task).success ->
         callback()
     else
       $http.post('/tasks', task: task).success ->
