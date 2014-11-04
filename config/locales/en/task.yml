@@ -5,10 +5,12 @@ en:
         name: Name
         project: Project
         real_time: Real time
+        description: Description
         status: Status
         type: Type
         date: Date
         payable: Payable
+        url: URL
 
   activerecord:
     models:

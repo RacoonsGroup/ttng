@@ -64,6 +64,12 @@ angular.module('gs.selectize2', []).directive 'selectize2', [->
     labelField = (attrs.labelField || 'name')
     create = (attrs.create || false)
 
+    if attrs.onload?
+      load = (query)->
+        scope.$eval(attrs.onload, query: query)
+    else
+      load = null
+
     config = {
       plugins: ['remove_button']
       persist: true
@@ -71,6 +77,7 @@ angular.module('gs.selectize2', []).directive 'selectize2', [->
       labelField: labelField
       searchField: labelField
       create: create
+      load: load
     }
 
     if !attrs.multiple

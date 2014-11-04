@@ -7,7 +7,13 @@ Rails.application.routes.draw do
     resources :projects, except: [:show]
   end
 
-  resources :tasks
+  resources :tasks do
+    collection do
+      get :find
+    end
+
+    resources :time_entries, only: :create
+  end
 
   root to: 'welcome#show'
 end

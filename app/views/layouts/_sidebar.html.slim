@@ -1,6 +1,8 @@
 aside data-spy='affix' data-offset-top='60' data-offset-bottom='200'
-  =link_to '#', class: 'btn btn-default' do
-    =glyph(:plus)
-    '
-    =t('task.headers.create')
-  h4=t('statistics.statistics')
+  -if can? :create, TimeEntry
+    =link_to new_task_path, class: 'btn btn-default' do
+      =glyph(:plus)
+      '
+      =t('task.headers.create')
+  -if user_signed_in? && current_user.programmer?
+    h4=t('statistics.statistics')

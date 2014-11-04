@@ -5,8 +5,8 @@ class Task < ActiveRecord::Base
   has_many :time_entries, dependent: :destroy
 
   enum status: {
-      in_progress: 0,
-      finished: 1,
+      finished: 0,
+      in_progress: 1
   }
 
   enum task_type: {
