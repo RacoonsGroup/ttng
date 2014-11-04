@@ -7,8 +7,9 @@ form ng-controller='TaskFormController' name='task_form'
       =form_group(label: t('simple_form.labels.task.date'), required: true) do
         input.form-control[required ng-model='task.date' datepicker]
 
+
   =form_group(label: t('simple_form.labels.task.name'), required: true) do
-    .form-control[selectize2 required ng-model='task.name' selectize-options='tasks' create='true' onLoad='findTask(query)' ng-change='nameChanged()']
+    .form-control[selectize2 required ng-model='task.name' selectize-options='tasks' create='true' on-load='findTask(query)' ng-change='nameChanged()'  include-model='true']
 
   .row
     .col-lg-6
@@ -22,11 +23,15 @@ form ng-controller='TaskFormController' name='task_form'
       =form_group(label: t('simple_form.labels.task.status'), required: true) do
         .form-control[selectize2 required ng-model='task.status' selectize-options='statuses']
 
-      =form_group(label: t('simple_form.labels.task.real_time'), required: true) do
-        input.form-control[required ng-model='task.duration']
+      div ng-show='!edit'
+        =form_group(label: t('simple_form.labels.task.real_time'), required: true) do
+          input.form-control[required ng-model='task.duration']
 
     .col-lg-6
       =form_group(label: t('simple_form.labels.task.description')) do
         textarea.form-control[ng-model='task.description' rows=12]
+
+  div ng-show='edit'
+    =render 'time_entries'
 
   button.btn.btn-success type='button' ng-disabled='task_form.$invalid' ng-click='saveTask()'=t('common.buttons.save')

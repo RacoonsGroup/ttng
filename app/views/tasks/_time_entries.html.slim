@@ -1,0 +1,20 @@
+h2=t('simple_form.labels.task.time_entries')
+table.table.time-entries-table
+  thead
+    tr
+      th=t('simple_form.labels.time_entry.date')
+      th=t('simple_form.labels.time_entry.description')
+      th=t('simple_form.labels.time_entry.duration')
+      th=t('common.labels.actions')
+  tbody
+    tr ng-repeat='time_entry in task.time_entries'
+      td
+        input.form-control[datepicker ng-model='time_entry.date']
+
+      td
+        textarea.form-control ng-model='time_entry.description'
+      td
+        input.form-control ng-model='time_entry.duration'
+      td
+        button.btn.btn-danger type='button' ng-click='removeTimeEntity($index)'
+          =glyph(:remove)

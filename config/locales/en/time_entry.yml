@@ -1,0 +1,11 @@
+en:
+  simple_form:
+    labels:
+      time_entry:
+        description: Description
+        date: Date
+        duration: Duration
+
+  activerecord:
+    models:
+      time_entry: Time entry

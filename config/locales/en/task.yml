@@ -11,6 +11,7 @@ en:
         date: Date
         payable: Payable
         url: URL
+        time_entries: Time entries
 
   activerecord:
     models:

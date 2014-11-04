@@ -64,9 +64,9 @@ angular.module('gs.selectize2', []).directive 'selectize2', [->
     labelField = (attrs.labelField || 'name')
     create = (attrs.create || false)
 
-    if attrs.onload?
+    if attrs.onLoad?
       load = (query)->
-        scope.$eval(attrs.onload, query: query)
+        scope.$eval(attrs.onLoad, query: query)
     else
       load = null
 

@@ -9,24 +9,25 @@ angular.module('gs.taskFormController', []).controller 'TaskFormController',
       $scope.task_types = gon.task_types
       $scope.tasks = []
       $scope.compact_form = false
+      $scope.edit = false
 
       if gon.task?
         $scope.task = gon.task
+        $scope.edit = true
       else
         $scope.task = {task_type: $scope.task_types[0], status: $scope.statuses[0], date: $filter('date')(new Date(), 'dd.MM.yyyy')}
-
 
       $scope.findTask = (query)->
         $scope.tasks = []
         params = {
           name: query
         }
-
         params['project_id'] = $scope.task.project.id if $scope.task.project?
-
         TaskSearcher.search params, (data)->
           $scope.tasks = data
 
+      $scope.removeTimeEntity = (index)->
+        $scope.task.time_entries.splice(index, 1)
 
       $scope.projectChanged = ->
         $scope.tasks = []

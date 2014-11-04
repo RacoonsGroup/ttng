@@ -4,21 +4,19 @@ class TasksController < ApplicationController
 
   load_and_authorize_resource except: [:create, :update]
 
+  before_filter :prepare_gon, only: [:new, :edit]
+
   def index
     @tasks = @tasks.includes(:project, :time_entries).order('date DESC, created_at').paginate(page: params[:page])
   end
 
   def new
     authorize! :create, Task
-    gon.task = nil
-    gon.projects = current_user.projects
-    gon.statuses = Task.statuses_i18n.map{ |k,v| { id: k, name: v } }
-    gon.task_types = Task.task_types_i18n.map{ |k,v| { id: k, name: v } }
   end
 
   def create
     authorize! :create, Task
-    task_manager.create(create_task_params) do |task, saved|
+    task_manager.create(task_params) do |task, saved|
       if saved
         render json: task
       else
@@ -31,6 +29,18 @@ class TasksController < ApplicationController
 
   end
 
+  def update
+    @task = current_user.tasks.find(params[:id])
+    authorize! :update, @task
+    task_manager.update(@task, task_params) do |task, saved|
+      if saved
+        render json: task
+      else
+        render json: task.errors.messages, status: 422
+      end
+    end
+  end
+
   def find
     tasks = task_searcher.find(params)
     render json: tasks
@@ -38,7 +48,14 @@ class TasksController < ApplicationController
 
   protected
 
-  def create_task_params
+  def task_params
     TaskPermitter.permit(params)
+  end
+
+  def prepare_gon
+    gon.task = @task.present? ? TaskPresenter.new(@task).to_hash : nil
+    gon.projects = current_user.projects
+    gon.statuses = Task.statuses_i18n.map{ |k,v| { id: k, name: v } }
+    gon.task_types = Task.task_types_i18n.map{ |k,v| { id: k, name: v } }
   end
 end

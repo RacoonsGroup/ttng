@@ -17,7 +17,7 @@ class Task < ActiveRecord::Base
 
   delegate :name, to: :project, prefix: true
 
-  validates :user_id, :project_id, :name, :status, :task_type, :date, presence: true
+  validates :user_id, :project, :project_id, :name, :status, :task_type, :date, presence: true
 
   def real_time
     time_entries.to_a.inject(0) do |sum, entry|

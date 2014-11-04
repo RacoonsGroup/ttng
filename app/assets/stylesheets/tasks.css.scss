@@ -1,0 +1,13 @@
+table.table.time-entries-table {
+  th:first-child {
+    width: 15%;
+  }
+
+  th:last-child {
+    width: 10%;
+  }
+
+  th:nth-child(2){
+    width: 65%;
+  }
+}
