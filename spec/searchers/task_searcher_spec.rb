@@ -22,4 +22,26 @@ describe TaskSearcher do
       end
     end
   end
+
+  describe '#find_by_form' do
+    let!(:project) { FactoryGirl.create(:project) }
+    let!(:task) { FactoryGirl.create(:task, user: user, project: project, date: Date.today) }
+
+
+    context 'with project' do
+      let!(:form) { TaskSearchForm.new(projects: [project.id.to_s], from: Date.today, to: Date.today, payable: 'false') }
+
+      it 'finds tasks' do
+        expect(searcher.find_by_form(form)).to match_array([task])
+      end
+    end
+
+    context 'without project' do
+      let!(:form) { TaskSearchForm.new(projects: [''], from: Date.today, to: Date.today, payable: 'false') }
+
+      it 'finds tasks' do
+        expect(searcher.find_by_form(form)).to match_array([task])
+      end
+    end
+  end
 end

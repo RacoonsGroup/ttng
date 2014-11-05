@@ -5,6 +5,8 @@ describe TasksController do
 
   let!(:user) { FactoryGirl.create(:user, :programmer) }
   let!(:task) { FactoryGirl.create(:task, user: user) }
+  let!(:bug) { FactoryGirl.create(:task, user: user, task_type: 'bug') }
+  let!(:chore) { FactoryGirl.create(:task, user: user, task_type: 'chore') }
 
   before do
     sign_in user
@@ -28,7 +30,7 @@ describe TasksController do
 
       it 'assigns valid @tasks' do
         get :index
-        expect(assigns(:tasks)).to match_array([task, task1])
+        expect(assigns(:tasks)).to match_array([task, bug, chore, task1])
       end
     end
   end

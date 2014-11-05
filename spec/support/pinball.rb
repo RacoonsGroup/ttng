@@ -5,5 +5,5 @@ Pinball::Container.configure do
   define_singleton :task_manager, ManagerMock
   define_singleton :time_entry_manager, ManagerMock
 
-  define_singleton :task_searcher, Mock
+  define_singleton :task_searcher, TaskSearcherMock
 end

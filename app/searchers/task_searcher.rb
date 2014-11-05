@@ -10,7 +10,7 @@ class TaskSearcher
 
   def find_by_form(search_form)
     tasks = current_user.tasks
-    tasks = filter_by_projects(tasks, search_form.projects) if search_form.projects.present?
+    tasks = filter_by_projects(tasks, search_form.projects.reject(&:empty?).map(&:to_i)) if search_form.projects.present?
     tasks = filter_by_from(tasks, search_form.from) if search_form.from.present?
     tasks = filter_by_to(tasks, search_form.to) if search_form.to.present?
     tasks = filter_by_payable(tasks, search_form.payable) if search_form.payable.present?
@@ -24,9 +24,8 @@ class TaskSearcher
   end
 
   def filter_by_projects(tasks, project_ids)
-    ids = project_ids.reject(&:empty?).map(&:to_i)
-    if ids.any?
-      tasks.where('project_id iN (?)', ids)
+    if project_ids.any?
+      tasks.where('project_id iN (?)', project_ids)
     else
       tasks
     end
