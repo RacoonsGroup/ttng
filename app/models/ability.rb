@@ -6,6 +6,8 @@ class Ability
 
     if user.admin?
       can :manage, :all
+      cannot :create, Task
+      cannot :create, TimeEntry
     end
 
     if user.manager?

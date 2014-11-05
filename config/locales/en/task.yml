@@ -21,3 +21,10 @@ en:
     headers:
       create: Create task
       edit: Edit task
+
+    search:
+      from: From
+      to: To
+      name: Name
+      projects: Projects
+      payable: Payable

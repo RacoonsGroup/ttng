@@ -7,6 +7,7 @@ angular.module('TTNG', [
   'gs.projectSaver',
   'gs.taskFormController',
   'gs.datepicker',
-  'gs.taskSearcher'
-  'gs.taskSaver'
+  'gs.taskSearcher',
+  'gs.taskSaver',
+  'gs.tooltip'
 ])

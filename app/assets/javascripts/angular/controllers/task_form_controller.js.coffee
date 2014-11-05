@@ -11,7 +11,7 @@ angular.module('gs.taskFormController', []).controller 'TaskFormController',
       $scope.compact_form = false
       $scope.edit = false
 
-      if gon.task?
+      if gon.task.id?
         $scope.task = gon.task
         $scope.edit = true
       else

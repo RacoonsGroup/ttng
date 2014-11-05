@@ -9,7 +9,7 @@ class TaskManager < ResourceManager::Base
   end
 
   after_create do |task|
-    time_entry_manager.create(task, duration: @duration)
+    time_entry_manager.create(task, duration: @duration, date: task.date)
   end
 
   before_update do |_, params|
