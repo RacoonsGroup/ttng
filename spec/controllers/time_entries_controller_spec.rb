@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe TimeEntriesController do
-  let!(:user) { FactoryGirl.create(:user, :programmer) }
+  let!(:user) { FactoryGirl.create(:user, :developer) }
   let!(:task) { FactoryGirl.create(:task, user: user) }
 
   before do

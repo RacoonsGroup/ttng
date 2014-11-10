@@ -17,6 +17,12 @@ class TaskSearcher
     tasks
   end
 
+  def between(from, to)
+    tasks = current_user.tasks
+    tasks = filter_by_from(tasks, from)
+    filter_by_to(tasks, to)
+  end
+
   private
 
   def filter_by_name(tasks, name)

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe TasksController do
 
 
-  let!(:user) { FactoryGirl.create(:user, :programmer) }
+  let!(:user) { FactoryGirl.create(:user, :developer) }
   let!(:task) { FactoryGirl.create(:task, user: user) }
   let!(:bug) { FactoryGirl.create(:task, user: user, task_type: 'bug') }
   let!(:chore) { FactoryGirl.create(:task, user: user, task_type: 'chore') }

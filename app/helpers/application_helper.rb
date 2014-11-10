@@ -34,4 +34,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def iteration_date(date)
+    date.strftime('%d.%m')
+  end
 end

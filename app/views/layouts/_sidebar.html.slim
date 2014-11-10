@@ -4,5 +4,5 @@ aside data-spy='affix' data-offset-top='60' data-offset-bottom='200'
       =glyph(:plus)
       '
       =t('task.headers.create')
-  -if user_signed_in? && current_user.programmer?
-    h4=t('statistics.statistics')
+  -if user_signed_in? && current_user.developer?
+    =render('layouts/statistics')

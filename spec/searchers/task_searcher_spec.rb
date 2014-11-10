@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe TaskSearcher do
-  let!(:user) { FactoryGirl.create :user, :programmer }
+  let!(:user) { FactoryGirl.create :user, :developer }
   let!(:searcher) { TaskSearcher.new.override_dependency(:current_user, user) }
 
   describe '#find' do

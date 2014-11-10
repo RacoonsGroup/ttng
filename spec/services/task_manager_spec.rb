@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe TaskManager do
-  let!(:user) { FactoryGirl.create(:user, :programmer) }
+  let!(:user) { FactoryGirl.create(:user, :developer) }
   let!(:project) { FactoryGirl.create(:project) }
 
   let!(:manager) { TaskManager.new.override_dependency(:current_user, user) }

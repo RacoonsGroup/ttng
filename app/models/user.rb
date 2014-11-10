@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   enum position: {
       nobody: 0,
       admin: 1,
-      programmer: 2,
+      developer: 2,
       manager: 3
   }
 
