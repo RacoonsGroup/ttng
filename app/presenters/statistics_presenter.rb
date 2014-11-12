@@ -18,6 +18,6 @@ class StatisticsPresenter
     tasks = @task_searcher.between(Date.today.iteration.beginning, Date.today.iteration.end)
     spent_hours = tasks.to_a.inject(0){ |s, t| s + t.real_time }
     percentage = spent_hours / hours.to_f * 100
-    "#{hours} (#{percentage.round}%)"
+    "#{spent_hours} (#{percentage.round}%)"
   end
 end

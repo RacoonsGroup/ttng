@@ -18,6 +18,8 @@
 //= require bootstrap-datepicker
 //= require angular
 //= require ng-rails-csrf
+//= require moment
+//= require moment/ru.js
 //= require_tree .
 
 

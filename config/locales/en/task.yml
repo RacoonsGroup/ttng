@@ -28,3 +28,11 @@ en:
       name: Name
       projects: Projects
       payable: Payable
+      today: Today
+      yesterday: Yesterday
+      this_week: This week
+      previous_week: Previous week
+      this_iteration: This iteration
+      previous_iteration: Previous iteration
+      this_month: This month
+      previous_month: Previous month

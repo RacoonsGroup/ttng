@@ -27,6 +27,7 @@ gem 'paranoia'
 gem 'gon'
 gem 'simple_presenter', github: 'zhulik/simple_presenter'
 gem 'underscore-rails'
+gem 'momentjs-rails'
 
 group :development do
   gem 'spring'

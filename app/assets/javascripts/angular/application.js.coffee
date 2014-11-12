@@ -9,5 +9,7 @@ angular.module('TTNG', [
   'gs.datepicker',
   'gs.taskSearcher',
   'gs.taskSaver',
-  'gs.tooltip'
+  'gs.tooltip',
+  'gs.taskFilterController',
+  'gs.ngInitial'
 ])
