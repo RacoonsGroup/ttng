@@ -34,4 +34,7 @@ angular.module('gs.taskFilterController', []).controller 'TaskFilterController',
       $scope.previousMonth = ->
         $scope.from = moment().subtract(1, 'month').startOf('month').format('l')
         $scope.to = moment().subtract(1, 'month').endOf('month').format('l')
+
+      $scope.equalizeDates = ->
+        $scope.to = $scope.from
   ]

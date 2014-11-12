@@ -1,10 +1,12 @@
 .well ng-controller='TaskFilterController'
-  =simple_form_for(@search, url: tasks_path, method: 'GET', as: :search) do |f|
+  =simple_form_for(@search, url: tasks_path, method: 'GET', as: :search, html: { class: 'form-horizontal' }) do |f|
     .row
-      .col-lg-2
-        =f.input :from, label: false, placeholder: t('task.search.from'), as: :date_picker, input_html: { :'ng-model' => 'from', datepicker: true, :'ng-initial' => true }
-      .col-lg-2
-        =f.input :to, label: false, placeholder: t('task.search.to'), as: :date_picker, input_html: { :'ng-model' => 'to', datepicker: true, :'ng-initial' => true }
+      .col-lg-4
+        .form-group.dates
+          =f.input :from, wrapper: false, label: false, placeholder: t('task.search.from'), as: :date_picker, input_html: { class: 'inline', :'ng-model' => 'from', datepicker: true, :'ng-initial' => true }
+          button.btn.btn-default.btn-xs type='button' ng-click='equalizeDates()'
+            =glyph(:'arrow-right')
+          =f.input :to, wrapper: false, label: false, placeholder: t('task.search.to'), as: :date_picker, input_html: { class: 'inline', :'ng-model' => 'to', datepicker: true, :'ng-initial' => true }
       .col-lg-4
         =f.select :projects, @projects, {}, multiple: true, selectize2: true
       .col-lg-2

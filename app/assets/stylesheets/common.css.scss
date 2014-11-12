@@ -9,3 +9,15 @@ div#main {
 .datepicker-inline {
   display: none !important;
 }
+
+input.form-control.inline {
+  width: 40%;
+  display: inline-block;
+}
+
+.form-group.dates {
+  .btn {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
