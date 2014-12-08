@@ -1,9 +1,42 @@
 class ArticlesController < AuthenticatedController
   inject :article_manager
-  load_and_authorize_resource except: [:index]
+  load_and_authorize_resource except: [:index, :create, :update]
 
   def index
     @articles = Article.all.includes(:user, :users)
+  end
+
+  def new
+    authorize! :create, Article
+  end
+
+  def create
+    authorize! :create, Article
+    article_manager.create(article_params) do |article, saved|
+      if saved
+        redirect_to articles_path
+      else
+        @article = article
+        render :new
+      end
+    end
+  end
+
+  def edit
+
+  end
+
+  def update
+    article = current_user.articles.find(params[:id])
+    authorize! :update, article
+    article_manager.update(article, article_params) do |article, saved|
+      if saved
+        redirect_to articles_path
+      else
+        @article = article
+        render :edit
+      end
+    end
   end
 
   def read
@@ -19,5 +52,11 @@ class ArticlesController < AuthenticatedController
   def destroy
     article_manager.destroy(@article)
     redirect_to articles_path
+  end
+
+  private
+
+  def article_params
+    ArticlePermitter.permit(params)
   end
 end

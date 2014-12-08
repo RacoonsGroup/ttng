@@ -4,6 +4,7 @@ module ArticleHelper
   end
 
   def read_button(article)
+    return if article.user == current_user
     if article.users.include?(current_user)
       link_to(unread_article_path(article), method: :POST, class: 'btn btn-warning', title: t('article.buttons.read'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true) do
         glyph(:remove)

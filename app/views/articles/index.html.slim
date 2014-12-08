@@ -1,3 +1,4 @@
+=link_to t('article.buttons.add'), new_article_path, class: 'btn btn-primary'
 table.table
   thead
     tr
@@ -19,6 +20,9 @@ table.table
         td
           .btn-group
             =read_button(article)
+            -if can? :edit, article
+              =link_to edit_article_path(article), class: 'btn btn-primary', title: t('actions.edit'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
+                =glyph(:edit)
             -if can? :destroy, article
-              =link_to article_path(article), method: :DELETE, class: 'btn btn-danger' do
+              =link_to article_path(article), method: :DELETE, class: 'btn btn-danger', title: t('actions.destroy'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
                 =glyph(:remove)

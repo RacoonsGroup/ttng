@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   has_many :user_articles
 
-  has_many :articles, class: Article, through: :user_articles
+  has_many :related_articles, class: Article, through: :user_articles
 
   validates :first_name, :last_name, :birth_date, :email, :position, :hire_date, presence: true
 

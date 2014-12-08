@@ -4,7 +4,7 @@ class Article < ActiveRecord::Base
   has_many :user_articles
   has_many :users, through: :user_articles
 
-  validates :title, :description, :importance, presence: true
+  validates :user, :title, :description, :importance, presence: true
 
   validate :url_or_content
 

@@ -17,5 +17,6 @@ en:
       edit: Edit article
 
     buttons:
+      add: Add article
       read: Mark as read
       unread: Mark as unread

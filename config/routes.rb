@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :time_entries, only: :create
   end
 
-  resources :articles, only: [:index, :destroy] do
+  resources :articles, except: [:show] do
     member do
       post :read
       post :unread

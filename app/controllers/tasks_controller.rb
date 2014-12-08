@@ -32,9 +32,9 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = current_user.tasks.find(params[:id])
-    authorize! :update, @task
-    task_manager.update(@task, task_params) do |task, saved|
+    task = current_user.tasks.find(params[:id])
+    authorize! :update, task
+    task_manager.update(task, task_params) do |task, saved|
       if saved
         render json: task
       else

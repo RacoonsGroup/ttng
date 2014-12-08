@@ -1,7 +1,7 @@
-class TaskManager < ResourceManager::Base
+class ArticleManager < ResourceManager::Base
   inject :current_user
 
-  model ->{ current_user.tasks }
+  model ->{ current_user.articles }
 
   def read!(article)
     current_user.articles.push(article)

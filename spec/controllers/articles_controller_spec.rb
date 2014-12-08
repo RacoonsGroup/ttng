@@ -20,6 +20,70 @@ describe ArticlesController do
     end
   end
 
+  describe 'GET #new' do
+    it 'renders new template' do
+      get :new
+      expect(response).to render_template(:new)
+    end
+  end
+
+  describe 'POST #create' do
+    context 'with valid params' do
+      before do
+        ManagerMock.any_instance.stubs(:result).returns(true)
+      end
+
+      it 'redirects to articles index' do
+        post :create, article: FactoryGirl.attributes_for(:article)
+        expect(response).to redirect_to(articles_path)
+      end
+    end
+
+    context 'with invalid params' do
+      before do
+        ManagerMock.any_instance.stubs(:result).returns(false)
+        ManagerMock.any_instance.stubs(:item).returns(article)
+      end
+
+      it 'redirects to articles index' do
+        post :create, article: FactoryGirl.attributes_for(:article)
+        expect(response).to render_template(:new)
+      end
+    end
+  end
+
+  describe 'GET #edit' do
+    it 'renders edit template' do
+      get :edit, id: article
+      expect(response).to render_template(:edit)
+    end
+  end
+
+  describe 'put #update' do
+    context 'with valid params' do
+      before do
+        ManagerMock.any_instance.stubs(:result).returns(true)
+      end
+
+      it 'redirects to articles index' do
+        put :update, id: article, article: FactoryGirl.attributes_for(:article)
+        expect(response).to redirect_to(articles_path)
+      end
+    end
+
+    context 'with invalid params' do
+      before do
+        ManagerMock.any_instance.stubs(:result).returns(false)
+        ManagerMock.any_instance.stubs(:item).returns(article)
+      end
+
+      it 'redirects to articles index' do
+        put :update, id: article, article: FactoryGirl.attributes_for(:article)
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
+
   describe 'POST #read' do
     it 'redirects to articles index' do
       post :read, id: article

@@ -9,6 +9,7 @@ Pinball::Container.configure do
 
 
   define_singleton :time_entry_manager, TimeEntryManager
+  define_singleton :article_manager, ArticleManager
 
 
 
