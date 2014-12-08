@@ -16,8 +16,9 @@ table.table
           =importance_label(article)
         td
           =article.description
-        td=read_button(article)
         td
-          -if can? :destroy, article
-            =link_to article_path(article), method: :DELETE, class: 'btn btn-danger' do
-              =glyph(:remove)
+          .btn-group
+            =read_button(article)
+            -if can? :destroy, article
+              =link_to article_path(article), method: :DELETE, class: 'btn btn-danger' do
+                =glyph(:remove)
