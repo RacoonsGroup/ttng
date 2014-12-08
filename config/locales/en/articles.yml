@@ -1,0 +1,21 @@
+en:
+  simple_form:
+    labels:
+      article:
+        title: Title
+        url: url
+        content: Content
+        importance: Importance
+        description: Description
+  activerecord:
+    models:
+      article: Article
+
+  article:
+    headers:
+      create: Create article
+      edit: Edit article
+
+    buttons:
+      read: Mark as read
+      unread: Mark as unread

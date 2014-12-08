@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110080654) do
+ActiveRecord::Schema.define(version: 20141114051117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: true do |t|
+    t.integer  "user_id"
+    t.string   "url"
+    t.string   "description",             null: false
+    t.text     "content"
+    t.integer  "importance",  default: 5, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title",                   null: false
+  end
+
+  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "customers", force: true do |t|
     t.string   "name",       null: false
@@ -80,6 +93,13 @@ ActiveRecord::Schema.define(version: 20141110080654) do
 
   add_index "time_entries", ["task_id"], name: "index_time_entries_on_task_id", using: :btree
 
+  create_table "user_articles", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",           null: false
     t.string   "encrypted_password",     default: "",           null: false
@@ -96,9 +116,9 @@ ActiveRecord::Schema.define(version: 20141110080654) do
     t.boolean  "admin",                  default: false,        null: false
     t.string   "first_name",             default: "",           null: false
     t.string   "last_name",              default: "",           null: false
-    t.date     "birth_date",             default: '2014-11-06', null: false
+    t.date     "birth_date",             default: '2014-12-08', null: false
     t.integer  "position",               default: 0,            null: false
-    t.date     "hire_date",              default: '2014-11-06', null: false
+    t.date     "hire_date",              default: '2014-12-08', null: false
     t.date     "fire_date"
     t.integer  "salary_kopeks",          default: 0,            null: false
     t.integer  "official_salary_kopeks", default: 0,            null: false

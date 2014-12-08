@@ -19,6 +19,12 @@ class User < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
   has_many :time_entries, through: :tasks
 
+  has_many :articles
+
+  has_many :user_articles
+
+  has_many :articles, class: Article, through: :user_articles
+
   validates :first_name, :last_name, :birth_date, :email, :position, :hire_date, presence: true
 
   def full_name

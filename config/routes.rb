@@ -15,5 +15,12 @@ Rails.application.routes.draw do
     resources :time_entries, only: :create
   end
 
+  resources :articles, only: [:index, :destroy] do
+    member do
+      post :read
+      post :unread
+    end
+  end
+
   root to: 'welcome#show'
 end

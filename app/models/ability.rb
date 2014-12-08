@@ -21,6 +21,8 @@ class Ability
     if user.developer?
       can :manage, Task, user_id: user.id
       can :manage, TimeEntry, user_id: user.id
+      can :manage, Article, user_id: user.id
+      can [:read, :unread], Article
     end
   end
 end
