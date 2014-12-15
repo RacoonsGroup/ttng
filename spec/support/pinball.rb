@@ -9,4 +9,5 @@ Pinball::Container.configure do
   define_singleton :day_manager, ManagerMock
 
   define_singleton :task_searcher, TaskSearcherMock
+  define_singleton :project_info_manager, ManagerMock
 end

@@ -80,6 +80,13 @@ describe Admin::ProjectsController do
     end
   end
 
+  describe 'GET #show' do
+    it 'renders show template' do
+      get :show, id: project
+      expect(response).to render_template(:show)
+    end
+  end
+
   describe 'DELETE #destroy' do
     it 'redirects to project index' do
       delete :destroy, id: project
