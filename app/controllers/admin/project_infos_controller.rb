@@ -38,6 +38,11 @@ class Admin::ProjectInfosController < Admin::AdminController
     end
   end
 
+  def destroy
+    project_info_manager.destroy(@project_info)
+    redirect_to admin_project_path(@project)
+  end
+
   private
 
   def project_info_params
