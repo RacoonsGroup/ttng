@@ -1,0 +1,5 @@
+=simple_form_for([:admin, project, project_info], html: {autocomplete: 'off'}) do |f|
+  =f.input :title, input_html: { autocomplete: 'off' }
+  =f.input :info
+  =f.input :password, input_html: { autocomplete: 'off' }
+  =f.submit class: 'btn btn-primary'

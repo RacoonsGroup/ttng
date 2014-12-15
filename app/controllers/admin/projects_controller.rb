@@ -23,6 +23,10 @@ class Admin::ProjectsController < Admin::AdminController
     end
   end
 
+  def show
+    @tasks = @project.tasks.order('date DESC').limit(10)
+  end
+
   def edit
 
   end

@@ -56,4 +56,8 @@ class User < ActiveRecord::Base
   def admin_or_manager?
     admin? || manager?
   end
+
+  def avatar
+    Gravatar.new(email).image_url
+  end
 end

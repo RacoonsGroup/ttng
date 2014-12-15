@@ -7,7 +7,7 @@ en:
         reason: Reason
   activerecord:
     models:
-      Day: Day
+      day: Day
 
   day:
     headers:

@@ -1,6 +1,6 @@
 module Admin::AdminHelper
-  def admin_actions_for(entity)
-    content_tag(:div, class: 'btn-group') do
+  def admin_actions_for(entity, size: 'md')
+    content_tag(:div, class: "btn-group btn-group-#{size}") do
       StringIO.open do |s|
 
         if can? :edit, entity

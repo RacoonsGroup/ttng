@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, except: [:show, :new, :create]
     resources :customers, except: [:show]
-    resources :projects, except: [:show]
+    resources :projects do
+      resources :project_infos, except: :index
+    end
     resources :days, except: [:show]
   end
 

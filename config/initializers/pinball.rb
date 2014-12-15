@@ -14,6 +14,10 @@ Pinball::Container.configure do
 
 
 
+  define :project_info_manager do
+    Admin::ProjectInfoManager.new(@project)
+  end
+
 
   define :current_user do
     Thread.current[:current_user]

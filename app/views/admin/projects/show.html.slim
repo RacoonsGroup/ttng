@@ -1,0 +1,10 @@
+h1
+  =@project.name
+  '
+  small=@project.customer.name
+.row
+  .col-lg-3
+    =render 'users_panel', project: @project
+    =render 'info_panel', project: @project
+  .col-lg-9
+    =render 'tasks_panel', tasks: @tasks

@@ -79,6 +79,7 @@ GEM
       interception
     diff-lcs (1.2.5)
     docile (1.1.5)
+    encrypted_strings (0.3.3)
     enum_help (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.3)
@@ -92,6 +93,9 @@ GEM
       json
       multi_json
       request_store (>= 1.0.5)
+    gravatar-ultimate (2.0.0)
+      activesupport (>= 2.3.14)
+      rack
     hike (1.2.3)
     i18n (0.6.11)
     interception (0.5)
@@ -158,6 +162,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.3.2)
+    redcarpet (3.2.2)
     request_store (1.1.0)
     resource_manager (0.0.7)
       activesupport (~> 4.1.6)
@@ -260,10 +265,12 @@ DEPENDENCIES
   database_cleaner
   devise
   did_you_mean
+  encrypted_strings
   enum_help
   factory_girl
   faker
   gon
+  gravatar-ultimate
   jquery-rails
   mina
   mocha
@@ -278,6 +285,7 @@ DEPENDENCIES
   quiet_assets
   rabl
   rails (= 4.1.6)
+  redcarpet
   resource_manager
   rspec-rails
   sass-rails (~> 4.0.3)

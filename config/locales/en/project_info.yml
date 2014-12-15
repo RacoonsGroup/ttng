@@ -1,0 +1,16 @@
+en:
+  simple_form:
+    labels:
+      project_info:
+        info: Info
+        password: Password
+  activerecord:
+    models:
+      project_info: project_info
+
+  project_info:
+    headers:
+      info: Info
+      create: Create project info
+    buttons:
+      add: Create project info

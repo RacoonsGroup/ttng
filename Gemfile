@@ -29,6 +29,9 @@ gem 'simple_presenter', github: 'zhulik/simple_presenter'
 gem 'underscore-rails'
 gem 'momentjs-rails'
 gem 'squeel'
+gem 'encrypted_strings'
+gem 'gravatar-ultimate'
+gem 'redcarpet'
 
 group :development do
   gem 'spring'

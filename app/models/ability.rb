@@ -15,6 +15,7 @@ class Ability
       can :manage, Customer
       can :manage, Project
       can :manage, Day
+      can :manage, ProjectInfo
       can :read, Task
       can :read, TimeEntry
     end
