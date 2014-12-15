@@ -11,5 +11,7 @@ angular.module('TTNG', [
   'gs.taskSaver',
   'gs.tooltip',
   'gs.taskFilterController',
-  'gs.ngInitial'
+  'gs.ngInitial',
+  'gs.askPassword',
+  'gs.projectShowController'
 ])

@@ -3,8 +3,13 @@ module ApplicationHelper
     content_tag(:span, '', class: "glyphicon glyphicon-#{name}")
   end
 
-  def button(icon:, text:, url:, method: :get, type:'primary')
-    content_tag(:a, href: url, class: "btn btn-#{type}", :'data-method' => method) do
+  def button(icon:, text:, url:, method: :get, type:'primary', params:{})
+    params.tap do |p|
+      p[:'data-method'] = method if method != :get
+      p[:class] = "btn btn-#{type}"
+      p[:href] = url
+    end
+    content_tag(:a, params) do
           content_tag(:div, class: 'visible content') do
             icon(icon)
           end

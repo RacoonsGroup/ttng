@@ -7,7 +7,7 @@ class ProjectInfo < ActiveRecord::Base
 
   def decrypted_info(key = nil)
     if encrypted
-      info.decrypt(:symmetric, password: key)
+      info.decrypt(:symmetric, password: key).encode('ascii-8bit').force_encoding('utf-8')
     else
       info
     end

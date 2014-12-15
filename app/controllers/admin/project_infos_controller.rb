@@ -20,7 +20,22 @@ class Admin::ProjectInfosController < Admin::AdminController
   end
 
   def show
+    @info = @project_info.decrypted_info(params[:password])
+  end
 
+  def edit
+
+  end
+
+  def update
+    project_info_manager.update(@project_info, project_info_params) do |project_info, saved|
+      if saved
+        redirect_to admin_project_path(@project)
+      else
+        @project_info = project_info
+        render :edit
+      end
+    end
   end
 
   private

@@ -8,3 +8,5 @@ en:
       create: Create
       save: Save
       filter: Filter
+      close: Close
+      decrypt: Decrypt

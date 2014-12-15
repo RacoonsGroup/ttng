@@ -1,15 +1,18 @@
-=link_to t('day.buttons.add'), new_admin_day_path, class: 'btn btn-primary'
-table.table
-  thead
-    tr
-      th=t('simple_form.labels.day.date')
-      th=t('simple_form.labels.day.holiday')
-      th=t('simple_form.labels.day.reason')
-      th
-  tbody
-    -@days.each do |day|
-      tr
-        td=l(day.date)
-        td=holiday(day.holiday)
-        td=day.reason
-        td=admin_actions_for(day)
+.row
+  .col-lg-3
+    =link_to t('day.buttons.add'), new_admin_day_path, class: 'btn btn-primary'
+  .col-lg-9
+    table.table
+      thead
+        tr
+          th=t('simple_form.labels.day.date')
+          th=t('simple_form.labels.day.holiday')
+          th=t('simple_form.labels.day.reason')
+          th
+      tbody
+        -@days.each do |day|
+          tr
+            td=l(day.date)
+            td=holiday(day.holiday)
+            td=day.reason
+            td=admin_actions_for(day)

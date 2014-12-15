@@ -5,5 +5,6 @@ angular.module('gs.tooltip', []).directive 'tooltip', [->
   require: '^?ngModel',
 
   link: (scope, elem, attrs, ngModel) ->
+    alert("!!!")
     elem.tooltip()
 ]

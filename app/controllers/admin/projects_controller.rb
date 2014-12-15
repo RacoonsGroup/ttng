@@ -24,7 +24,7 @@ class Admin::ProjectsController < Admin::AdminController
   end
 
   def show
-    @tasks = @project.tasks.order('date DESC').limit(10)
+    @tasks = @project.tasks.order('date DESC').limit(10).includes(:user, :time_entries)
   end
 
   def edit
