@@ -4,10 +4,10 @@ class ArticleManager < ResourceManager::Base
   model ->{ current_user.articles }
 
   def read!(article)
-    current_user.articles.push(article)
+    current_user.related_articles.push(article)
   end
 
-  def unread(id)
+  def unread!(id)
     current_user.user_articles.find_by(article_id: id).try(&:destroy)
   end
 end
