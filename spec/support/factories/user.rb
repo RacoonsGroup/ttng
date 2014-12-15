@@ -11,6 +11,10 @@ FactoryGirl.define do
       position 'admin'
     end
 
+    trait :manager do
+      position 'manager'
+    end
+
     trait :developer do
       position 'developer'
     end
