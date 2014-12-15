@@ -1,0 +1,21 @@
+en:
+  simple_form:
+    labels:
+      day:
+        date: Date
+        holiday: Holiday
+        reason: Reason
+  activerecord:
+    models:
+      Day: Day
+
+  day:
+    headers:
+      create: Create day
+      edit: Edit day
+    buttons:
+      add: Create day
+
+    labels:
+      holiday: Holiday
+      business_day: Business day

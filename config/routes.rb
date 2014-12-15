@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :users, except: [:show, :new, :create]
     resources :customers, except: [:show]
     resources :projects, except: [:show]
+    resources :days, except: [:show]
   end
 
   resources :tasks do

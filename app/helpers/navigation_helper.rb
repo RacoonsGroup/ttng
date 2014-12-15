@@ -18,6 +18,7 @@ module NavigationHelper
       primary.item :key_1_2, t('navigation.users'), admin_users_path, class: 'item', icon: 'user', highlights_on: :subpath if can? :read, User
       primary.item :key_1_3, t('navigation.customers'), admin_customers_path, class: 'item', icon: 'user', highlights_on: :subpath  if can? :read, Customer
       primary.item :key_1_4, t('navigation.projects'), admin_projects_path, class: 'item', icon: 'user', highlights_on: :subpath if can? :read, Project
+      primary.item :key_1_5, t('navigation.days'), admin_days_path, class: 'item', icon: 'user', highlights_on: :subpath if can? :read, Project
     end
   end
 end
