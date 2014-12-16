@@ -24,6 +24,7 @@ class Admin::ProjectsController < Admin::AdminController
   end
 
   def show
+    @filter = TaskSearchForm.new(params[:filter])
     @tasks = @project.tasks.order('date DESC').limit(10).includes(:user, :time_entries)
     respond_to do |format|
       format.html
