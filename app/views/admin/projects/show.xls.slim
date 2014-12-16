@@ -1,0 +1,17 @@
+table
+  tr
+    th Task
+    th Time points
+    th Date
+    th User
+    th Url
+    th Description
+
+  -@tasks.each do |task|
+    tr
+      td =task.name
+      td =task.real_time
+      td =l(task.date)
+      td #{task.user.first_name} #{task.user.last_name}
+      td =task.url
+      td =task.description

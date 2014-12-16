@@ -1,0 +1,5 @@
+.panel.panel-default
+  .panel-heading
+    =t('project_info.headers.export')
+  .panel-body
+     =link_to 'XLS', admin_project_path(@project, format: 'xls')

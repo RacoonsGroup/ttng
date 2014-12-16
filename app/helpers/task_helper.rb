@@ -20,4 +20,8 @@ module TaskHelper
   def payable_options
     %w[all true false].each{ |s| [s, s]}
   end
+
+  def payable_glyph(task)
+    task.payable ? glyph(:ok) : glyph(:remove)
+  end
 end
