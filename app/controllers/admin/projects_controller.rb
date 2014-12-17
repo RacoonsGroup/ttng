@@ -53,6 +53,12 @@ class Admin::ProjectsController < Admin::AdminController
     redirect_to admin_projects_path
   end
 
+  def to_google_drive
+    @project = Project.find(params[:id])
+    GoogleExport.upload_file(admin_project_path(@project, format: 'xls'))
+    render 'show'
+  end
+
   private
 
   def project_params
@@ -64,4 +70,5 @@ class Admin::ProjectsController < Admin::AdminController
     gon.customers = Customer.all
     gon.users = UserPresenter.map(User.all)
   end
+
 end

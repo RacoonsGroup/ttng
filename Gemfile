@@ -32,6 +32,7 @@ gem 'squeel'
 gem 'encrypted_strings'
 gem 'gravatar-ultimate'
 gem 'redcarpet'
+gem 'google_drive'
 
 group :development do
   gem 'spring'

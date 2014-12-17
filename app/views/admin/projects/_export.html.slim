@@ -2,5 +2,6 @@
   .panel-heading
     =t('project_info.headers.export')
   .panel-body
-    =link_to 'XLS', admin_project_path(@project, format: 'xls')
+    p =link_to 'XLS', admin_project_path(@project, format: 'xls')
+    p =link_to 'To GoogleDocs', to_google_drive_admin_project_path(@project)
     =render 'filter_form'
