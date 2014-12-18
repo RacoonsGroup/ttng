@@ -1,7 +1,7 @@
 require "google/api_client"
 require "google_drive"
 
-class GoogleExport
+class GoogleExporter
   client = Google::APIClient.new
   auth = client.authorization
   auth.client_id = '109932807530-pngovokf6v5l16170ra8e2juujj4benp.apps.googleusercontent.com'
@@ -12,8 +12,8 @@ class GoogleExport
       "https://docs.googleusercontent.com/ " +
       "https://spreadsheets.google.com/feeds/"
   auth.redirect_uri = 'urn:ietf:wg:oauth:2.0:oob'
-  # print("1. Open this page:\n%s\n\n" % auth.authorization_uri)
-  auth.code = '4/uyqM9EzAjl2yDmgMWv6RQpLjgOKALCLUX4dnjwDFqOo.Uv1opr3KSnQUrjMoGjtSfTp-r5-vlAI'
+  print("1. Open this page:\n%s\n\n" % auth.authorization_uri)
+  auth.code = '4/3qg4wksaV6W7zw1F7i3ZeF4Ppdqez0OHHIvOYMJd1ls.Ahs3SBENjf0QrjMoGjtSfToKP_26lAI'
   auth.fetch_access_token!
   access_token = auth.access_token
 
@@ -21,8 +21,8 @@ class GoogleExport
 
   def self.upload_file(filepath)
     file = @session.upload_from_file(filepath)
-    @session.root_collection.create_subcollection('export')
-    @session.collection_by_title('export').add(file)
+    @session.root_collection.create_subcollection('Reports from Racoons-Group Task Tracker')
+    @session.collection_by_title('Reports from Racoons-Group Task Tracker').add(file)
     @session.root_collection.remove(file)
   end
 end

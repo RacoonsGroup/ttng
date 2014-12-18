@@ -33,6 +33,7 @@ gem 'encrypted_strings'
 gem 'gravatar-ultimate'
 gem 'redcarpet'
 gem 'google_drive'
+gem 'axlsx_rails'
 
 group :development do
   gem 'spring'

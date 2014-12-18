@@ -28,7 +28,7 @@ class Admin::ProjectsController < Admin::AdminController
     @tasks = @project.tasks.order('date DESC').limit(10).includes(:user, :time_entries)
     respond_to do |format|
       format.html
-      format.xls
+      format.xlsx {render xlsx: 'show', filename: @project.name}
     end
   end
 
@@ -55,7 +55,10 @@ class Admin::ProjectsController < Admin::AdminController
 
   def to_google_drive
     @project = Project.find(params[:id])
-    GoogleExport.upload_file(admin_project_path(@project, format: 'xls'))
+    @tasks = @project.tasks.order('date DESC').limit(10).includes(:user, :time_entries)
+    stringed = render_to_string(template: 'admin/projects/show.xlsx.axlsx')
+    File.open("#{Rails.root}/tmp/report.xlsx", 'w') { |file| file.write(stringed) }
+    GoogleExporter.upload_file("#{Rails.root}/tmp/report.xlsx")
     render 'show'
   end
 
