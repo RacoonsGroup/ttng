@@ -56,6 +56,13 @@ class Admin::ProjectsController < Admin::AdminController
   def to_google_drive
     @project = Project.find(params[:id])
     @tasks = @project.tasks.order('date DESC').limit(10).includes(:user, :time_entries)
+
+    @auth = request.env['omniauth.auth']['credentials']
+    Token.create(
+        access_token: @auth['token'],
+        refresh_token: @auth['refresh_token'],
+        expires_at: Time.at(@auth['expires_at']).to_datetime)
+    binding.pry
     stringed = render_to_string(template: 'admin/projects/show.xlsx.axlsx')
     File.open("#{Rails.root}/tmp/report.xlsx", 'w') { |file| file.write(stringed) }
     GoogleExporter.upload_file("#{Rails.root}/tmp/report.xlsx")

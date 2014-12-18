@@ -34,6 +34,9 @@ gem 'gravatar-ultimate'
 gem 'redcarpet'
 gem 'google_drive'
 gem 'axlsx_rails'
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-google-oauth2'
+gem 'json'
 
 group :development do
   gem 'spring'

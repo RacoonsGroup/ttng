@@ -15,14 +15,13 @@ class GoogleExporter
   print("1. Open this page:\n%s\n\n" % auth.authorization_uri)
   auth.code = '4/3qg4wksaV6W7zw1F7i3ZeF4Ppdqez0OHHIvOYMJd1ls.Ahs3SBENjf0QrjMoGjtSfToKP_26lAI'
   auth.fetch_access_token!
-  access_token = auth.access_token
-
-  @session = GoogleDrive.login_with_oauth(access_token)
 
   def self.upload_file(filepath)
-    file = @session.upload_from_file(filepath)
-    @session.root_collection.create_subcollection('Reports from Racoons-Group Task Tracker')
-    @session.collection_by_title('Reports from Racoons-Group Task Tracker').add(file)
-    @session.root_collection.remove(file)
+    access_token = auth.access_token
+    session = GoogleDrive.login_with_oauth(access_token)
+    file = session.upload_from_file(filepath)
+    session.root_collection.create_subcollection('Reports from Racoons-Group Task Tracker')
+    session.collection_by_title('Reports from Racoons-Group Task Tracker').add(file)
+    session.root_collection.remove(file)
   end
 end
