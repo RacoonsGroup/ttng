@@ -87,7 +87,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    did_you_mean (0.8.0)
+    did_you_mean (0.9.4)
       interception
     diff-lcs (1.2.5)
     docile (1.1.5)

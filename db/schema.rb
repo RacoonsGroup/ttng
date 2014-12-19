@@ -29,15 +29,6 @@ ActiveRecord::Schema.define(version: 20141218145331) do
 
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
-  create_table "categories", force: true do |t|
-    t.string   "title"
-    t.integer  "wiki_page_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "categories", ["wiki_page_id"], name: "index_categories_on_wiki_page_id", using: :btree
-
   create_table "customers", force: true do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
@@ -144,9 +135,9 @@ ActiveRecord::Schema.define(version: 20141218145331) do
     t.boolean  "admin",                  default: false,        null: false
     t.string   "first_name",             default: "",           null: false
     t.string   "last_name",              default: "",           null: false
-    t.date     "birth_date",             default: '2014-11-06', null: false
+    t.date     "birth_date",             default: '2014-12-19', null: false
     t.integer  "position",               default: 0,            null: false
-    t.date     "hire_date",              default: '2014-11-06', null: false
+    t.date     "hire_date",              default: '2014-12-19', null: false
     t.date     "fire_date"
     t.integer  "salary_kopeks",          default: 0,            null: false
     t.integer  "official_salary_kopeks", default: 0,            null: false
@@ -156,13 +147,5 @@ ActiveRecord::Schema.define(version: 20141218145331) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "wiki_pages", force: true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.string   "attachment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
