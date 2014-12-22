@@ -32,6 +32,7 @@ gem 'squeel'
 gem 'encrypted_strings'
 gem 'gravatar-ultimate'
 gem 'redcarpet'
+gem 'tracker_api', '~> 0.2.0'
 
 group :development do
   gem 'spring'

@@ -9,7 +9,7 @@ form ng-controller='TaskFormController' name='task_form'
 
 
   =form_group(label: t('simple_form.labels.task.name'), required: true) do
-    .form-control[selectize2 required ng-model='task.name' selectize-options='tasks' create='true' on-load='findTask(query)' ng-change='nameChanged()'  include-model='true']
+    .form-control[selectize2 required ng-model='task.name' selectize-on-render='renderTask(item, escape)' selectize-options='tasks' create='true' on-load='findTasks(query)' ng-change='nameChanged()' include-model='true']
 
   .row
     .col-lg-6

@@ -1,8 +1,9 @@
 h2=t('devise.headers.profile')
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = f.input :first_name, required: true, autofocus: true, plasceholder: t('devise.forms.first_name'), label: false
-  = f.input :last_name, required: true, autofocus: true, plasceholder: t('devise.forms.last_name'), label: false
-  = f.input :email, required: true, autofocus: true, plasceholder: t('devise.forms.email'), label: false
+  = f.input :first_name, required: true, autofocus: true, placeholder: t('devise.forms.first_name'), label: false
+  = f.input :last_name, required: true, autofocus: true, placeholder: t('devise.forms.last_name'), label: false
+  = f.input :email, required: true, autofocus: true, placeholder: t('devise.forms.email'), label: false
+  = f.input :pivotal_token, placeholder: t('devise.forms.pivotal_token'), label: false
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     p
       = resource.unconfirmed_email

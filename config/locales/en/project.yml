@@ -7,6 +7,7 @@ en:
         description: Description
         rate: Rate
         users: Users
+        pivotal_id: PivotalTracker project id
   activerecord:
     models:
       project: Project

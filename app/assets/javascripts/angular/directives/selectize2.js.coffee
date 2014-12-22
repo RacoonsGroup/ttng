@@ -70,6 +70,15 @@ angular.module('gs.selectize2', []).directive 'selectize2', [->
     else
       load = null
 
+    console.log attrs
+    if attrs.selectizeOnRender
+      render = {
+        option: (item, escape)->
+          scope.$eval(attrs.selectizeOnRender, item: item, escape: escape)
+        }
+    else
+      render = null
+
     config = {
       plugins: ['remove_button']
       persist: true
@@ -78,6 +87,7 @@ angular.module('gs.selectize2', []).directive 'selectize2', [->
       searchField: labelField
       create: create
       load: load
+      render: render
     }
 
     if !attrs.multiple
