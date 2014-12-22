@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :projects, except: :all do
-      resources :remote_tasks, only: :index
+      resources :remote_tasks, only: [:index, :show]
     end
   end
 

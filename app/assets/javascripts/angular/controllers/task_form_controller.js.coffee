@@ -1,8 +1,8 @@
 'use strict'
 
 angular.module('gs.taskFormController', []).controller 'TaskFormController',
-  ['$scope', '$filter', 'TaskSearcher', 'TaskSaver', 'RemoteTaskSearcher'
-    ($scope, $filter, TaskSearcher, TaskSaver, RemoteTaskSearcher)->
+  ['$scope', '$filter', 'TaskSearcher', 'TaskSaver', 'RemoteTaskSearcher', '$http'
+    ($scope, $filter, TaskSearcher, TaskSaver, RemoteTaskSearcher, $http)->
       window.scope = $scope
       $scope.projects = gon.projects
       $scope.statuses = gon.statuses
@@ -66,4 +66,17 @@ angular.module('gs.taskFormController', []).controller 'TaskFormController',
         pivotalLogo = ->
           '<img src="/images/pivotal.png"/>'
         "<div class='task-row'>#{escape(item.name)}<span class='pull-right'>#{ if item.remote then pivotalLogo() else '' }</span></div>"
+
+
+      $scope.urlChanged = ->
+        if $scope.task.project?
+          re = new RegExp('pivotaltracker.com/story/show/([0-9]+)')
+          if re.test($scope.task.url)
+            task_id = re.exec($scope.task.url)[1]
+            $scope.loading_remote_task = true
+
+            $http.get("/api/projects/#{$scope.task.project.id}/remote_tasks/#{task_id}").success (task)->
+              $scope.tasks = [task]
+              $scope.task.name = task
+              $scope.nameChanged()
 ]

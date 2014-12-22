@@ -7,6 +7,10 @@ class Api::RemoteTasksController < AuthenticatedController
     render json: RemoteTaskPresenter.map(pivotal_api.stories(params[:query])).map(&:to_hash)
   end
 
+  def show
+    render json: RemoteTaskPresenter.new(pivotal_api.story(params[:id])).to_hash
+  end
+
   private
 
   def find_project

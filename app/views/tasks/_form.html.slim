@@ -15,7 +15,7 @@ form ng-controller='TaskFormController' name='task_form'
     .col-lg-6
       div ng-show='!compact_form'
         =form_group(label: t('simple_form.labels.task.url'))do
-          input.form-control[ng-model='task.url']
+          input.form-control[ng-model='task.url' ng-change='urlChanged()']
 
         =form_group(label: t('simple_form.labels.task.type'), required: true) do
           .form-control[selectize2 required ng-model='task.task_type' selectize-options='task_types']
