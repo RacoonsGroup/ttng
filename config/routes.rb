@@ -6,13 +6,15 @@ Rails.application.routes.draw do
     resources :customers, except: [:show]
     resources :projects do
       resources :project_infos, except: :index
-      # member do
-      #   get "/auth/:provider/callback" => 'sessions#create'
-      # end
+      member do
+        get :to_google_drive
+      end
     end
     resources :days, except: [:show]
   end
-  get "/auth/:provider/callback" => 'sessions#create'
+  controller :sessions do
+    get '/auth/:provider/callback' => 'sessions#create'
+  end
   resources :sessions, only: :index
 
   

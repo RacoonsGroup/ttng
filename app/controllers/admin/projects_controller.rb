@@ -57,8 +57,12 @@ class Admin::ProjectsController < Admin::AdminController
     @project = Project.find(params[:id])
     @tasks = @project.tasks.order('date DESC').limit(10).includes(:user, :time_entries)
     stringed = render_to_string(template: 'admin/projects/show.xlsx.axlsx')
-    File.open("#{Rails.root}/tmp/report.xlsx", 'w') { |file| file.write(stringed) }
-    GoogleExporter.upload_file("#{Rails.root}/tmp/report.xlsx", token)
+    file_path = "#{Rails.root}/tmp/report.xlsx"
+    File.open(file_path, 'w') { |file| file.write(stringed) }
+    if Token.last.blank?
+      redirect_to '/auth/google_oauth2'
+    end
+    GoogleExporter.upload_file(file_path)
     render 'show'
   end
 
