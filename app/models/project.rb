@@ -11,6 +11,34 @@ class Project < ActiveRecord::Base
 
   has_many :tasks
 
+  has_many :bugs, ->{ bug }, class: Task
+  has_many :features, ->{ feature }, class: Task
+  has_many :chores, ->{ chore }, class: Task
+
+  def real_time
+    tasks.to_a.inject(0) do |sum, task|
+      sum + task.real_time
+    end
+  end
+
+  def bug_time
+    bugs.to_a.inject(0) do |sum, task|
+      sum + task.real_time
+    end
+  end
+
+  def task_time
+    features.to_a.inject(0) do |sum, task|
+      sum + task.real_time
+    end
+  end
+
+  def chore_time
+    chores.to_a.inject(0) do |sum, task|
+      sum + task.real_time
+    end
+  end
+
   def rate
     Money.new rate_kopeks, 'RUB'
   end

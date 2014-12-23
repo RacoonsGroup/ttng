@@ -24,6 +24,7 @@ html
       = bootstrap_flash
       .row
         .col-lg-3
-          =render 'layouts/sidebar'
+          -if user_signed_in?
+            =render 'layouts/sidebar'
         .col-lg-9
           = yield

@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '4.2.0'
 gem 'pg'
@@ -31,6 +31,7 @@ gem 'momentjs-rails'
 gem 'encrypted_strings'
 gem 'gravatar-ultimate'
 gem 'redcarpet'
+gem 'chart-js-rails'
 
 group :development do
   gem 'spring'

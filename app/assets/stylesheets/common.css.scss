@@ -1,5 +1,6 @@
 body {
   margin: 0px;
+  background-color: #E1E0DE !important;
 }
 
 div#main {
@@ -80,4 +81,106 @@ table.project-info {
   td:last-child {
     width: 25%;
   }
+}
+
+.island {
+  background-color: #F4F4F4;
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+
+  h4 {
+    font-weight: 600;
+    margin: 0 0 15px;
+
+    a {
+      color: #2f65a7;
+      outline: 0 !important;
+
+      &:hover {
+        text-decoration: none;
+        color: #333;
+      }
+    }
+
+    .btn-group {
+      margin-left: 20px;
+      a {
+        color: #ffffff;
+      }
+    }
+  }
+
+  &.project {
+    height: 120px;
+    position: relative;
+
+    .avatar {
+      margin: 2px
+    }
+
+    .project-image {
+      width: 85px;
+      height: 85px;
+      margin-right: 15px;
+    }
+
+    canvas {
+      position: absolute;
+
+      left: 400px;
+      top: 10px;
+    }
+  }
+
+  &.user {
+    width: 230px;
+    height: 230px;
+    display: inline-block;
+
+    margin: 20px;
+
+    img {
+      margin-left: 70px;
+    }
+
+    h4 {
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+
+
+}
+
+h1.nav-header {
+  font-weight: 600;
+}
+
+.strong {
+  font-weight: bold !important;
+}
+
+.text-muted-dark {
+  color: #a2a2a2;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.widget {
+  line-height: 20px;
+
+  .glyphicon {
+    top: 2px;
+    margin-right: 3px;
+  }
+}
+
+.user-list {
+  -webkit-column-count: 4;
+  -moz-column-count: 4;
+  -column-count: 4;
 }

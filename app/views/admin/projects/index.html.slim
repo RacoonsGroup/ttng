@@ -1,20 +1,33 @@
-.row
-  .col-lg-3
-    =link_to t('common.buttons.create'), new_admin_project_path, class: 'btn btn-primary'
-  .col-lg-9
-    table.table.admin-table
-      thead
-        tr
-          th=t('simple_form.labels.project.name')
-          th=t('simple_form.labels.project.customer')
-          th=t('simple_form.labels.project.users')
+h1.nav-header.pull-left
+  =t('navigation.projects')
+  '
+  '
+  =link_to new_admin_project_path, class: 'btn btn-success' do
+    =icon(:plus)
 
-          th=t('common.labels.actions')
-      tbody
-        -@projects.each do |project|
-          tr
-            td=link_to project.name, admin_project_path(project)
-            td=project.customer_name
-            td=project.users.size
+.clearfix
 
-            td=admin_actions_for(project)
+-@projects.each do |project|
+  div.island.project
+    .pull-left
+      h4
+        =image_tag('project.png', class: 'pull-left project-image')
+        =link_to project.name, admin_project_path(project)
+        =admin_actions_for(project, size: 'xs')
+      .text-muted=project.customer_name
+
+      canvas[project_stat_chart height='100' width='100' bugs="#{project.bug_time}" tasks="#{project.task_time}" chores="#{project.chore_time}"]
+
+      .widget
+        b
+          =t('simple_form.labels.task.real_time')
+          |:
+          '
+        =icon(:time)
+        =project.real_time
+
+    .pull-right
+      .strong.text-muted-dark.align-right=t('project.headers.users')
+      -project.users.each do |user|
+        .avatar.pull-right[tooltip data-toggle="tooltip" data-placement="bottom" title="#{user.full_name}"]
+          =image_tag(user.avatar, size: '32x32', class: 'img-circle')

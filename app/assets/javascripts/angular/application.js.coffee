@@ -13,5 +13,6 @@ angular.module('TTNG', [
   'gs.taskFilterController',
   'gs.ngInitial',
   'gs.askPassword',
-  'gs.projectShowController'
+  'gs.projectShowController',
+  'gs.projectStatChart'
 ])

@@ -10,9 +10,7 @@ module ApplicationHelper
       p[:href] = url
     end
     content_tag(:a, params) do
-          content_tag(:div, class: 'visible content') do
-            icon(icon)
-          end
+      icon(icon)
     end
   end
 
