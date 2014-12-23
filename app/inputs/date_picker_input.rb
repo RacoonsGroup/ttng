@@ -1,5 +1,5 @@
 class DatePickerInput < SimpleForm::Inputs::Base
-  def input
+  def input(wrapper_options)
     input_html_options[:class].push :'form-control'
     input_html_options[:value] = value
     @builder.text_field(attribute_name, input_html_options)
