@@ -109,4 +109,8 @@ module Formable
   def attributes
     to_hash.with_indifferent_access
   end
+
+  def has_attribute?(attr_name)
+    self.class.fields.map(&:name).include?(attr_name)
+  end
 end
