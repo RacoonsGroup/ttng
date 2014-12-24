@@ -25,5 +25,5 @@ angular.module('gs.projectStatChart', []).directive 'projectStatChart', [->
       }
     ]
 
-    myNewChart = new Chart(elem.get(0).getContext('2d')).Pie(data);
+    myNewChart = new Chart(elem.get(0).getContext('2d')).Pie(data, animation: false);
 ]

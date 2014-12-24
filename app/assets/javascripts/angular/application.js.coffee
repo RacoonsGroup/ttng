@@ -14,5 +14,6 @@ angular.module('TTNG', [
   'gs.ngInitial',
   'gs.askPassword',
   'gs.projectShowController',
-  'gs.projectStatChart'
+  'gs.projectStatChart',
+  'gs.iterationStatChart'
 ])

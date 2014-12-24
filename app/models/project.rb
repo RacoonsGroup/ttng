@@ -9,35 +9,11 @@ class Project < ActiveRecord::Base
   has_many :users, through: :project_users
   has_many :project_infos
 
-  has_many :tasks
+  has_many :tasks, -> { includes(:time_entries) }
 
-  has_many :bugs, ->{ bug }, class: Task
-  has_many :features, ->{ feature }, class: Task
-  has_many :chores, ->{ chore }, class: Task
-
-  def real_time
-    tasks.to_a.inject(0) do |sum, task|
-      sum + task.real_time
-    end
-  end
-
-  def bug_time
-    bugs.to_a.inject(0) do |sum, task|
-      sum + task.real_time
-    end
-  end
-
-  def task_time
-    features.to_a.inject(0) do |sum, task|
-      sum + task.real_time
-    end
-  end
-
-  def chore_time
-    chores.to_a.inject(0) do |sum, task|
-      sum + task.real_time
-    end
-  end
+  has_many :bugs, ->{ includes(:time_entries).bug }, class: Task
+  has_many :features, ->{ includes(:time_entries).feature }, class: Task
+  has_many :chores, ->{ includes(:time_entries).chore }, class: Task
 
   def rate
     Money.new rate_kopeks, 'RUB'

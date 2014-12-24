@@ -1,8 +1,6 @@
-aside.island.sidebar
-  -if can? :create, TimeEntry
-    =link_to new_task_path, class: 'btn btn-default' do
-      =glyph(:plus)
-      '
-      =t('task.headers.create')
-  -if user_signed_in? && current_user.developer?
+-if current_user.developer?
+  aside.island.sidebar
+    .pull-right
+      =link_to new_task_path, class: 'btn btn-success btn-xs', title: t('task.headers.create'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
+        =glyph(:plus)
     =render('layouts/statistics')

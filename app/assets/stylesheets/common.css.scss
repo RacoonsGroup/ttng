@@ -172,6 +172,7 @@ h1.nav-header {
 
 .widget {
   line-height: 20px;
+  white-space: nowrap;
 
   .glyphicon {
     top: 2px;
@@ -185,13 +186,18 @@ h1.nav-header {
   -column-count: 4;
 }
 
-.island.sidebar {
-  max-width: 260px;
-  margin-top: 69px;
-}
-
 .island.task-search {
   .row {
     margin-left: 2px;
+  }
+}
+
+
+
+.island.sidebar {
+  margin-top: 69px;
+
+  canvas {
+    margin-left: 65px;
   }
 }
