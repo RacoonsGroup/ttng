@@ -1,28 +1,31 @@
-=link_to t('article.buttons.add'), new_article_path, class: 'btn btn-primary'
-table.table
-  thead
-    tr
-      th=t('simple_form.labels.article.title')
-      th=t('simple_form.labels.article.importance')
-      th=t('simple_form.labels.article.description')
-      th
-      th
-  tbody
-    -@articles.each do |article|
+h1.nav-header
+  =t('navigation.articles')
+  '
+  =link_to new_article_path, class: 'btn btn-success' do
+    =icon(:plus)
+.island
+  table.table
+    thead
       tr
-        td
-          =link_to article.title, article_path(article)
-          .text-muted=article.user.full_name
-        td
-          =importance_label(article)
-        td
-          =article.description
-        td
-          .btn-group
-            =read_button(article)
-            -if can? :edit, article
-              =link_to edit_article_path(article), class: 'btn btn-primary', title: t('actions.edit'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
-                =glyph(:edit)
-            -if can? :destroy, article
-              =link_to article_path(article), method: :DELETE, class: 'btn btn-danger', title: t('actions.destroy'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
-                =glyph(:remove)
+        th
+        th=t('simple_form.labels.article.title')
+        th=t('simple_form.labels.article.description')
+        th
+    tbody
+      -@articles.each do |article|
+        tr
+          td=importance_label(article)
+          td
+            =link_to article.title, article_path(article)
+            .text-muted=article.user.full_name
+          td
+            =article.description
+          td
+            .btn-group.pull-right
+              =read_button(article)
+              -if can? :edit, article
+                =link_to edit_article_path(article), class: 'btn btn-primary', title: t('actions.edit'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
+                  =glyph(:edit)
+              -if can? :destroy, article
+                =link_to article_path(article), method: :DELETE, class: 'btn btn-danger', title: t('actions.destroy'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
+                  =glyph(:remove)

@@ -142,7 +142,7 @@ table.project-info {
     margin: 20px;
 
     img {
-      margin-left: 70px;
+      margin-left: 63px;
     }
 
     h4 {
@@ -183,4 +183,15 @@ h1.nav-header {
   -webkit-column-count: 4;
   -moz-column-count: 4;
   -column-count: 4;
+}
+
+.island.sidebar {
+  max-width: 260px;
+  margin-top: 69px;
+}
+
+.island.task-search {
+  .row {
+    margin-left: 2px;
+  }
 }

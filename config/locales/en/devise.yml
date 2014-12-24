@@ -21,6 +21,7 @@ en:
       password_confirmation: Password confirmation
       remember_me: Remember me
       current_password: Current password
+      pivotal_token: Pivotal token
     hints:
       leave_password_blank: leave it blank if you don\'t want to change it
       confirm_current_password: we need your current password to confirm your changes

@@ -23,7 +23,7 @@ module ApplicationHelper
   end
 
   def actions_for(entity)
-    content_tag(:div, class: 'btn-group') do
+    content_tag(:div, class: 'btn-group btn-group-sm') do
       StringIO.open do |s|
 
         if can? :edit, entity
