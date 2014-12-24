@@ -33,14 +33,6 @@ class ProjectPresenter < Presenter
     total_time_for(chores.where(user_id: user.id).to_a)
   end
 
-  private
-
-  def total_time_for(tasks)
-    tasks.inject(0) do |sum, task|
-      sum + task.real_time
-    end
-  end
-
   def to_hash
     {
         id: id,
@@ -51,4 +43,14 @@ class ProjectPresenter < Presenter
         users: users.map{ |u| {user: UserPresenter.new(u).to_hash } }
     }
   end
+
+  private
+
+  def total_time_for(tasks)
+    tasks.inject(0) do |sum, task|
+      sum + task.real_time
+    end
+  end
+
+
 end
