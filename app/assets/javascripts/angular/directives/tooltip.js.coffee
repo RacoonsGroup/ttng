@@ -1,10 +1,8 @@
 'use strict'
 
 angular.module('gs.tooltip', []).directive 'tooltip', [->
-  restrict: 'A',
-  require: '^?ngModel',
+  restrict: 'A'
 
-  link: (scope, elem, attrs, ngModel) ->
-    alert("!!!")
+  link: (scope, elem, attrs) ->
     elem.tooltip()
 ]

@@ -9,7 +9,11 @@ class Project < ActiveRecord::Base
   has_many :users, through: :project_users
   has_many :project_infos
 
-  has_many :tasks
+  has_many :tasks, -> { includes(:time_entries) }
+
+  has_many :bugs, ->{ includes(:time_entries).bug }, class: Task
+  has_many :features, ->{ includes(:time_entries).feature }, class: Task
+  has_many :chores, ->{ includes(:time_entries).chore }, class: Task
 
   def rate
     Money.new rate_kopeks, 'RUB'

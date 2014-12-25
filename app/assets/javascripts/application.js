@@ -17,6 +17,7 @@
 //= require underscore
 //= require bootstrap-datepicker
 //= require angular
+//= require Chart
 //= require ng-rails-csrf
 //= require moment
 //= require moment/ru.js

@@ -1,16 +1,18 @@
-.panel.panel-default
-  .panel-heading=t('navigation.tasks')
-  .panel-body.users
+.island
+  h4=t('navigation.tasks')
+  .users
     table.table
       thead
+        th=t('simple_form.labels.task.name')
         th=t('activerecord.models.user')
         th=t('simple_form.labels.task.date')
-        th=t('simple_form.labels.task.name')
+
         th=t('simple_form.labels.task.real_time')
       tbody
         -tasks.each do |task|
           tr
+            td=task.name
             td=task.user.full_name
             td=l(task.date)
-            td=task.name
+
             td=task.real_time

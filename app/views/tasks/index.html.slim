@@ -1,24 +1,26 @@
+h1.nav-header=t('navigation.tasks')
 =render 'search_form', search: @search
 
-table.table
-  thead
-    tr
-      th
-      th=t('simple_form.labels.task.name')
-      th=t('simple_form.labels.task.project')
-      th=t('simple_form.labels.task.real_time')
-      th=t('simple_form.labels.task.status')
-      th=t('simple_form.labels.task.date')
-      th=t('simple_form.labels.task.payable')
-      th=t('common.labels.actions')
-  tbody
-    -@tasks.each do |task|
+.island
+  table.table
+    thead
       tr
-        th=task_glyph(task)
-        td=task.name
-        td=task.project_name
-        td=task.real_time
-        td=task.status_i18n
-        td=l(task.date)
-        td=payable_glyph(task)
-        td=actions_for(task)
+        th
+        th=t('simple_form.labels.task.name')
+        th=t('simple_form.labels.task.project')
+        th=t('simple_form.labels.task.real_time')
+        th=t('simple_form.labels.task.status')
+        th=t('simple_form.labels.task.date')
+        th=t('simple_form.labels.task.payable')
+        th=t('common.labels.actions')
+    tbody
+      -@tasks.each do |task|
+        tr
+          th=task_glyph(task)
+          td=task.name
+          td=task.project_name
+          td=task.real_time
+          td=task.status_i18n
+          td=l(task.date)
+          td=task.payable
+          td=actions_for(task)

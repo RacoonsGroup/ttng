@@ -1,6 +1,10 @@
 =simple_form_for article do |f|
   =f.input :title
   =f.input :description
-  =f.input :url
+  .row
+    .col-lg-6
+      =f.input :url
+    .col-lg-6
+      =f.input :importance, collection: 1..5, include_blank: false
   =f.input :content
   =f.submit class: 'btn btn-success'

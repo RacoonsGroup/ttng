@@ -5,7 +5,7 @@ class Admin::ProjectsController < Admin::AdminController
   before_filter :prepare_gon, only: [:new, :edit]
 
   def index
-    @projects = @projects.includes(:customer, :users).paginate(page: params[:page])
+    @projects = ProjectPresenter.map(@projects.includes(:customer, :users, :tasks, :features, :bugs, :chores).paginate(page: params[:page]))
   end
 
   def new

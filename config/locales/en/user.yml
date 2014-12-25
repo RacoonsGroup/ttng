@@ -15,3 +15,7 @@ en:
   activerecord:
     models:
       user: User
+
+  user:
+    headers:
+      edit: Edit user

@@ -33,5 +33,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :projects, only: [:index, :show]
+
   root to: 'welcome#show'
 end

@@ -1,20 +1,13 @@
-table.table
-  thead
-    tr
-      th
-      th=t('simple_form.labels.user.full_name')
-      th=t('simple_form.labels.user.email')
-      th=t('simple_form.labels.user.position')
-      th=t('common.labels.hire_date')
-      th=t('common.labels.fire_date')
-      th=t('common.labels.actions')
-  tbody
-    -@users.each do |user|
-      tr
-        td=image_tag(user.avatar, size: '32x32')
-        td=user.full_name
-        td=user.email
-        td=user.position_i18n
-        td=ll(user.hire_date)
-        td=ll(user.fire_date)
-        td=admin_actions_for(user)
+h1.nav-header=t('navigation.users')
+.user-list
+  -@users.each do |user|
+    .island.user
+      =image_tag(user.avatar, size: '74x74', class: 'img-circle')
+      h4=user.full_name
+      .text-muted=user.email
+      div=user.position_i18n
+      div=ll(user.hire_date)
+      div=ll(user.fire_date)
+      .pull-right
+        =link_to edit_admin_user_path(user), class: 'btn btn-success btn-xs' do
+          =icon :edit

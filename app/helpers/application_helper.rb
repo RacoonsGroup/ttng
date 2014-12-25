@@ -10,9 +10,7 @@ module ApplicationHelper
       p[:href] = url
     end
     content_tag(:a, params) do
-          content_tag(:div, class: 'visible content') do
-            icon(icon)
-          end
+      icon(icon)
     end
   end
 
@@ -25,7 +23,7 @@ module ApplicationHelper
   end
 
   def actions_for(entity)
-    content_tag(:div, class: 'btn-group') do
+    content_tag(:div, class: 'btn-group btn-group-sm') do
       StringIO.open do |s|
 
         if can? :edit, entity
