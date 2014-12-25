@@ -3,6 +3,7 @@
     =t('project_info.headers.export')
   .panel-body
     p =link_to 'XLS', admin_project_path(@project, format: 'xlsx')
-    p =link_to 'googledoc', to_google_drive_admin_project_path
-    /p =link_to 'To GoogleDocs', '/auth/google_oauth2'
+    //p =link_to 'googledoc', to_google_drive_admin_project_path
+    p =link_to 'export', export_admin_project_path(@project)
+    //p =link_to 'To GoogleDocs', '/auth/google_oauth2'
     =render 'filter_form'

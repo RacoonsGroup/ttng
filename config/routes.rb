@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :projects do
       resources :project_infos, except: :index
       member do
+        get :export
         get :to_google_drive
       end
     end

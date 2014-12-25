@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222105829) do
+ActiveRecord::Schema.define(version: 20141225101753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,14 +105,6 @@ ActiveRecord::Schema.define(version: 20141222105829) do
 
   add_index "time_entries", ["task_id"], name: "index_time_entries_on_task_id", using: :btree
 
-  create_table "tokens", force: :cascade do |t|
-    t.string   "access_token"
-    t.string   "refresh_token"
-    t.datetime "expires_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "user_articles", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "article_id"
@@ -145,6 +137,7 @@ ActiveRecord::Schema.define(version: 20141222105829) do
     t.string   "inn",                    limit: 255
     t.string   "snils",                  limit: 255
     t.string   "pivotal_token",          limit: 255
+    t.string   "google_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

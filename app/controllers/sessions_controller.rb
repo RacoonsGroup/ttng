@@ -6,11 +6,8 @@ class SessionsController < ApplicationController
 
   def create
     @auth = request.env['omniauth.auth']['credentials']
-    Token.create(
-        access_token: @auth['token'],
-        refresh_token: @auth['refresh_token'],
-        expires_at: Time.at(@auth['expires_at']).to_datetime)
-    redirect_to(:back)
+    current_user.update_attributes(google_token: @auth['token'])
+    redirect_to to_google_drive_admin_project_path(session[:export_project_id])
   end
 
 end

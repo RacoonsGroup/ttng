@@ -53,17 +53,21 @@ class Admin::ProjectsController < Admin::AdminController
     redirect_to admin_projects_path
   end
 
+  def export
+    session[:export_project_id] = @project.id
+    redirect_to '/auth/google_oauth2'
+  end
+
   def to_google_drive
     @project = Project.find(params[:id])
     @tasks = @project.tasks.order('date DESC').limit(10).includes(:user, :time_entries)
+
     stringed = render_to_string(template: 'admin/projects/show.xlsx.axlsx')
     file_path = "#{Rails.root}/tmp/report.xlsx"
     File.open(file_path, 'w') { |file| file.write(stringed) }
-    if Token.last.blank?
-      redirect_to '/auth/google_oauth2'
-    end
     GoogleExporter.upload_file(file_path)
-    render 'show'
+    redirect_to admin_project_path(@project.id)
+
   end
 
   private
