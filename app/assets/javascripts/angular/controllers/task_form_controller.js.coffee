@@ -3,7 +3,6 @@
 angular.module('gs.taskFormController', []).controller 'TaskFormController',
   ['$scope', '$filter', 'TaskSearcher', 'TaskSaver'
     ($scope, $filter, TaskSearcher, TaskSaver)->
-      window.scope = $scope
       $scope.projects = gon.projects
       $scope.statuses = gon.statuses
       $scope.task_types = gon.task_types

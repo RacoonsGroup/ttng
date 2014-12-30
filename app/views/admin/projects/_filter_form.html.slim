@@ -1,17 +1,10 @@
-.well ng-controller='TaskFilterController'
+.well
   =simple_form_for(@filter, url: tasks_path, method: 'GET', as: :filter, html: { class: 'form-horizontal' }) do |f|
     .row
       .col-lg-12
         .form-group.dates
           =f.input :from, wrapper: false, label: false, placeholder: t('task.search.from'), as: :date_picker, input_html: { class: 'inline', :'ng-model' => 'from', datepicker: true, :'ng-initial' => true }
-          button.btn.btn-default.btn-xs type='button' ng-click='equalizeDates()'
-            =glyph(:'arrow-right')
+          div[date-equalizer]
           =f.input :to, wrapper: false, label: false, placeholder: t('task.search.to'), as: :date_picker, input_html: { class: 'inline', :'ng-model' => 'to', datepicker: true, :'ng-initial' => true }
 
-    .btn-group
-      button.btn.btn-default.btn-xs type='button' ng-click='thisIteration()' =t('task.search.this_iteration')
-      button.btn.btn-default.btn-xs type='button' ng-click='previousIteration()' =t('task.search.previous_iteration')
-      button.btn.btn-default.btn-xs type='button' ng-click='thisWeek()' =t('task.search.this_week')
-      button.btn.btn-default.btn-xs type='button' ng-click='previousWeek()' =t('task.search.previous_week')
-      button.btn.btn-default.btn-xs type='button' ng-click='thisMonth()' =t('task.search.this_month')
-      button.btn.btn-default.btn-xs type='button' ng-click='previousMonth()' =t('task.search.previous_month')
+  div[date-range-selector]

@@ -1,6 +1,6 @@
 class Admin::ProjectsController < Admin::AdminController
   load_and_authorize_resource except: [:create, :update]
-  inject :project_manager
+  inject :project_manager, :google_exporter
 
   before_filter :prepare_gon, only: [:new, :edit]
 
@@ -59,15 +59,10 @@ class Admin::ProjectsController < Admin::AdminController
   end
 
   def to_google_drive
-    @project = Project.find(params[:id])
     @tasks = @project.tasks.order('date DESC').limit(10).includes(:user, :time_entries)
-
-    stringed = render_to_string(template: 'admin/projects/show.xlsx.axlsx')
-    file_path = "#{Rails.root}/tmp/report.xlsx"
-    File.open(file_path, 'w') { |file| file.write(stringed) }
-    GoogleExporter.upload_file(file_path)
+    string = render_to_string(template: 'admin/projects/show.xlsx.axlsx')
+    google_exporter.upload_file(project: @project, content: string)
     redirect_to admin_project_path(@project.id)
-
   end
 
   private

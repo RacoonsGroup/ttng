@@ -1,11 +1,10 @@
-.island.task-search ng-controller='TaskFilterController'
+.island.task-search
   =simple_form_for(@search, url: tasks_path, method: 'GET', as: :search, html: { class: 'form-horizontal' }) do |f|
     .row
       .col-lg-4
         .form-group.dates
           =f.input :from, wrapper: false, label: false, placeholder: t('task.search.from'), as: :date_picker, input_html: { class: 'inline', :'ng-model' => 'from', datepicker: true, :'ng-initial' => true }
-          button.btn.btn-default.btn-xs type='button' ng-click='equalizeDates()'
-            =glyph(:'arrow-right')
+          div[date-equalizer]
           =f.input :to, wrapper: false, label: false, placeholder: t('task.search.to'), as: :date_picker, input_html: { class: 'inline', :'ng-model' => 'to', datepicker: true, :'ng-initial' => true }
       .col-lg-4
         =f.select :projects, @projects, {}, multiple: true, selectize2: true
@@ -14,16 +13,4 @@
       .col-lg-2
         =f.submit t('common.buttons.filter'), class: 'btn btn-default'
 
-    .btn-toolbar
-      .btn-group
-        button.btn.btn-default.btn-xs type='button' ng-click='today()' =t('task.search.today')
-        button.btn.btn-default.btn-xs type='button' ng-click='yesterday()' =t('task.search.yesterday')
-      .btn-group
-        button.btn.btn-default.btn-xs type='button' ng-click='thisIteration()' =t('task.search.this_iteration')
-        button.btn.btn-default.btn-xs type='button' ng-click='previousIteration()' =t('task.search.previous_iteration')
-      .btn-group
-        button.btn.btn-default.btn-xs type='button' ng-click='thisWeek()' =t('task.search.this_week')
-        button.btn.btn-default.btn-xs type='button' ng-click='previousWeek()' =t('task.search.previous_week')
-      .btn-group
-        button.btn.btn-default.btn-xs type='button' ng-click='thisMonth()' =t('task.search.this_month')
-        button.btn.btn-default.btn-xs type='button' ng-click='previousMonth()' =t('task.search.previous_month')
+    div[date-range-selector]
