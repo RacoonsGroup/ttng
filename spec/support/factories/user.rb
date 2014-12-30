@@ -17,6 +17,9 @@ FactoryGirl.define do
 
     trait :developer do
       position 'developer'
+      after(:create) do |developer|
+        developer.projects = [create(:project)]
+      end
     end
 
     trait :invalid do
