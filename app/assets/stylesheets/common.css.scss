@@ -120,6 +120,10 @@ table.project-info {
       margin: 2px
     }
 
+    > div {
+      width: 33.3333%;
+    }
+
     .project-image {
       width: 85px;
       height: 85px;
@@ -133,6 +137,7 @@ table.project-info {
       top: 10px;
     }
   }
+
 
   &.user {
     width: 230px;
