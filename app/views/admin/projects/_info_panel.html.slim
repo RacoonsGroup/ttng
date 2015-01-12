@@ -11,4 +11,4 @@
           -if info.encrypted
             =icon(:lock)
         td=link_to info.title, admin_project_project_info_path(project, info), :'ask-password' => info.encrypted.presence
-        td=admin_actions_for([project, info], size: 'xs', edit_params: { :'ask-password' => info.encrypted.presence })
+        td=admin_actions_for([project, info], size: 'xs', edit_params: { :'ask-password' => info.encrypted.presence})

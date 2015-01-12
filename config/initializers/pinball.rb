@@ -22,6 +22,10 @@ Pinball::Container.configure do
     Admin::ProjectInfoManager.new(@project)
   end
 
+  define :pivotal_api do
+    PivotalApi.new(@project)
+  end
+
 
   define :current_user do
     Thread.current[:current_user]

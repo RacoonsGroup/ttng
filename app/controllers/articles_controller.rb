@@ -26,6 +26,10 @@ class ArticlesController < AuthenticatedController
 
   end
 
+  def show
+
+  end
+
   def update
     article = current_user.articles.find(params[:id])
     authorize! :update, article

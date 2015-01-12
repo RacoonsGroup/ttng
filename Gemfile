@@ -37,6 +37,7 @@ gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-google-oauth2'
 gem 'json'
 gem 'chart-js-rails'
+gem 'tracker_api', '~> 0.2.0'
 
 group :development do
   gem 'spring'

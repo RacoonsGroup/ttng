@@ -3,6 +3,6 @@
 angular.module('gs.tooltip', []).directive 'tooltip', [->
   restrict: 'A'
 
-  link: (scope, elem, attrs) ->
+  link: (scope, elem, attrs, ngModel) ->
     elem.tooltip()
 ]

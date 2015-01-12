@@ -40,6 +40,7 @@ class ProjectPresenter < Presenter
         rate: rate.to_f,
         description: description,
         customer: customer,
+        pivotal_id: pivotal_id,
         users: users.map{ |u| {user: UserPresenter.new(u).to_hash } }
     }
   end

@@ -18,4 +18,5 @@ angular.module('TTNG', [
   'gs.exportController',
   'gs.dateRangeSelector',
   'gs.dateEqualizer'
+  'gs.remoteTaskSearcher'
 ])

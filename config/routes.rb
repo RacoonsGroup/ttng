@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  namespace :api do
+    resources :projects, except: :all do
+      resources :remote_tasks, only: [:index, :show]
+    end
+  end
+
   namespace :admin do
     resources :users, except: [:show, :new, :create]
     resources :customers, except: [:show]
@@ -27,7 +33,7 @@ Rails.application.routes.draw do
     resources :time_entries, only: :create
   end
 
-  resources :articles, except: [:show] do
+  resources :articles do
     member do
       post :read
       post :unread
