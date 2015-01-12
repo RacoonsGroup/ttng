@@ -197,7 +197,8 @@ h1.nav-header {
 .island.sidebar {
   margin-top: 69px;
 
-  canvas {
-    margin-left: 65px;
+  canvas#iteration-stat-chart {
+    width: 100%;
+    height: 100%;
   }
 }
