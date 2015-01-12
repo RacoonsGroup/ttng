@@ -93,4 +93,18 @@ describe Admin::ProjectsController do
       expect(response).to redirect_to(admin_projects_path)
     end
   end
+
+  describe 'GET #export' do
+    it 'redirects to /auth/google_oauth2' do
+      get :export, id: project
+      expect(response).to redirect_to('/auth/google_oauth2')
+    end
+  end
+
+  describe 'GET #to_google_drive' do
+    it 'redirects to project page' do
+      get :to_google_drive, id: project
+      expect(response).to redirect_to(admin_project_path(project))
+    end
+  end
 end
