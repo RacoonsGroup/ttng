@@ -13,4 +13,7 @@ Pinball::Container.configure do
   define_singleton :task_searcher, TaskSearcherMock
   define_singleton :project_info_manager, ManagerMock
   define_singleton :google_exporter, Mock
+  define :google_drive do
+    GoogleDriveMock
+  end
 end

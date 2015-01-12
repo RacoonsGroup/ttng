@@ -63,6 +63,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'simplecov-html', require: false
   gem 'factory_girl'
+  gem 'webmock'
 end
 
 group :production do

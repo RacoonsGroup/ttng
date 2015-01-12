@@ -5,11 +5,12 @@ class GoogleExporter
   ROOT_FOLDER = 'Racoons Group Reports'
 
   inject :current_user
+  inject :google_drive
 
   def upload_file(project:, content:)
     file_path = write_content(content)
 
-    session = GoogleDrive.login_with_oauth(token)
+    session = google_drive.login_with_oauth(token)
     file = session.upload_from_file(file_path)
 
     create_folder(session.root_collection, ROOT_FOLDER) do |folder|
