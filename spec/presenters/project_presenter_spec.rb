@@ -9,27 +9,29 @@ describe ProjectPresenter do
   let!(:time_entry2) { FactoryGirl.create(:time_entry, task: task_bug, duration: 15) }
   let!(:time_entry3) { FactoryGirl.create(:time_entry, task: task_chore, duration: 1) }
 
+  subject { ProjectPresenter.new(user.projects.first) }
+
   describe '#real_time_by(user)' do
     it 'returns entries duration for specific user' do
-      expect(ProjectPresenter.new(user.projects.first).real_time_by(user)).to eq(30)
+      expect(subject.real_time_by(user)).to eq(30)
     end
   end
 
   describe '#bug_time_by(user)' do
     it 'returns duration for bug tasks' do
-      expect(ProjectPresenter.new(user.projects.first).bug_time_by(user)).to eq(15)
+      expect(subject.bug_time_by(user)).to eq(15)
     end
   end
 
   describe '#feature_time_by(user)' do
     it 'returns duration for feature tasks' do
-      expect(ProjectPresenter.new(user.projects.first).feature_time_by(user)).to eq(14)
+      expect(subject.feature_time_by(user)).to eq(14)
     end
   end
 
   describe '#chore_time_by(user)' do
     it 'returns duration for chore tasks' do
-      expect(ProjectPresenter.new(user.projects.first).chore_time_by(user)).to eq(1)
+      expect(subject.chore_time_by(user)).to eq(1)
     end
   end
 
