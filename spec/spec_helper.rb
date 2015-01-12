@@ -1,5 +1,5 @@
 require 'simplecov'
-
+require 'webmock/rspec'
 
 SimpleCov.command_name 'RSpec'
 
@@ -13,6 +13,7 @@ require 'rspec/rails'
 
 require 'database_cleaner'
 Dir[Rails.root.join('spec/support/mocks/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/webmocks/*.rb')].each { |f| require f }
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 DatabaseCleaner.strategy = :truncation

@@ -10,11 +10,13 @@ angular.module('TTNG', [
   'gs.taskSearcher',
   'gs.taskSaver',
   'gs.tooltip',
-  'gs.taskFilterController',
   'gs.ngInitial',
   'gs.askPassword',
   'gs.projectShowController',
   'gs.projectStatChart',
-  'gs.iterationStatChart'
+  'gs.iterationStatChart',
+  'gs.exportController',
+  'gs.dateRangeSelector',
+  'gs.dateEqualizer'
   'gs.remoteTaskSearcher'
 ])

@@ -23,4 +23,6 @@ class Project < ActiveRecord::Base
     value = Money.new(value.to_i * 100, 'RUB')
     write_attribute :rate_kopeks, value.cents
   end
+
+
 end

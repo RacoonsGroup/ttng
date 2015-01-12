@@ -31,6 +31,11 @@ gem 'momentjs-rails'
 gem 'encrypted_strings'
 gem 'gravatar-ultimate'
 gem 'redcarpet'
+gem 'google_drive'
+gem 'axlsx_rails'
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-google-oauth2'
+gem 'json'
 gem 'chart-js-rails'
 gem 'tracker_api', '~> 0.2.0'
 
@@ -59,6 +64,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'simplecov-html', require: false
   gem 'factory_girl'
+  gem 'webmock'
 end
 
 group :production do

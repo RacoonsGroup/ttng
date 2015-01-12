@@ -1,0 +1,10 @@
+.panel.panel-default ng-controller='ExportController'
+  .panel-heading
+    =t('project_info.headers.export')
+  .panel-body
+    .btn-group
+      button type='button' class='btn btn-success' ng-click='downloadXLS()' XLS
+      button type='button' class='btn btn-primary' ng-click='exportToDrive()' Google drive
+    br
+    br
+    =render 'filter_form'

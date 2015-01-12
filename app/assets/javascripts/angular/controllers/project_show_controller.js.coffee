@@ -3,7 +3,6 @@
 angular.module('gs.projectShowController', []).controller 'ProjectShowController',
   ['$scope'
     ($scope)->
-      window.scope = $scope
       $scope.password = ''
 
       $scope.passwordEntered = ->

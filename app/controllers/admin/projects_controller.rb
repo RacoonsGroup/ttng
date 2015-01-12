@@ -1,6 +1,6 @@
 class Admin::ProjectsController < Admin::AdminController
   load_and_authorize_resource except: [:create, :update]
-  inject :project_manager
+  inject :project_manager, :google_exporter
 
   before_filter :prepare_gon, only: [:new, :edit]
 
@@ -24,7 +24,12 @@ class Admin::ProjectsController < Admin::AdminController
   end
 
   def show
+    @filter = TaskSearchForm.new(params[:filter])
     @tasks = @project.tasks.order('date DESC').limit(10).includes(:user, :time_entries)
+    respond_to do |format|
+      format.html
+      format.xlsx {render xlsx: 'show', filename: @project.name}
+    end
   end
 
   def edit
@@ -48,6 +53,18 @@ class Admin::ProjectsController < Admin::AdminController
     redirect_to admin_projects_path
   end
 
+  def export
+    session[:export_project_id] = @project.id
+    redirect_to '/auth/google_oauth2'
+  end
+
+  def to_google_drive
+    @tasks = @project.tasks.order('date DESC').limit(10).includes(:user, :time_entries)
+    string = render_to_string(template: 'admin/projects/show.xlsx.axlsx')
+    google_exporter.upload_file(project: @project, content: string)
+    redirect_to admin_project_path(@project.id)
+  end
+
   private
 
   def project_params
@@ -59,4 +76,5 @@ class Admin::ProjectsController < Admin::AdminController
     gon.customers = Customer.all
     gon.users = UserPresenter.map(User.all)
   end
+
 end

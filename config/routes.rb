@@ -12,10 +12,19 @@ Rails.application.routes.draw do
     resources :customers, except: [:show]
     resources :projects do
       resources :project_infos, except: :index
+      member do
+        get :export
+        get :to_google_drive
+      end
     end
     resources :days, except: [:show]
   end
+  controller :sessions do
+    get '/auth/:provider/callback' => 'sessions#create'
+  end
+  resources :sessions, only: :index
 
+  
   resources :tasks do
     collection do
       get :find

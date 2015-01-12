@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(:name => @project.name) do |sheet|
+  sheet.add_row %w(Task Time points Date User Url Description)
+  @tasks.each do |task|
+    sheet.add_row [task.name, task.real_time, l(task.date), "#{task.user.first_name} #{task.user.last_name}", task.url, task.description]
+  end
+end

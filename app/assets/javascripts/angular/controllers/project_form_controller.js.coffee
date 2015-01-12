@@ -3,7 +3,6 @@
 angular.module('gs.projectFormController', []).controller 'ProjectFormController',
   ['$scope', 'ProjectSaver'
     ($scope, ProjectSaver)->
-      window.scope = $scope
       if gon.project?
         $scope.project = gon.project
       else

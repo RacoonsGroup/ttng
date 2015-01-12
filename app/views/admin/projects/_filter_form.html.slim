@@ -1,16 +1,10 @@
-.island.task-search
-  =simple_form_for(@search, url: tasks_path, method: 'GET', as: :search, html: { class: 'form-horizontal' }) do |f|
+.well
+  =simple_form_for(@filter, url: tasks_path, method: 'GET', as: :filter, html: { class: 'form-horizontal' }) do |f|
     .row
-      .col-lg-4
+      .col-lg-12
         .form-group.dates
           =f.input :from, wrapper: false, label: false, placeholder: t('task.search.from'), as: :date_picker, input_html: { class: 'inline', :'ng-model' => 'from', datepicker: true, :'ng-initial' => true }
           div[date-equalizer]
           =f.input :to, wrapper: false, label: false, placeholder: t('task.search.to'), as: :date_picker, input_html: { class: 'inline', :'ng-model' => 'to', datepicker: true, :'ng-initial' => true }
-      .col-lg-4
-        =f.select :projects, @projects, {}, multiple: true, selectize2: true
-      .col-lg-2
-        =f.select :payable, payable_options, {}, selectize2: true
-      .col-lg-2
-        =f.submit t('common.buttons.filter'), class: 'btn btn-default'
 
-    div[date-range-selector]
+  div[date-range-selector]
