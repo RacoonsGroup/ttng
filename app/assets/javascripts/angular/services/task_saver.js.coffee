@@ -2,6 +2,9 @@
 
 angular.module('gs.taskSaver', []).factory 'TaskSaver', ['$http', ($http)->
   prepare_for_create = (task)->
+    if task.name.remote
+      task.name.id = task.name.name
+
     if task.name.id == task.name.name && _.isString(task.name.id)
       task = {
         name: task.name.name

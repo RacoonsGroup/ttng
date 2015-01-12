@@ -16,4 +16,5 @@ angular.module('TTNG', [
   'gs.projectShowController',
   'gs.projectStatChart',
   'gs.iterationStatChart'
+  'gs.remoteTaskSearcher'
 ])

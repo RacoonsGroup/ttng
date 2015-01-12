@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215100237) do
+ActiveRecord::Schema.define(version: 20141222105829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20141215100237) do
     t.integer  "rate_kopeks", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pivotal_id"
   end
 
   add_index "projects", ["customer_id"], name: "index_projects_on_customer_id", using: :btree
@@ -138,6 +139,7 @@ ActiveRecord::Schema.define(version: 20141215100237) do
     t.integer  "official_salary_kopeks", default: 0,            null: false
     t.string   "inn"
     t.string   "snils"
+    t.string   "pivotal_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

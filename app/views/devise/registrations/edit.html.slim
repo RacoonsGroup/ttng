@@ -10,7 +10,6 @@ h1.nav-header=t('devise.headers.profile')
         = resource.unconfirmed_email
     = f.input :password, autocomplete: 'off', hint: t('devise.hints.leave_password_blank'), required: false, wrapper: false, label: false, placeholder: t('devise.forms.password')
     = f.input :password_confirmation, required: false, placeholder: t('devise.forms.password_confirmation'), label: false
-
     = f.input :current_password, hint: t('devise.hints.confirm_current_password'), required: true, label: false, wrapper: false, placeholder: t('devise.forms.current_password')
     = f.button :submit, t('devise.buttons.update'), class: 'btn-success'
-  = link_to t('devise.buttons.cancel_account'), registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete
+    = link_to t('devise.buttons.cancel_account'), registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete
