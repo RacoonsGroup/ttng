@@ -3,7 +3,7 @@ class StatisticsPresenter
 
   def initialize(user)
     @user = user
-    @task_searcher = TaskSearcher.new.override_dependency(:current_user, @user)
+    @task_searcher = DeveloperTaskSearcher.new.override_dependency(:current_user, @user)
   end
 
   def iteration

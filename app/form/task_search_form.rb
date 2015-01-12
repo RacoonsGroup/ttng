@@ -3,4 +3,5 @@ class TaskSearchForm < Form
   field :to
   field :projects
   field :payable
+  field :developers
 end

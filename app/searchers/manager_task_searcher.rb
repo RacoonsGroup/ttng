@@ -1,0 +1,3 @@
+class ManagerTaskSearcher < TaskSearcher
+
+end
