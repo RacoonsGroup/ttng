@@ -5,9 +5,8 @@ angular.module('gs.exportController', []).controller 'ExportController',
     ($scope, $http)->
 
       $scope.exportToDrive = ->
-        console.log $scope
-        #$http.get(window.location+'/export', from: $scope.from, to: $scope.to)
+        window.location = window.location+"/export?from=#{$scope.from}&to=#{$scope.to}"
 
       $scope.downloadXLS = ->
-        console.log $scope
+        window.location = window.location+".xlsx?from=#{$scope.from}&to=#{$scope.to}"
 ]

@@ -16,6 +16,10 @@ class TaskPresenter < Presenter
     }
   end
 
+  def to_xlsx_row
+    [ name, real_time, l(date), "#{user.first_name} #{user.last_name}", url, description ]
+  end
+
   private
 
   def project
