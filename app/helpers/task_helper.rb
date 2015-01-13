@@ -21,6 +21,10 @@ module TaskHelper
     %w[all true false].each{ |s| [s, s]}
   end
 
+  def developer_options
+    User.where('position = ?', User.positions[:developer]).map{ |d| [d.full_name, d.id] }
+  end
+
   def payable_glyph(task)
     task.payable ? glyph(:ok) : glyph(:remove)
   end

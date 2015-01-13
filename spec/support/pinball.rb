@@ -16,4 +16,8 @@ Pinball::Container.configure do
   define :google_drive do
     GoogleDriveMock
   end
+
+  define :current_user do
+    Thread.current[:current_user]
+  end
 end

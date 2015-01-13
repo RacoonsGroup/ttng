@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe TaskSearcher do
+describe DeveloperTaskSearcher do
   let!(:user) { FactoryGirl.create :user, :developer }
-  let!(:searcher) { TaskSearcher.new.override_dependency(:current_user, user) }
+  let!(:searcher) { DeveloperTaskSearcher.new.override_dependency(:current_user, user) }
 
   describe '#find' do
     context 'with searching by name' do
@@ -37,7 +37,7 @@ describe TaskSearcher do
     end
 
     context 'without project' do
-      let!(:form) { TaskSearchForm.new(projects: [''], from: Date.today, to: Date.today, payable: 'false') }
+      let!(:form) { TaskSearchForm.new(from: Date.today, to: Date.today, payable: 'false') }
 
       it 'finds tasks' do
         expect(searcher.find_by_form(form)).to match_array([task])

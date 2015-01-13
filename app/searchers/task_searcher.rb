@@ -1,24 +1,22 @@
 class TaskSearcher
-  inject :current_user
 
   def find(params)
-    tasks = current_user.tasks
+    tasks = scope
     tasks = filter_by_name(tasks, params[:name]) if params[:name].present?
     tasks = filter_by_projects(tasks, [params[:project_id]]) if params[:project_id].present?
     tasks
   end
 
   def find_by_form(search_form)
-    tasks = current_user.tasks
-    tasks = filter_by_projects(tasks, search_form.projects.reject(&:empty?).map(&:to_i)) if search_form.projects.present?
-    tasks = filter_by_from(tasks, search_form.from) if search_form.from.present?
-    tasks = filter_by_to(tasks, search_form.to) if search_form.to.present?
-    tasks = filter_by_payable(tasks, search_form.payable) if search_form.payable.present?
+    tasks = scope
+    search_form.fields.map(&:name).each do |field|
+      tasks = send("filter_by_#{field}", tasks, search_form.attributes[field]) if search_form.attributes[field].present?
+    end
     tasks
   end
 
   def between(from, to)
-    tasks = current_user.tasks
+    tasks = scope
     tasks = filter_by_from(tasks, from)
     filter_by_to(tasks, to)
   end
@@ -29,9 +27,19 @@ class TaskSearcher
     tasks.where('name ILIKE ?', "%#{name}%")
   end
 
-  def filter_by_projects(tasks, project_ids)
+  def filter_by_projects(tasks, projects)
+    project_ids = projects.select(&:present?).map(&:to_i)
     if project_ids.any?
       tasks.where('project_id iN (?)', project_ids)
+    else
+      tasks
+    end
+  end
+
+  def filter_by_developers(tasks, developers)
+    developer_ids = developers.select(&:present?).map(&:to_i)
+    if developer_ids.any?
+      tasks.where('user_id iN (?)', developer_ids)
     else
       tasks
     end
@@ -48,5 +56,11 @@ class TaskSearcher
   def filter_by_payable(tasks, payable)
     return tasks if payable == 'all'
     tasks = payable == 'nil' ?  tasks.where(payable: nil) : tasks.where(payable: payable)
+  end
+
+  protected
+
+  def scope
+    Task.all
   end
 end

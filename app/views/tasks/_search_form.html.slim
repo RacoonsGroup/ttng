@@ -12,5 +12,10 @@
         =f.select :payable, payable_options, {}, selectize2: true
       .col-lg-2
         =f.submit t('common.buttons.filter'), class: 'btn btn-default'
+    .row
+      .col-lg-4
+      .col-lg-4
+        -if current_user.manager?
+          =f.select :developers, developer_options, {}, multiple: true, selectize2: true
 
     div[date-range-selector]
