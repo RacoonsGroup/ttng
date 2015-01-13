@@ -7,6 +7,7 @@ div ng-controller='ProjectShowController'
     .col-lg-3
       =render 'users_panel', project: @project
       =render 'info_panel', project: @project
+      =render 'export'
     .col-lg-9
       =render 'tasks_panel', tasks: @tasks
 

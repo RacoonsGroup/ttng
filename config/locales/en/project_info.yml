@@ -14,5 +14,6 @@ en:
       create: Create project info
       edit: Edit project info
       enter_password: Enter password
+      export: Export
     buttons:
       add: Create project info

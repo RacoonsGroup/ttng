@@ -1,5 +1,5 @@
 require 'simplecov'
-
+require 'webmock/rspec'
 
 SimpleCov.command_name 'RSpec'
 
@@ -12,6 +12,8 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 
 require 'database_cleaner'
+require 'support/mocks/mock'
+
 Dir[Rails.root.join('spec/support/mocks/*.rb')].each { |f| require f }
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
