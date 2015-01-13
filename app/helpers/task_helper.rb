@@ -20,4 +20,8 @@ module TaskHelper
   def payable_options
     %w[all true false].each{ |s| [s, s]}
   end
+
+  def developer_options
+    User.where('position = ?', User.positions[:developer]).map{ |d| [d.full_name, d.id] }
+  end
 end

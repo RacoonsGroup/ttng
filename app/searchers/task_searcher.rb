@@ -28,7 +28,7 @@ class TaskSearcher
   end
 
   def filter_by_projects(tasks, projects)
-    project_ids = projects.reject(&:empty?).map(&:to_i)
+    project_ids = projects.select(&:present?).map(&:to_i)
     if project_ids.any?
       tasks.where('project_id iN (?)', project_ids)
     else
@@ -37,7 +37,7 @@ class TaskSearcher
   end
 
   def filter_by_developers(tasks, developers)
-    developer_ids = developers.reject(&:empty?).map(&:to_i)
+    developer_ids = developers.select(&:present?).map(&:to_i)
     if developer_ids.any?
       tasks.where('user_id iN (?)', developer_ids)
     else

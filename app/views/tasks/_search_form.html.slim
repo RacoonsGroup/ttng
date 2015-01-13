@@ -17,7 +17,7 @@
       .col-lg-4
       .col-lg-4
         -if current_user.manager?
-          =f.select :developers, @developers, {}, multiple: true, selectize2: true
+          =f.select :developers, developer_options, {}, multiple: true, selectize2: true
 
     .btn-toolbar
       .btn-group
