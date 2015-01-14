@@ -4,6 +4,7 @@ describe Admin::ProjectsController do
   let!(:project) { FactoryGirl.create(:project) }
   let!(:admin) { FactoryGirl.create(:user, :admin) }
   let!(:project_user) { FactoryGirl.create(:project_user, project: project) }
+  let!(:task) { FactoryGirl.create(:task, project: project, date: Date.parse('01.01.2014')) }
 
   before do
     sign_in admin
@@ -82,8 +83,15 @@ describe Admin::ProjectsController do
 
   describe 'GET #show' do
     it 'renders show template' do
-      get :show, id: project
+      get :show, id: project, from: '01.01.1969', to: '01.01.2020'
       expect(response).to render_template(:show)
+    end
+
+    context 'with XLS format' do
+      it 'has success response' do
+        get :show, id: project, format: 'xlsx'
+        expect(response).to be_success
+      end
     end
   end
 

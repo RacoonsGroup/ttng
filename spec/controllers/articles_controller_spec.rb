@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe ArticlesController do
   let!(:user) { FactoryGirl.create(:user, :developer) }
+  let!(:another_user) { FactoryGirl.create(:user, :developer) }
   let!(:article) { FactoryGirl.create(:article, user: user) }
 
   before do
@@ -9,6 +10,10 @@ describe ArticlesController do
   end
 
   describe 'GET #index' do
+    before do
+      sign_in another_user
+    end
+
     it 'renders index template' do
       get :index
       expect(:response).to render_template(:index)
