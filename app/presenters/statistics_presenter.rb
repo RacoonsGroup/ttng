@@ -3,7 +3,6 @@ class StatisticsPresenter
 
   def initialize
     @task_searcher = TaskSearcher.new
-    @developers
   end
 
   def iteration

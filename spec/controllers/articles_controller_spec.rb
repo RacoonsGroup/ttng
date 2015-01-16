@@ -51,7 +51,7 @@ describe ArticlesController do
       end
 
       it 'redirects to articles index' do
-        post :create, article: FactoryGirl.attributes_for(:article)
+        post :create, article: FactoryGirl.attributes_for(:article, :invalid_article)
         expect(response).to render_template(:new)
       end
     end
