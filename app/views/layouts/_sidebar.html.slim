@@ -4,3 +4,6 @@
       =link_to new_task_path, class: 'btn btn-success btn-xs', title: t('task.headers.create'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
         =glyph(:plus)
     =render('layouts/statistics')
+-else
+  aside.island.sidebar
+    =render('layouts/statistics')
