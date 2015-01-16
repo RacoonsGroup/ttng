@@ -1,8 +1,9 @@
 class StatisticsPresenter
   include ApplicationHelper
 
-  def initialize(current_user)
-    @task_searcher = current_user.developer? ? DeveloperTaskSearcher.new : ManagerTaskSearcher.new
+  def initialize
+    @task_searcher = TaskSearcher.new
+    @developers
   end
 
   def iteration

@@ -1,0 +1,16 @@
+h4=t('statistics.statistics')
+-statistics = DeveloperStatisticsPresenter.new
+p
+  b=t('statistics.iteration')
+  span.pull-right=statistics.iteration
+
+p
+  b=t('statistics.hours')
+  span.pull-right=statistics.hours
+
+p
+  b=t('statistics.finished')
+
+  span.pull-right=statistics.finished
+
+canvas[iteration_stat_chart height='116' width='233' hours="#{statistics.total_hours}" finished="#{statistics.spent_hours}" id='iteration-stat-chart']
