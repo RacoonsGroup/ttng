@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
       manager: 3
   }
 
+  scope :developers, -> { where('position = ?', User.positions[:developer]) }
+  scope :admins, -> { where('position = ?', User.positions[:admin]) }
+  scope :nobodies, -> { where('position = ?', User.positions[:nobody]) }
+  scope :managers, -> { where('position = ?', User.positions[:manager]) }
+
   self.per_page = 10
 
   has_many :project_users

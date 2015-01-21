@@ -43,6 +43,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    task_manager.destroy(@task)
+    redirect_to tasks_path
+  end
+
   def find
     tasks = task_searcher.find(params)
     render json: tasks

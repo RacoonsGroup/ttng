@@ -65,6 +65,7 @@ group :test do
   gem 'simplecov-html', require: false
   gem 'factory_girl'
   gem 'webmock'
+  gem 'timecop'
 end
 
 group :production do

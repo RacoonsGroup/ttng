@@ -13,4 +13,5 @@ config/secrets.yml
 public/uploads/
 public/assets
 coverage
+.DS_Store
 

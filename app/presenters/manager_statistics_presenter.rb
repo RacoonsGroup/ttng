@@ -1,20 +1,16 @@
-class StatisticsPresenter
-  include ApplicationHelper
+class ManagerStatisticsPresenter < StatisticsPresenter
 
   def initialize
-    @task_searcher = TaskSearcher.new
-  end
-
-  def iteration
-    @iteration ||= "#{iteration_date(Date.today.iteration.beginning)} - #{iteration_date(Date.today.iteration.end)}"
+    @task_searcher = ManagerTaskSearcher.new
+    @developers = User.developers
   end
 
   def total_hours
-    Date.today.iteration.total_hours
+    Date.today.iteration.total_hours * @developers.count
   end
 
   def hours
-    @hours ||= "#{total_hours} (#{Date.today.iteration.business_hours})"
+    @hours ||= "#{total_hours} (#{Date.today.iteration.business_hours * @developers.count})"
   end
 
   def spent_hours
@@ -26,4 +22,5 @@ class StatisticsPresenter
     percentage = spent_hours / hours.to_f * 100
     "#{spent_hours} (#{percentage.round}%)"
   end
+
 end
