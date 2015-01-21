@@ -44,7 +44,6 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, Task
     task_manager.destroy(@task)
     redirect_to tasks_path
   end
