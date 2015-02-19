@@ -7,7 +7,7 @@ class GoogleExporter
   inject :current_user
   inject :google_drive
 
-  def upload_file(project:, content:)
+  def upload_file(project, content)
     file_path = write_content(content)
 
     session = google_drive.login_with_oauth(token)
