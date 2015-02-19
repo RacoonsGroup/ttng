@@ -3,22 +3,22 @@ require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'
 
-set :domain, ''
-set :deploy_to, ''
-set :repository, ''
+set :domain, '78.46.73.243'
+set :deploy_to, '/home/deployer/ttng'
+set :repository, 'git@github.com:RacoonsGroup/ttng.git'
 set :branch, 'master'
 
 set :user, 'deployer'
-set :port, '2001'
+set :port, '2004'
 set :forward_agent, true
 set :term_mode, nil
 set :ssh_options, '-A'
 
 task :environment do
-  invoke :'rvm:use[ruby-2.1.3@demset]'
+  invoke :'rvm:use[ruby-2.1.5@ttng]'
 end
 
-set :rvm_path, '/usr/local/rvm/scripts/rvm'
+set :rvm_path, '/home/deployer/.rvm/bin/rvm'
 set :shared_paths, ['config/database.yml', 'config/secrets.yml','log', 'tmp', 'public']
 
 task setup: :environment do
