@@ -26,5 +26,5 @@ h1.nav-header
           =image_tag(user.avatar, size: '32x32', class: 'img-circle')
 .digg_pagination
   .page_info
-    = page_entries_info @tasks
-  = will_paginate @tasks, container: false
+    = page_entries_info @projects
+  = will_paginate @projects, container: false

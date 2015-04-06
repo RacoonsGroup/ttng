@@ -7,7 +7,7 @@ class Admin::ProjectsController < Admin::AdminController
   before_filter :find_tasks, only: [:show, :to_google_drive]
 
   def index
-    @projects = ProjectPresenter.map(@projects.includes(:customer, :users, :tasks, :features, :bugs, :chores).paginate(page: params[:page]))
+    @projects = ProjectPresenter.map(@projects.includes(:customer, :users, :tasks, :features, :bugs, :chores)).paginate(page: params[:page], per_page: 5)
   end
 
   def new
