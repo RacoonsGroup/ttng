@@ -22,6 +22,10 @@ FactoryGirl.define do
       end
     end
 
+    trait :nobody do
+      position 'nobody'
+    end
+
     trait :invalid do
       email nil
     end

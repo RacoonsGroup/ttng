@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   scope :admins, -> { where('position = ?', User.positions[:admin]) }
   scope :nobodies, -> { where('position = ?', User.positions[:nobody]) }
   scope :managers, -> { where('position = ?', User.positions[:manager]) }
-  scope :available, -> { where('fire_date IS NULL') }
+  scope :available, -> { where('position != ?', User.positions[:nobody]) }
 
   self.per_page = 10
 
