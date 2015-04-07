@@ -26,6 +26,7 @@ class Ability
       can :manage, Article, user_id: user.id
       can :manage, ProjectInfo
       can :read, Project
+      can :read, User
       can [:read, :unread], Article
     end
   end

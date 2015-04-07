@@ -8,6 +8,7 @@ module NavigationHelper
       primary.item :key_1_2, t('navigation.tasks'), tasks_path, class: 'item', highlights_on: :subpath if can? :read, Task
       primary.item :key_1_3, t('navigation.articles'), articles_path, class: 'item', highlights_on: :subpath if can? :read, Article
       primary.item :key_1_4, t('navigation.my_projects'), projects_path, class: 'item', highlights_on: :subpath if can? :read, Project
+      primary.item :key_1_5, t('navigation.users'), users_path, class: 'item', highlights_on: :subpath if can? :read, User
     end
   end
 

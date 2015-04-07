@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get '/auth/:provider/callback' => 'sessions#create'
   end
   resources :sessions, only: :index
+  resources :users, only: :index
 
   
   resources :tasks do
