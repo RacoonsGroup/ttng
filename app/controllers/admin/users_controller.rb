@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::AdminController
   helper_method :sort_column, :sort_direction
 
   def index
-    @users = @users.order(sort_column + " " + sort_direction).paginate(page: params[:page])
+    @users = @users.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 16)
   end
 
   def edit
