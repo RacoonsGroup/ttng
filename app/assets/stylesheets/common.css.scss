@@ -211,3 +211,21 @@ h1.nav-header {
 .task-row {
   line-height: 32px;
 }
+
+.pretty th {
+  padding-right: 12px;
+}
+
+.pretty th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.pretty th .asc {
+  background-image: url(/images/up_arrow.gif);
+}
+
+.pretty th .desc {
+  background-image: url(/images/down_arrow.gif);
+}

@@ -1,9 +1,10 @@
 class Admin::UsersController < Admin::AdminController
   load_and_authorize_resource
   inject :user_manager
+  helper_method :sort_column, :sort_direction
 
   def index
-    @users = @users.paginate(page: params[:page])
+    @users = @users.order("#{sort_column} #{sort_direction}").paginate(page: params[:page], per_page: 16)
   end
 
   def edit
@@ -35,5 +36,13 @@ class Admin::UsersController < Admin::AdminController
       fields.push(:password, :password_confirmation)
     end
     params.require(:user).permit(fields)
+  end
+
+  def sort_column
+    User.column_names.include?(params[:sort]) ? params[:sort] : "last_name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
