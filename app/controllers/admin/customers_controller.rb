@@ -3,7 +3,7 @@ class Admin::CustomersController < Admin::AdminController
   inject :customer_manager
 
   def index
-    @customers = @customers.includes(:projects).paginate(page: params[:page])
+    @customers = @customers.includes(:projects).paginate(page: params[:page], per_page: 20)
   end
 
   def new

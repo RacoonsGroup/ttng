@@ -31,3 +31,7 @@ h1.nav-header.pull-left
       -project.users.each do |user|
         .avatar.pull-right[tooltip data-toggle="tooltip" data-placement="bottom" title="#{user.full_name}"]
           =image_tag(user.avatar, size: '32x32', class: 'img-circle')
+.digg_pagination
+  .page_info
+    = page_entries_info @projects
+  = will_paginate @projects, container: false

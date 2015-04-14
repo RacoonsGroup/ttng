@@ -4,7 +4,7 @@ class Admin::DaysController < Admin::AdminController
   inject :day_manager
 
   def index
-    @days = @days.where('date >= ? and date <= ?', Date.today.beginning_of_year, Date.today.end_of_year).order(:date)
+    @days = @days.where('date >= ? and date <= ?', Date.today.beginning_of_year, Date.today.end_of_year).order(:date).paginate(page: params[:page], per_page: 20)
   end
 
   def new

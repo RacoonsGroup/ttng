@@ -13,14 +13,18 @@ h1.nav-header=t('navigation.tasks')
         th=t('simple_form.labels.task.date')
         th=t('simple_form.labels.task.payable')
         th=t('common.labels.actions')
-    tbody
-      -@tasks.each do |task|
-        tr
-          th=task_glyph(task)
-          td=task.name
-          td=task.project_name
-          td=task.real_time
-          td=task.status_i18n
-          td=l(task.date)
-          td=task.payable
-          td=actions_for(task)
+      tbody
+        -@tasks.each do |task|
+          tr
+            th=task_glyph(task)
+            td=task.name
+            td=task.project_name
+            td=task.real_time
+            td=task.status_i18n
+            td=l(task.date)
+            td=task.payable
+            td=actions_for(task)
+  .digg_pagination
+    .page_info
+      = page_entries_info @tasks
+    = will_paginate @tasks, container: false

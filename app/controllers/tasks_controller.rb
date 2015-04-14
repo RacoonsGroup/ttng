@@ -9,7 +9,7 @@ class TasksController < ApplicationController
   def index
     @search = TaskSearchForm.new(params[:search])
     @projects = current_user.projects.map{ |p| [p.name, p.id] }
-    @tasks = task_searcher.find_by_form(@search).includes(:project, :time_entries).order('date DESC, created_at').paginate(page: params[:page])
+    @tasks = task_searcher.find_by_form(@search).includes(:project, :time_entries).order('date DESC, created_at').paginate(page: params[:page], per_page: 20)
   end
 
   def new

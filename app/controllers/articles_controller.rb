@@ -3,7 +3,7 @@ class ArticlesController < AuthenticatedController
   load_and_authorize_resource except: [:index, :create, :update]
 
   def index
-    @articles = Article.all.includes(:user, :users)
+    @articles = Article.includes(:user, :users).paginate(page: params[:page], per_page: 20)
   end
 
   def new

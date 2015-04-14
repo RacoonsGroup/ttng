@@ -18,3 +18,7 @@ h1.nav-header
           td=holiday(day.holiday)
           td=day.reason
           td=admin_actions_for(day)
+  .digg_pagination
+    .page_info
+      = page_entries_info @days
+    = will_paginate @days, container: false
