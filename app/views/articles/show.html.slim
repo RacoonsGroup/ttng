@@ -1,4 +1,8 @@
 h1.nav-header
   =@article.title
+  '
+  - unless @article.url == ""
+    br
+    small=link_to t('simple_form.labels.article.link'), @article.url
 .island
   =@article.content

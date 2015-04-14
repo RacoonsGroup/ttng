@@ -4,6 +4,7 @@ en:
       article:
         title: Title
         url: url
+        link: Link to resource
         content: Content
         importance: Importance
         description: Description
