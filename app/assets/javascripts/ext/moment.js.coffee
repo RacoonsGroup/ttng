@@ -26,4 +26,4 @@ moment.fn.endOfPreviousIteration = ->
   if @isFirstIteration()
     @startOf('month').subtract(1, 'day').endOfIteration()
   else
-    @startOf('month').subtract(1, 'day').startOfIteration()
+    @startOfIteration().subtract(1, 'day')
