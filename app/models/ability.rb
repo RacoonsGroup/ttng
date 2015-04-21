@@ -32,9 +32,7 @@ class Ability
 
     if user.customer?
       can :read, Task
-      can :manage, TimeEntry, user_id: user.id
-      can :manage, Article, user_id: user.id
-      can :read, ProjectInfo
+      can :manage, ProjectInfo
       can :read, Project
       can :read, User
     end
