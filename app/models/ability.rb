@@ -31,13 +31,12 @@ class Ability
     end
 
     if user.customer?
-      can :manage, Task, user_id: user.id
+      can :read, Task
       can :manage, TimeEntry, user_id: user.id
       can :manage, Article, user_id: user.id
-      can :manage, ProjectInfo
+      can :read, ProjectInfo
       can :read, Project
       can :read, User
-      can [:read, :unread], Article
     end
   end
 end
