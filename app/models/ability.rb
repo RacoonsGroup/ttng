@@ -29,5 +29,15 @@ class Ability
       can :read, User
       can [:read, :unread], Article
     end
+
+    if user.customer?
+      can :manage, Task, user_id: user.id
+      can :manage, TimeEntry, user_id: user.id
+      can :manage, Article, user_id: user.id
+      can :manage, ProjectInfo
+      can :read, Project
+      can :read, User
+      can [:read, :unread], Article
+    end
   end
 end

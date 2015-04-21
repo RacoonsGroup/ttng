@@ -4,6 +4,7 @@ h1.nav-header=t('devise.headers.sign_up')
     .form-inputs
       = f.input :first_name, required: true, autofocus: true, label: false, placeholder: t('devise.forms.first_name')
       = f.input :last_name, required: true, autofocus: true, label: false, placeholder: t('devise.forms.last_name')
+      = f.input :mobile, required: true, autofocus: true, label: false, placeholder: t('devise.forms.mobile')
       = f.input :email, required: true, autofocus: true, label: false, placeholder: t('devise.forms.email')
       = f.input :password, required: true, label: false, placeholder: t('devise.forms.password')
       = f.input :password_confirmation, required: true, label: false, placeholder: t('devise.forms.password_confirmation')
