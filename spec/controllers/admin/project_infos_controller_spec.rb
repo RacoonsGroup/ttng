@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 describe Admin::ProjectInfosController do
-  let!(:manager) { FactoryGirl.create(:user, :manager) }
+  let!(:admin) { FactoryGirl.create(:user, :admin) }
   let!(:project) { FactoryGirl.create(:project) }
   let!(:project_info) { FactoryGirl.create(:project_info, project: project) }
 
 
   before do
-    sign_in manager
+    sign_in admin
   end
 
   describe 'GET #new' do

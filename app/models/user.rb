@@ -61,10 +61,6 @@ class User < ActiveRecord::Base
     write_attribute :official_salary_kopeks, value.cents
   end
 
-  def admin_or_manager?
-    admin? || manager?
-  end
-
   def avatar
     Gravatar.new(email).image_url
   end
