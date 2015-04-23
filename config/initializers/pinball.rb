@@ -30,7 +30,13 @@ Pinball::Container.configure do
   end
 
   define :task_searcher do
-    current_user.developer? ? DeveloperTaskSearcher.new : ManagerTaskSearcher.new
+    if current_user.developer?
+      DeveloperTaskSearcher.new
+    elsif current_user.manager?
+      ManagerTaskSearcher.new
+    else
+      TaskSearcher.new
+    end
   end
 
 

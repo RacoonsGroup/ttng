@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ManagerTaskSearcher do
   let!(:manager) { FactoryGirl.create :user, :manager }
   let!(:developer) { FactoryGirl.create :user, :developer }
-  let!(:searcher) { ManagerTaskSearcher.new }
+  let!(:searcher) { TaskSearcher.new }
 
   describe '#find' do
     context 'with searching by name' do
