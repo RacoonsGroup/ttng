@@ -1,6 +1,6 @@
 class Admin::ProjectsController < Admin::AdminController
   load_and_authorize_resource except: [:create, :update]
-  inject :project_manager
+  inject :admin_project_manager
   inject :google_exporter
 
   before_filter :prepare_gon, only: [:new, :edit]
@@ -16,7 +16,7 @@ class Admin::ProjectsController < Admin::AdminController
 
   def create
     authorize! :create, Project
-    project_manager.create(project_params) do |project, saved|
+    admin_project_manager.create(project_params) do |project, saved|
       if saved
         render json: project
       else
@@ -42,7 +42,7 @@ class Admin::ProjectsController < Admin::AdminController
   def update
     @project = Project.find(params[:id])
     authorize! :update, @project
-    project_manager.update(@project, project_params) do |project, saved|
+    admin_project_manager.update(@project, project_params) do |project, saved|
       if saved
         render json: project
       else
@@ -52,7 +52,7 @@ class Admin::ProjectsController < Admin::AdminController
   end
 
   def destroy
-    project_manager.destroy(@project)
+    admin_project_manager.destroy(@project)
     redirect_to admin_projects_path
   end
 

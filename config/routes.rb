@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :projects, only: [:index, :show] do
+  resources :projects do
     resources :project_infos, except: [:index]
   end
 

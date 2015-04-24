@@ -1,4 +1,4 @@
-class Admin::AdminProjectManager < ResourceManager::Base
+class ProjectManager < ResourceManager::Base
   model Project
 
   before_create do |params|
