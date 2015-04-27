@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
   has_many :project_users
   has_many :projects, through: :project_users
 
-  has_many :tasks, dependent: :destroy
-  has_many :time_entries, through: :tasks
+  has_many :related_tasks, dependent: :destroy
+  has_many :time_entries, through: :related_tasks
 
   has_many :articles
 

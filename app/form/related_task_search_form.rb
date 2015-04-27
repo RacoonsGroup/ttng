@@ -1,4 +1,4 @@
-class TaskSearchForm < Form
+class RelatedTaskSearchForm < Form
   field :from
   field :to
   field :projects

@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   resources :users, only: :index
 
   
-  resources :tasks do
+  resources :related_tasks do
     collection do
       get :find
     end

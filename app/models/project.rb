@@ -9,11 +9,11 @@ class Project < ActiveRecord::Base
   has_many :users, through: :project_users
   has_many :project_infos
 
-  has_many :tasks, -> { includes(:time_entries) }, dependent: :destroy
+  has_many :related_tasks, -> { includes(:time_entries) }, dependent: :destroy
 
-  has_many :bugs, ->{ includes(:time_entries).bug }, class: Task
-  has_many :features, ->{ includes(:time_entries).feature }, class: Task
-  has_many :chores, ->{ includes(:time_entries).chore }, class: Task
+  has_many :bugs, ->{ includes(:time_entries).bug }, class: RelatedTask
+  has_many :features, ->{ includes(:time_entries).feature }, class: RelatedTask
+  has_many :chores, ->{ includes(:time_entries).chore }, class: RelatedTask
 
   def rate
     Money.new rate_kopeks, 'RUB'

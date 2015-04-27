@@ -1,6 +1,6 @@
 class TimeEntry < ActiveRecord::Base
-  belongs_to :task
-  has_one :user, through: :task
+  belongs_to :related_task
+  has_one :user, through: :related_task
 
-  validates :task, :duration, :date, presence: true
+  validates :related_task, :duration, :date, presence: true
 end

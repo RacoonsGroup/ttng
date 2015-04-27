@@ -1,4 +1,4 @@
-class TaskPresenter < Presenter
+class RelatedTaskPresenter < Presenter
   expose_all
 
   def to_hash

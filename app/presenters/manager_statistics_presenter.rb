@@ -1,7 +1,7 @@
 class ManagerStatisticsPresenter < StatisticsPresenter
 
   def initialize
-    @task_searcher = TaskSearcher.new
+    @task_searcher = RelatedTaskSearcher.new
     @developers = User.developers
   end
 
