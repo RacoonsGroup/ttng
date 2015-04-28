@@ -1,4 +1,4 @@
-=simple_form_for([:admin, project, comment], html: {autocomplete: 'off'}) do |f|
+=simple_form_for([project, comment], html: {autocomplete: 'off'}) do |f|
   .row
     .col-lg-4
       =f.input :title, input_html: { autocomplete: 'off' }
