@@ -1,4 +1,5 @@
 class Customer < ActiveRecord::Base
   has_many :projects, dependent: :destroy
-  validates :name, :subject, :type, :source, presence: true
+  has_many :contacts
+  validates :name, :subject, :profile, :source, presence: true
 end

@@ -44,7 +44,6 @@ class Admin::CustomersController < Admin::AdminController
   private
 
   def customer_params
-    fields = [:name]
-    params.require(:customer).permit(fields)
+    CustomerPermitter.permit(params)
   end
 end

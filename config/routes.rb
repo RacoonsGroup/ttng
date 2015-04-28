@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, except: [:show, :new, :create]
     resources :customers, except: [:show]
+    resources :contacts
     resources :projects do
       resources :comments, except: :index
       member do
@@ -44,6 +45,8 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show] do
     resources :comments, except: [:index]
   end
+
+  resources :contacts
 
   root to: 'welcome#show'
 end

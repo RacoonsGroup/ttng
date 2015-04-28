@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428072945) do
+ActiveRecord::Schema.define(version: 20150428140010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,10 +41,30 @@ ActiveRecord::Schema.define(version: 20150428072945) do
 
   add_index "comments", ["project_id"], name: "index_comments_on_project_id", using: :btree
 
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "mobile"
+    t.string   "skype"
+    t.string   "email"
+    t.text     "describe"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "contacts", ["customer_id"], name: "index_contacts_on_customer_id", using: :btree
+
   create_table "customers", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "subject"
+    t.string   "source"
+    t.text     "describe"
+    t.string   "url"
+    t.integer  "profile"
   end
 
   create_table "days", force: :cascade do |t|
@@ -148,4 +168,5 @@ ActiveRecord::Schema.define(version: 20150428072945) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "contacts", "customers"
 end
