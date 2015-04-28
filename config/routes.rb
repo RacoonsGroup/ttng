@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :users, except: [:show, :new, :create]
     resources :customers, except: [:show]
     resources :projects do
-      resources :project_infos, except: :index
+      resources :comments, except: :index
       member do
         get :export
         get :to_google_drive
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   end
 
   resources :projects, only: [:index, :show] do
-    resources :project_infos, except: [:index]
+    resources :comments, except: [:index]
   end
 
   root to: 'welcome#show'

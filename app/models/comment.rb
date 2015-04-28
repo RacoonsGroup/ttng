@@ -1,4 +1,4 @@
-class ProjectInfo < ActiveRecord::Base
+class Comment < ActiveRecord::Base
   belongs_to :project
 
   attr_accessor :password

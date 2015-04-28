@@ -17,8 +17,8 @@ Pinball::Container.configure do
 
 
 
-  define :project_info_manager do
-    Admin::ProjectInfoManager.new(@project)
+  define :comment_manager do
+    Admin::CommentManager.new(@project)
   end
 
   define :pivotal_api do

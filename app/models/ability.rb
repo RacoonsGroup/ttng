@@ -15,7 +15,7 @@ class Ability
       can :manage, Customer
       can :manage, Project
       can :manage, Day
-      can :manage, ProjectInfo
+      can :manage, Comment
       can :read, RelatedTask
       can :read, TimeEntry
     end
@@ -24,7 +24,7 @@ class Ability
       can :manage, RelatedTask, user_id: user.id
       can :manage, TimeEntry, user_id: user.id
       can :manage, Article, user_id: user.id
-      can :manage, ProjectInfo
+      can :manage, Comment
       can :read, Project
       can :read, User
       can [:read, :unread], Article
@@ -32,7 +32,7 @@ class Ability
 
     if user.customer?
       can :read, RelatedTask
-      can :manage, ProjectInfo
+      can :manage, Comment
       can :read, Project
       can :read, User
     end

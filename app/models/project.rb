@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
 
   has_many :project_users
   has_many :users, through: :project_users
-  has_many :project_infos
+  has_many :comments
 
   has_many :related_tasks, -> { includes(:time_entries) }, dependent: :destroy
 

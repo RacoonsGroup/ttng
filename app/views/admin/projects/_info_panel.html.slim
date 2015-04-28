@@ -1,14 +1,14 @@
 .island
   h4.pull-left=t('project_info.headers.info')
   .pull-right
-    =link_to new_admin_project_project_info_path(project), class: 'btn btn-primary btn-xs' do
+    =link_to new_admin_project_comment_path(project), class: 'btn btn-primary btn-xs' do
       =icon(:plus)
 
   table.project-info
-    -project.project_infos.each do |info|
+    -project.comments.each do |info|
       tr
         td
           -if info.encrypted
             =icon(:lock)
-        td=link_to info.title, admin_project_project_info_path(project, info), :'ask-password' => info.encrypted.presence
+        td=link_to info.title, admin_project_comment_path(project, info), :'ask-password' => info.encrypted.presence
         td=admin_actions_for([project, info], size: 'xs', edit_params: { :'ask-password' => info.encrypted.presence})
