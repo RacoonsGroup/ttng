@@ -1,5 +1,5 @@
-class Admin::ProjectInfoManager < ResourceManager::Base
-  model ->{ @project.project_infos }
+class Admin::CommentManager < ResourceManager::Base
+  model ->{ @project.comments }
 
   before_create do |params|
     encrypt_info(params)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407092623) do
+ActiveRecord::Schema.define(version: 20150428072945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 20150407092623) do
 
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.integer  "project_id",                 null: false
+    t.string   "title",                      null: false
+    t.text     "info",                       null: false
+    t.boolean  "encrypted",  default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "form",       default: 0
+  end
+
+  add_index "comments", ["project_id"], name: "index_comments_on_project_id", using: :btree
+
   create_table "customers", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
@@ -45,17 +57,6 @@ ActiveRecord::Schema.define(version: 20150407092623) do
 
   add_index "days", ["date"], name: "index_days_on_date", using: :btree
   add_index "days", ["holiday"], name: "index_days_on_holiday", using: :btree
-
-  create_table "project_infos", force: :cascade do |t|
-    t.integer  "project_id",                 null: false
-    t.string   "title",                      null: false
-    t.text     "info",                       null: false
-    t.boolean  "encrypted",  default: false, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "project_infos", ["project_id"], name: "index_project_infos_on_project_id", using: :btree
 
   create_table "project_users", force: :cascade do |t|
     t.integer  "project_id", null: false
@@ -80,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150407092623) do
 
   add_index "projects", ["customer_id"], name: "index_projects_on_customer_id", using: :btree
 
-  create_table "tasks", force: :cascade do |t|
+  create_table "related_tasks", force: :cascade do |t|
     t.integer  "user_id",                     null: false
     t.integer  "project_id",                  null: false
     t.string   "name",                        null: false
@@ -94,19 +95,19 @@ ActiveRecord::Schema.define(version: 20150407092623) do
     t.datetime "updated_at"
   end
 
-  add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
-  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
+  add_index "related_tasks", ["project_id"], name: "index_related_tasks_on_project_id", using: :btree
+  add_index "related_tasks", ["user_id"], name: "index_related_tasks_on_user_id", using: :btree
 
   create_table "time_entries", force: :cascade do |t|
-    t.integer  "task_id",     null: false
+    t.integer  "related_task_id", null: false
     t.text     "description"
-    t.integer  "duration",    null: false
+    t.integer  "duration",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "date",        null: false
+    t.date     "date",            null: false
   end
 
-  add_index "time_entries", ["task_id"], name: "index_time_entries_on_task_id", using: :btree
+  add_index "time_entries", ["related_task_id"], name: "index_time_entries_on_related_task_id", using: :btree
 
   create_table "user_articles", force: :cascade do |t|
     t.integer  "user_id"
@@ -131,9 +132,9 @@ ActiveRecord::Schema.define(version: 20150407092623) do
     t.boolean  "admin",                  default: false,        null: false
     t.string   "first_name",             default: "",           null: false
     t.string   "last_name",              default: "",           null: false
-    t.date     "birth_date",             default: '2015-04-17', null: false
+    t.date     "birth_date",             default: '2015-04-27', null: false
     t.integer  "position",               default: 0,            null: false
-    t.date     "hire_date",              default: '2015-04-17', null: false
+    t.date     "hire_date",              default: '2015-04-27', null: false
     t.date     "fire_date"
     t.integer  "salary_kopeks",          default: 0,            null: false
     t.integer  "official_salary_kopeks", default: 0,            null: false

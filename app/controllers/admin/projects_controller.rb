@@ -7,7 +7,7 @@ class Admin::ProjectsController < Admin::AdminController
   before_filter :find_tasks, only: [:show, :to_google_drive]
 
   def index
-    @projects = ProjectPresenter.map(@projects.includes(:customer, :users, :tasks, :features, :bugs, :chores)).paginate(page: params[:page], per_page: 5)
+    @projects = ProjectPresenter.map(@projects.includes(:customer, :users, :related_tasks, :features, :bugs, :chores)).paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -26,7 +26,7 @@ class Admin::ProjectsController < Admin::AdminController
   end
 
   def show
-    @filter = TaskSearchForm.new(params[:filter])
+    @filter = RelatedTaskSearchForm.new(params[:filter])
     respond_to do |format|
       format.html
       format.xlsx do
@@ -84,7 +84,7 @@ class Admin::ProjectsController < Admin::AdminController
   end
 
   def find_tasks
-    @tasks = @project.tasks.order('date DESC').includes(:user, :time_entries)
+    @related_tasks = @project.related_tasks.order('date DESC').includes(:user, :time_entries)
     @from = session[:export_project_from].presence || params[:from]
     @to = session[:export_project_to].presence || params[:to]
 
@@ -93,12 +93,12 @@ class Admin::ProjectsController < Admin::AdminController
 
     if @from.present?
       @from = Date.strptime(@from, '%d.%m.%Y')
-      @tasks = @tasks.where('date >= ?', @from)
+      @related_tasks = @related_tasks.where('date >= ?', @from)
     end
 
     if @to.present?
       @to = Date.strptime(@to, '%d.%m.%Y')
-      @tasks = @tasks.where('date <= ?', @to)
+      @related_tasks = @related_tasks.where('date <= ?', @to)
     end
   end
 

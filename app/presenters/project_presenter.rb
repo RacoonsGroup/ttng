@@ -2,7 +2,7 @@ class ProjectPresenter < Presenter
   expose_all
 
   def real_time
-    total_time_for(tasks.to_a)
+    total_time_for(related_tasks.to_a)
   end
 
   def bug_time
@@ -18,7 +18,7 @@ class ProjectPresenter < Presenter
   end
 
   def real_time_by(user)
-    total_time_for(tasks.where(user_id: user.id).to_a)
+    total_time_for(related_tasks.where(user_id: user.id).to_a)
   end
 
   def bug_time_by(user)

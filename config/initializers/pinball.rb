@@ -5,7 +5,7 @@ Pinball::Container.configure do
   define_singleton :day_manager, Admin::DayManager
 
 
-  define_singleton :task_manager, TaskManager
+  define_singleton :related_task_manager, RelatedTaskManager
 
 
   define_singleton :time_entry_manager, TimeEntryManager
@@ -17,8 +17,8 @@ Pinball::Container.configure do
 
 
 
-  define :project_info_manager do
-    Admin::ProjectInfoManager.new(@project)
+  define :comment_manager do
+    Admin::CommentManager.new(@project)
   end
 
   define :pivotal_api do
@@ -29,13 +29,13 @@ Pinball::Container.configure do
     Thread.current[:current_user]
   end
 
-  define :task_searcher do
+  define :related_task_searcher do
     if current_user.developer?
       DeveloperTaskSearcher.new
     elsif current_user.manager?
       ManagerTaskSearcher.new
     else
-      TaskSearcher.new
+      RelatedTaskSearcher.new
     end
   end
 

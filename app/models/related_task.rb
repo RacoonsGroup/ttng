@@ -1,4 +1,4 @@
-class Task < ActiveRecord::Base
+class RelatedTask < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
 

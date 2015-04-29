@@ -16,7 +16,7 @@ h1.nav-header.pull-left
         =admin_actions_for(project, size: 'xs')
       .text-muted=project.customer_name
 
-      canvas[project_stat_chart height='100' width='100' bugs="#{project.bug_time}" tasks="#{project.task_time}" chores="#{project.chore_time}"]
+      canvas[project_stat_chart height='100' width='100' bugs="#{project.bug_time}" related_tasks="#{project.task_time}" chores="#{project.chore_time}"]
 
       .widget
         b

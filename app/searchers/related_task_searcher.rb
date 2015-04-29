@@ -1,4 +1,4 @@
-class TaskSearcher
+class RelatedTaskSearcher
 
   def find(params)
     tasks = scope
@@ -61,6 +61,6 @@ class TaskSearcher
   protected
 
   def scope
-    Task.all
+    RelatedTask.all
   end
 end

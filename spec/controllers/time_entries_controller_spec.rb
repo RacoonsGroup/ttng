@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe TimeEntriesController do
   let!(:user) { FactoryGirl.create(:user, :developer) }
-  let!(:task) { FactoryGirl.create(:task, user: user) }
+  let!(:related_task) { FactoryGirl.create(:related_task, user: user) }
 
   before do
     sign_in user
@@ -15,18 +15,18 @@ describe TimeEntriesController do
       end
 
       it 'redirects to project index' do
-        post :create, task_id: task, time_entry: FactoryGirl.attributes_for(:time_entry)
+        post :create, related_task_id: related_task, time_entry: FactoryGirl.attributes_for(:time_entry)
         expect(response).to be_success
       end
     end
 
     context 'with invalid params' do
       before do
-        ManagerMock.any_instance.stubs(:item).returns(task)
+        ManagerMock.any_instance.stubs(:item).returns(related_task)
       end
 
       it 'returns 422' do
-        post :create, task_id: task, time_entry: FactoryGirl.attributes_for(:task)
+        post :create, related_task_id: related_task, time_entry: FactoryGirl.attributes_for(:related_task)
         expect(response.status).to eq(422)
       end
     end
