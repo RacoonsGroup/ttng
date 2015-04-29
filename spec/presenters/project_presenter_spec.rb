@@ -2,12 +2,12 @@ require 'rails_helper'
 
 describe ProjectPresenter do
   let!(:user) { FactoryGirl.create(:user, :developer)}
-  let!(:task_feature) { FactoryGirl.create(:task, user: user, project: user.projects.first, task_type: 0) }
-  let!(:task_bug) { FactoryGirl.create(:task, user: user, project: user.projects.first, task_type: 1) }
-  let!(:task_chore) { FactoryGirl.create(:task, user: user, project: user.projects.first, task_type: 2) }
-  let!(:time_entry1) { FactoryGirl.create(:time_entry, task: task_feature, duration: 14) }
-  let!(:time_entry2) { FactoryGirl.create(:time_entry, task: task_bug, duration: 15) }
-  let!(:time_entry3) { FactoryGirl.create(:time_entry, task: task_chore, duration: 1) }
+  let!(:task_feature) { FactoryGirl.create(:related_task, user: user, project: user.projects.first, task_type: 0) }
+  let!(:task_bug) { FactoryGirl.create(:related_task, user: user, project: user.projects.first, task_type: 1) }
+  let!(:task_chore) { FactoryGirl.create(:related_task, user: user, project: user.projects.first, task_type: 2) }
+  let!(:time_entry1) { FactoryGirl.create(:time_entry, related_task: task_feature, duration: 14) }
+  let!(:time_entry2) { FactoryGirl.create(:time_entry, related_task: task_bug, duration: 15) }
+  let!(:time_entry3) { FactoryGirl.create(:time_entry, related_task: task_chore, duration: 1) }
 
   subject { ProjectPresenter.new(user.projects.first) }
 

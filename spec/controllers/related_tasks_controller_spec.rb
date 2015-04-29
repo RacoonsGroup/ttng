@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe TasksController do
+describe RelatedTasksController do
 
 
   let!(:user) { FactoryGirl.create(:user, :developer) }
-  let!(:task) { FactoryGirl.create(:task, user: user) }
-  let!(:bug) { FactoryGirl.create(:task, user: user, task_type: 'bug') }
-  let!(:chore) { FactoryGirl.create(:task, user: user, task_type: 'chore') }
+  let!(:related_task) { FactoryGirl.create(:related_task, user: user) }
+  let!(:bug) { FactoryGirl.create(:related_task, user: user, task_type: 'bug') }
+  let!(:chore) { FactoryGirl.create(:related_task, user: user, task_type: 'chore') }
 
   before do
     sign_in user
@@ -21,16 +21,16 @@ describe TasksController do
     context 'without assigned tasks' do
       it 'assigns valid @tasks' do
         get :index
-        expect(assigns(:tasks)).not_to be_empty
+        expect(assigns(:related_tasks)).not_to be_empty
       end
     end
 
     context 'with assigned tasks' do
-      let!(:task1) { FactoryGirl.create(:task, user: user) }
+      let!(:related_task1) { FactoryGirl.create(:related_task, user: user) }
 
       it 'assigns valid @tasks' do
         get :index
-        expect(assigns(:tasks)).to match_array([task, bug, chore, task1])
+        expect(assigns(:related_tasks)).to match_array([related_task, bug, chore, related_task1])
       end
     end
   end
@@ -49,18 +49,18 @@ describe TasksController do
       end
 
       it 'redirects to project index' do
-        post :create, task: FactoryGirl.attributes_for(:task)
+        post :create, related_task: FactoryGirl.attributes_for(:related_task)
         expect(response).to be_success
       end
     end
 
     context 'with invalid params' do
       before do
-        ManagerMock.any_instance.stubs(:item).returns(task)
+        ManagerMock.any_instance.stubs(:item).returns(related_task)
       end
 
       it 'returns 422' do
-        post :create, task: FactoryGirl.attributes_for(:task)
+        post :create, related_task: FactoryGirl.attributes_for(:related_task)
         expect(response.status).to eq(422)
       end
     end
@@ -74,18 +74,18 @@ describe TasksController do
       end
 
       it 'redirects to project index' do
-        patch :update, id: task, task: FactoryGirl.attributes_for(:task)
+        patch :update, id: related_task, related_task: FactoryGirl.attributes_for(:related_task)
         expect(response).to be_success
       end
     end
 
     context 'with invalid params' do
       before do
-        ManagerMock.any_instance.stubs(:item).returns(task)
+        ManagerMock.any_instance.stubs(:item).returns(related_task)
       end
 
       it 'returns 422' do
-        patch :update, id: task, task: FactoryGirl.attributes_for(:task)
+        patch :update, id: related_task, related_task: FactoryGirl.attributes_for(:related_task)
         expect(response.status).to eq(422)
       end
     end

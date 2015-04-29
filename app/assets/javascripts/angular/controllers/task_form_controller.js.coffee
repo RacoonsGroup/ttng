@@ -1,8 +1,8 @@
 'use strict'
 
 angular.module('gs.taskFormController', []).controller 'TaskFormController',
-  ['$scope', '$filter', 'TaskSearcher', 'TaskSaver', 'RemoteTaskSearcher', '$http'
-    ($scope, $filter, TaskSearcher, TaskSaver, RemoteTaskSearcher, $http)->
+  ['$scope', '$filter', 'RelatedTaskSearcher', 'TaskSaver', 'RemoteTaskSearcher', '$http'
+    ($scope, $filter, RelatedTaskSearcher, TaskSaver, RemoteTaskSearcher, $http)->
       window.scope = $scope
       $scope.projects = gon.projects
       $scope.statuses = gon.statuses
@@ -23,7 +23,7 @@ angular.module('gs.taskFormController', []).controller 'TaskFormController',
           name: query
         }
         params['project_id'] = $scope.task.project.id if $scope.task.project?
-        TaskSearcher.search params, (data)->
+        RelatedTaskSearcher.search params, (data)->
           $scope.tasks = $scope.tasks.concat(data)
 
         if $scope.task.project?

@@ -1,0 +1,5 @@
+h1 = @comment.title
+h2
+  |Type: 
+  = @comment.form
+= Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@info).html_safe

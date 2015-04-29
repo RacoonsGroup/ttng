@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :task do
+  factory :related_task do
     name { Faker::Name.first_name }
     project
     user

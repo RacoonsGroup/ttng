@@ -4,7 +4,7 @@ describe Admin::ProjectsController do
   let!(:project) { FactoryGirl.create(:project) }
   let!(:admin) { FactoryGirl.create(:user, :admin) }
   let!(:project_user) { FactoryGirl.create(:project_user, project: project) }
-  let!(:task) { FactoryGirl.create(:task, project: project, date: Date.parse('01.01.2014')) }
+  let!(:related_task) { FactoryGirl.create(:related_task, project: project, date: Date.parse('01.01.2014')) }
 
   before do
     sign_in admin
