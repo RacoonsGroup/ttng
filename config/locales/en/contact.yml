@@ -1,0 +1,21 @@
+en:
+  simple_form:
+    labels:
+      contact:
+        first_name: First name
+        middle_name: Middle name
+        last_name: Last name
+        full_name: Full name
+        mobile: Mobile phone
+        skype: Skype
+        email: Email
+        describe: Description
+        customer: Customer
+  activerecord:
+    models:
+      contact: Contact
+
+  contact:
+    headers:
+      edit: Edit contact
+      new: New contact

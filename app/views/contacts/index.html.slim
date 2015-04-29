@@ -1,0 +1,27 @@
+h1.nav-header =t('navigation.contacts')
+.island
+  table.table
+    thead
+      tr
+        th
+        th =t('simple_form.labels.contact.full_name')
+        th =t('simple_form.labels.contact.mobile')
+        th =t('simple_form.labels.contact.email')
+        th =t('simple_form.labels.contact.skype')
+        th =t('simple_form.labels.contact.describe')
+        th =t('simple_form.labels.contact.customer')
+        th =t('common.labels.actions')
+      tbody
+        -@contacts.each do |contact|
+          tr
+            td =contact.full_name
+            td =contact.mobile
+            td =contact.email
+            td =contact.skype
+            td =truncate(contact.describe, length: 20)
+            td =link_to contact.customer.name, customer_path(contact.customer) if contact.customer
+            td =actions_for(contact)
+  .digg_pagination
+    .page_info
+      = page_entries_info @contacts
+    = will_paginate @contacts, container: false

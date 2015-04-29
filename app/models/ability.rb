@@ -13,6 +13,7 @@ class Ability
     if user.manager?
       can :manage, User
       can :manage, Customer
+      can :manage, Contact
       can :manage, Project
       can :manage, Day
       can :manage, Comment, project: { id: user.project_ids }
@@ -27,6 +28,7 @@ class Ability
       can :manage, Comment, form: "developer", project: { id: user.project_ids }
       can :read, Comment, form: "general", project: { id: user.project_ids }
       can :read, Project
+      can :read, Contact
       can :read, User
       can [:read, :unread], Article
     end

@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   end
 
   resources :contacts
+  resources :customers
 
   root to: 'welcome#show'
 end

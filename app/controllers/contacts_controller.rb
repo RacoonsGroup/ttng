@@ -1,5 +1,6 @@
 class ContactsController < AuthenticatedController
 	load_and_authorize_resource
+  inject :contact_manager
 
   def index
     @contacts = @contacts.paginate(page: params[:page], per_page: 20)
