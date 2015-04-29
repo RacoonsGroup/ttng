@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe ProjectInfo do
-  let!(:encrypted_info) { FactoryGirl.create(:project_info, encrypted: true, info: 'content'.encrypt(:symmetric, password: 'key')) }
-  let!(:info) { FactoryGirl.create(:project_info, info: 'content') }
+describe Comment do
+  let!(:encrypted_info) { FactoryGirl.create(:comment, encrypted: true, info: 'content'.encrypt(:symmetric, password: 'key')) }
+  let!(:info) { FactoryGirl.create(:comment, info: 'content') }
 
   describe '#decrypted_info' do
     context 'for encrypted info' do

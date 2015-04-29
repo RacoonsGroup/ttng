@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424122256) do
+ActiveRecord::Schema.define(version: 20150428072945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 20150424122256) do
 
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.integer  "project_id",                 null: false
+    t.string   "title",                      null: false
+    t.text     "info",                       null: false
+    t.boolean  "encrypted",  default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "form",       default: 0
+  end
+
+  add_index "comments", ["project_id"], name: "index_comments_on_project_id", using: :btree
+
   create_table "customers", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
@@ -45,17 +57,6 @@ ActiveRecord::Schema.define(version: 20150424122256) do
 
   add_index "days", ["date"], name: "index_days_on_date", using: :btree
   add_index "days", ["holiday"], name: "index_days_on_holiday", using: :btree
-
-  create_table "project_infos", force: :cascade do |t|
-    t.integer  "project_id",                 null: false
-    t.string   "title",                      null: false
-    t.text     "info",                       null: false
-    t.boolean  "encrypted",  default: false, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "project_infos", ["project_id"], name: "index_project_infos_on_project_id", using: :btree
 
   create_table "project_users", force: :cascade do |t|
     t.integer  "project_id", null: false

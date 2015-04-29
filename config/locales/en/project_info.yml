@@ -6,14 +6,14 @@ en:
         password: Password
   activerecord:
     models:
-      project_info: Project info
+      project_info: Comment
 
   project_info:
     headers:
       info: Info
-      create: Create project info
-      edit: Edit project info
+      create: Create comment
+      edit: Edit comment
       enter_password: Enter password
       export: Export
     buttons:
-      add: Create project info
+      add: Create comment

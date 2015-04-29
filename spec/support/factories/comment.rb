@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :project_info do
+  factory :comment do
     project
     title 'Title'
     info 'info'
