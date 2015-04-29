@@ -1,6 +1,7 @@
 class Customer < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :contacts
+  acts_as_taggable_on :technologies
   validates :name, :subject, :profile, :source, presence: true
   
   enum subject: {

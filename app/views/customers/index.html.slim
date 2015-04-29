@@ -18,7 +18,7 @@ h1.nav-header
     tbody
       -@customers.each do |customer|
         tr
-          td =link_to customer.name, customer_path(customer)
+          td =link_to customer.name, customer
           td =customer.subject
           td =customer.profile
           td =customer.url

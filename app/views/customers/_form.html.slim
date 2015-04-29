@@ -5,4 +5,6 @@
   =f.input :url
   =f.input :source
   =f.input :describe
+  =f.input :technology_list
+  =f.association :contacts, label_method: :full_name, collection: Contact.free
   =f.button :submit, class: 'btn-success'
