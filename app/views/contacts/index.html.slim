@@ -1,9 +1,13 @@
-h1.nav-header =t('navigation.contacts')
+h1.nav-header
+  =t('navigation.contacts')
+  '
+  - if can? :create, Contact
+    =link_to new_contact_path, class: 'btn btn-success' do
+      =icon(:plus)
 .island
   table.table
     thead
       tr
-        th
         th =t('simple_form.labels.contact.full_name')
         th =t('simple_form.labels.contact.mobile')
         th =t('simple_form.labels.contact.email')
@@ -14,7 +18,7 @@ h1.nav-header =t('navigation.contacts')
       tbody
         -@contacts.each do |contact|
           tr
-            td =contact.full_name
+            td =link_to contact.full_name, contact_path(contact)
             td =contact.mobile
             td =contact.email
             td =contact.skype

@@ -1,0 +1,31 @@
+h1.nav-header
+  =t('navigation.customers')
+  '
+  - if can? :create, Customer
+    =link_to new_customer_path, class: 'btn btn-success' do
+      =icon(:plus)
+.island
+  table.table
+    thead
+      tr
+        th =t('simple_form.labels.customer.name')
+        th =t('simple_form.labels.customer.subject')
+        th =t('simple_form.labels.customer.profile')
+        th =t('simple_form.labels.customer.url')
+        th =t('simple_form.labels.customer.describe')
+        th =t('simple_form.labels.customer.source')
+        th =t('common.labels.actions')
+    tbody
+      -@customers.each do |customer|
+        tr
+          td =link_to customer.name, customer_path(customer)
+          td =customer.subject
+          td =customer.profile
+          td =customer.url
+          td =truncate(customer.describe, length: 20)
+          td =customer.source
+          td =actions_for(customer)
+  .digg_pagination
+    .page_info
+      = page_entries_info @customers
+    = will_paginate @customers, container: false

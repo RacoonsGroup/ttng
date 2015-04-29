@@ -9,7 +9,8 @@ module NavigationHelper
       primary.item :key_1_3, t('navigation.articles'), articles_path, class: 'item', highlights_on: :subpath if can? :read, Article
       primary.item :key_1_4, t('navigation.my_projects'), projects_path, class: 'item', highlights_on: :subpath if can? :read, Project
       primary.item :key_1_5, t('navigation.users'), users_path, class: 'item', highlights_on: :subpath if can? :read, User
-      primary.item :key_1_6, t('navigation.contacts'), contacts_path, class: 'item', highlights_on: :subpath if can? :read, Contact
+      primary.item :key_1_6, t('navigation.customers'), customers_path, class: 'item', highlights_on: :subpath if can? :read, Customer
+      primary.item :key_1_7, t('navigation.contacts'), contacts_path, class: 'item', highlights_on: :subpath if can? :read, Contact
     end
   end
 
