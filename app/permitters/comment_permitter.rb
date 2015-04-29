@@ -1,4 +1,4 @@
 class CommentPermitter < Permitter
-  fields [:title, :info, :password]
+  fields [:title, :form, :info, :password]
   namespace :comment
 end

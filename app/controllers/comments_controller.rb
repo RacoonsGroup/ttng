@@ -15,7 +15,7 @@ class CommentsController < AuthenticatedController
   def create
     comment_manager.create(comment_params) do |comment, saved|
       if saved
-        redirect_to admin_project_path(@project)
+        redirect_to project_path(@project)
       else
         @comment = comment
         render :new
@@ -30,7 +30,7 @@ class CommentsController < AuthenticatedController
   def update
     comment_manager.update(@comment, comment_params) do |comment, saved|
       if saved
-        redirect_to admin_project_path(@project)
+        redirect_to project_path(@project)
       else
         @comment = comment
         render :edit
@@ -40,7 +40,7 @@ class CommentsController < AuthenticatedController
 
   def destroy
     comment_manager.destroy(@comment)
-    redirect_to admin_project_path(@project)
+    redirect_to project_path(@project)
   end
 
   private
