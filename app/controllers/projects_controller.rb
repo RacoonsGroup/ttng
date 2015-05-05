@@ -5,7 +5,7 @@ class ProjectsController < AuthenticatedController
   before_filter :prepare_gon, only: [:new, :edit]
 
   def index
-    @projects = ProjectPresenter.map(@projects).paginate(page: params[:page], per_page: 5)
+    @projects = ProjectPresenter.map(@projects).paginate(page: params[:page], per_page: 10)
   end
 
   def new

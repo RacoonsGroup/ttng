@@ -1,7 +1,9 @@
 class ProjectManager < ResourceManager::Base
+  inject :current_user
   model Project
 
   before_create do |params|
+    params[:users] << {id: current_user.id} if current_user.manager?
     @users = params.delete(:users)
   end
 
