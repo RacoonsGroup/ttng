@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe Admin::ProjectManager do
+describe ProjectManager do
   let!(:user) { FactoryGirl.create(:user) }
   let!(:customer) { FactoryGirl.create(:customer) }
   let!(:project) { FactoryGirl.create(:project, customer: customer) }
   let!(:project_user) { FactoryGirl.create(:project_user, project: project) }
 
-  let!(:manager) { Admin::ProjectManager.new }
+  let!(:manager) { ProjectManager.new }
 
   describe '#create' do
     it 'creates project' do
