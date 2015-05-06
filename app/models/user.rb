@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   enum position: {
       nobody: 0,
-      admin: 1,
+      chief: 1,
       developer: 2,
       manager: 3,
       customer: 4,
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   }
 
   scope :developers, -> { where('position = ?', User.positions[:developer]) }
-  scope :admins, -> { where('position = ?', User.positions[:admin]) }
+  scope :chiefs, -> { where('position = ?', User.positions[:chief]) }
   scope :nobodies, -> { where('position = ?', User.positions[:nobody]) }
   scope :managers, -> { where('position = ?', User.positions[:manager]) }
   scope :customers, -> { where('position = ?', User.positions[:customer]) }

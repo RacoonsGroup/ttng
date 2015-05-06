@@ -7,8 +7,8 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
 
-    trait :admin do
-      position 'admin'
+    trait :chief do
+      position 'chief'
     end
 
     trait :manager do
@@ -24,6 +24,26 @@ FactoryGirl.define do
 
     trait :nobody do
       position 'nobody'
+    end
+
+    trait :hr do
+      position 'hr'
+    end
+
+    trait :buh do
+      position 'buh'
+    end
+
+    trait :saler do
+      position 'saler'
+    end
+
+    trait :teamleader do
+      position 'teamleader'
+    end
+
+    trait :customer do
+      position 'customer'
     end
 
     trait :invalid do

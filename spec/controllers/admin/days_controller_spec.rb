@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Admin::DaysController do
-  let!(:admin) { FactoryGirl.create(:user, :admin) }
+  let!(:admin) { FactoryGirl.create(:user, :chief) }
   let!(:day) { FactoryGirl.create(:day) }
 
   before do

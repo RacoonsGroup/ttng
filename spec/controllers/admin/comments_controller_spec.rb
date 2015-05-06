@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Admin::CommentsController do
-  let!(:admin) { FactoryGirl.create(:user, :admin) }
+  let!(:admin) { FactoryGirl.create(:user, :chief) }
   let!(:project) { FactoryGirl.create(:project) }
   let!(:comment) { FactoryGirl.create(:comment, project: project) }
 

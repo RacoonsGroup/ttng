@@ -9,7 +9,7 @@ h1.nav-header=t('navigation.users')
       div=user.position_i18n
       div=ll(user.birth_date)
       div=ll(user.fire_date)
-      -if current_user.position == "admin"
+      -if current_user.position == "chief"
         .pull-right
           =link_to edit_admin_user_path(user), class: 'btn btn-success btn-xs' do
             =icon :edit

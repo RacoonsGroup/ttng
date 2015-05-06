@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Admin::UsersController, type: :controller do
-  let!(:admin) { FactoryGirl.create(:user, :admin) }
+  let!(:admin) { FactoryGirl.create(:user, :chief) }
 
   before do
     sign_in admin
@@ -26,7 +26,7 @@ describe Admin::UsersController, type: :controller do
       end
 
       it 'redirects to users_path' do
-        patch :update, id: admin.id, user: FactoryGirl.attributes_for(:user, :admin)
+        patch :update, id: admin.id, user: FactoryGirl.attributes_for(:user, :chief)
         expect(response).to redirect_to(admin_users_path)
       end
     end
@@ -37,7 +37,7 @@ describe Admin::UsersController, type: :controller do
       end
 
       it 're-renders edit template' do
-        patch :update, id: admin.id, user: FactoryGirl.attributes_for(:user, :admin, :invalid, password: '', password_confirmation: nil)
+        patch :update, id: admin.id, user: FactoryGirl.attributes_for(:user, :chief, :invalid, password: '', password_confirmation: nil)
         expect(response).to render_template(:edit)
       end
     end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Admin::ProjectsController do
   let!(:project) { FactoryGirl.create(:project) }
-  let!(:admin) { FactoryGirl.create(:user, :admin) }
+  let!(:admin) { FactoryGirl.create(:user, :chief) }
   let!(:project_user) { FactoryGirl.create(:project_user, project: project) }
   let!(:related_task) { FactoryGirl.create(:related_task, project: project, date: Date.parse('01.01.2014')) }
 

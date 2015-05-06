@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Admin::CustomersController do
   let!(:customer) { FactoryGirl.create(:customer) }
-  let!(:admin) { FactoryGirl.create(:user, :admin) }
+  let!(:admin) { FactoryGirl.create(:user, :chief) }
 
   before do
     sign_in admin
