@@ -29,8 +29,8 @@ class Ability
       can :create, Project
       can :manage, ProjectPresenter
       can :manage, Comment, project: { id: user.project_ids }
-      can :manage, RelatedTask, user_id: user.id
       can :read, RelatedTask, project: { id: user.project_ids }
+      can :manage, RelatedTask, user_id: user.id
       can :manage, TimeEntry, related_task: { id: user.related_task_ids }
       can :read, Customer
       can :read, Contact

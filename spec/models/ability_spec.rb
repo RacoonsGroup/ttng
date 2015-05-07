@@ -10,58 +10,12 @@ describe "User" do
     context "when it's chief" do
       let(:user){ FactoryGirl.create(:user, :chief) }
 
-      describe "user model" do
-        it{ should be_able_to(:read, User) }
-        it{ should be_able_to(:manage, User) }
-        it{ should be_able_to(:create, User) }
+      describe "can manage" do
+        it_should_behave_like "can manage", [User, Project, Comment, Customer, Contact, Day, Article]
       end
 
-      describe "project model" do
-        it{ should be_able_to(:read, Project) }
-        it{ should be_able_to(:manage, Project) }
-        it{ should be_able_to(:create, Project) }
-      end
-
-      describe "comment model" do
-        it{ should be_able_to(:read, Comment ) }
-        it{ should be_able_to(:manage, Comment) }
-        it{ should be_able_to(:create, Comment) }
-      end
-
-      describe "related_task model" do
-        it{ should be_able_to(:read, RelatedTask ) }
-        it{ should be_able_to(:manage, RelatedTask) }
-        it{ should_not be_able_to(:create, RelatedTask) }
-      end
-
-      describe "time_entry model" do
-        it{ should_not be_able_to(:create, TimeEntry) }
-        it{ should be_able_to(:read, TimeEntry ) }
-        it{ should be_able_to(:manage, TimeEntry) }
-      end
-
-      describe "customer model" do
-        it{ should be_able_to(:create, Customer) }
-        it{ should be_able_to(:read, Customer ) }
-        it{ should be_able_to(:manage, Customer) }
-      end
-
-      describe "contact model" do
-        it{ should be_able_to(:read, Contact) }
-        it{ should be_able_to(:create, Contact) }
-        it{ should be_able_to(:manage, Contact) }
-      end
-
-      describe "day model" do
-        it{ should be_able_to(:read, Day) }
-        it{ should be_able_to(:manage, Day) }
-        it{ should be_able_to(:create, Day) }
-      end
-
-      describe "article model" do
-        it{ should be_able_to(:read, Article) }
-        it{ should be_able_to(:create, Article) }
-        it{ should be_able_to(:manage, Article) }
+      describe "can manage without create" do
+        it_should_behave_like "can manage without create", [RelatedTask, TimeEntry]
       end
     end
 
@@ -69,20 +23,14 @@ describe "User" do
 
     context "when it's developer" do
       let(:user){ FactoryGirl.create(:user, :developer) }
+      let!(:project){ user.projects.first}
 
-      describe "user model" do
-        it{ should be_able_to(:read, FactoryGirl.create(:user, :manager)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:user, :nobody) ) }
-        it{ should_not be_able_to(:manage, User) }
-        it{ should_not be_able_to(:create, User) }
+      describe "can read available user" do
+        it_should_behave_like "can read available user"
       end
 
-      describe "project model" do
-        it{ should be_able_to(:read, user.projects.first) }
-        it{ should_not be_able_to(:create, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:manage, user.projects.first) }
+      describe "can read only this project" do
+        it_should_behave_like "can read only this project"
       end
 
       describe "comment model" do
@@ -105,42 +53,22 @@ describe "User" do
       describe "related_task model" do
         it{ should be_able_to(:create, RelatedTask) }
         it{ should be_able_to(:manage, FactoryGirl.create(:related_task, user: user)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:related_task, project: user.projects.first)) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:related_task, project: user.projects.first)) }
+        it{ should_not be_able_to(:read, FactoryGirl.create(:related_task, project: project)) }
+        it{ should_not be_able_to(:manage, FactoryGirl.create(:related_task, project: project)) }
         it{ should_not be_able_to(:manage, FactoryGirl.create(:related_task)) }
         it{ should_not be_able_to(:read, FactoryGirl.create(:related_task)) }
       end
 
-      describe "time_entry model" do
-        it{ should be_able_to(:create, TimeEntry) }
-        it{ should be_able_to(:manage, FactoryGirl.create(:time_entry, related_task: FactoryGirl.create(:related_task, user: user))) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:time_entry)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:time_entry)) }
+      describe "manage own time entries" do
+        it_should_behave_like "manage own time entries"
       end
 
-      describe "customer model" do
-        it{ should_not be_able_to(:read, Customer) }
-        it{ should_not be_able_to(:create, Customer) }
-        it{ should_not be_able_to(:manage, Customer) }
-      end
-
-      describe "contact model" do
-        it{ should_not be_able_to(:read, Contact) }
-        it{ should_not be_able_to(:create, Contact) }
-        it{ should_not be_able_to(:manage, Contact) }
-      end
-
-      describe "day model" do
-        it{ should_not be_able_to(:read, Day) }
-        it{ should_not be_able_to(:manage, Day) }
-        it{ should_not be_able_to(:create, Day) }
+      describe "can nothing" do
+        it_should_behave_like "can nothing", [Customer, Contact, Day]
       end
 
       describe "article model" do
-        it{ should be_able_to(:read, Article) }
-        it{ should be_able_to(:create, Article) }
-        it{ should be_able_to(:manage, FactoryGirl.create(:article, user: user)) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:article)) }
+        it_should_behave_like "can read and create articles"
       end
     end
 
@@ -151,13 +79,10 @@ describe "User" do
       let!(:project) { FactoryGirl.create(:project) }
       let!(:project_user) { FactoryGirl.create(:project_user, project: project, user: user) }
 
-      describe "user model" do
-        it{ should be_able_to(:read, FactoryGirl.create(:user, :manager)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:user, :nobody) ) }
-        it{ should_not be_able_to(:manage, User) }
-        it{ should_not be_able_to(:create, User) }
+      describe "can read available user" do
+        it_should_behave_like "can read available user"
       end
-      
+
       describe "project model" do
         it{ should be_able_to(:manage, project) }
         it{ should be_able_to(:create, Project) }
@@ -189,11 +114,8 @@ describe "User" do
         it{ should_not be_able_to(:read, FactoryGirl.create(:related_task)) }
       end
 
-      describe "time_entry model" do
-        it{ should be_able_to(:create, TimeEntry) }
-        it{ should be_able_to(:manage, FactoryGirl.create(:time_entry, related_task: FactoryGirl.create(:related_task, user: user))) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:time_entry)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:time_entry)) }
+      describe "manage own time entries" do
+        it_should_behave_like "manage own time entries"
       end
 
       describe "customer model" do
@@ -208,17 +130,12 @@ describe "User" do
         it{ should_not be_able_to(:manage, Contact) }
       end
 
-      describe "day model" do
-        it{ should_not be_able_to(:read, Day) }
-        it{ should_not be_able_to(:manage, Day) }
-        it{ should_not be_able_to(:create, Day) }
+      describe "can nothing" do
+        it_should_behave_like "can nothing", [Day]
       end
 
       describe "article model" do
-        it{ should be_able_to(:read, Article) }
-        it{ should be_able_to(:create, Article) }
-        it{ should be_able_to(:manage, FactoryGirl.create(:article, user: user)) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:article)) }
+        it_should_behave_like "can read and create articles"
       end
     end
 
@@ -229,41 +146,16 @@ describe "User" do
       let!(:project) { FactoryGirl.create(:project) }
       let!(:project_user) { FactoryGirl.create(:project_user, project: project, user: user) }
 
-      describe "user model" do
-        it{ should be_able_to(:read, FactoryGirl.create(:user, :manager)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:user, :nobody) ) }
-        it{ should_not be_able_to(:manage, User) }
-        it{ should_not be_able_to(:create, User) }
+      describe "can read available user" do
+        it_should_behave_like "can read available user"
       end
 
-      describe "project model" do
-        it{ should_not be_able_to(:read, Project) }
-        it{ should_not be_able_to(:manage, Project) }
-        it{ should_not be_able_to(:create, Project) }
+      describe "can nothing" do
+        it_should_behave_like "can nothing", [Project, Comment, RelatedTask, TimeEntry, Day]
       end
 
-      describe "comment model" do
-        it{ should_not be_able_to(:read, Comment ) }
-        it{ should_not be_able_to(:manage, Comment) }
-        it{ should_not be_able_to(:create, Comment) }
-      end
-
-      describe "related_task model" do
-        it{ should_not be_able_to(:read, RelatedTask ) }
-        it{ should_not be_able_to(:manage, RelatedTask) }
-        it{ should_not be_able_to(:create, RelatedTask) }
-      end
-
-      describe "time_entry model" do
-        it{ should_not be_able_to(:create, TimeEntry) }
-        it{ should_not be_able_to(:read, TimeEntry ) }
-        it{ should_not be_able_to(:manage, TimeEntry) }
-      end
-
-      describe "customer model" do
-        it{ should be_able_to(:create, Customer) }
-        it{ should be_able_to(:read, Customer ) }
-        it{ should be_able_to(:manage, Customer) }
+      describe "can manage" do
+        it_should_behave_like "can manage", [Customer]
       end
 
       describe "contact model" do
@@ -272,17 +164,8 @@ describe "User" do
         it{ should_not be_able_to(:manage, Contact) }
       end
 
-      describe "day model" do
-        it{ should_not be_able_to(:read, Day) }
-        it{ should_not be_able_to(:manage, Day) }
-        it{ should_not be_able_to(:create, Day) }
-      end
-
       describe "article model" do
-        it{ should be_able_to(:read, Article) }
-        it{ should be_able_to(:create, Article) }
-        it{ should be_able_to(:manage, FactoryGirl.create(:article, user: user)) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:article)) }
+        it_should_behave_like "can read and create articles"
       end
     end
 
@@ -293,41 +176,16 @@ describe "User" do
       let!(:project) { FactoryGirl.create(:project) }
       let!(:project_user) { FactoryGirl.create(:project_user, project: project, user: user) }
 
-      describe "user model" do
-        it{ should be_able_to(:read, FactoryGirl.create(:user, :manager)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:user, :nobody) ) }
-        it{ should_not be_able_to(:manage, User) }
-        it{ should_not be_able_to(:create, User) }
+      describe "can read available user" do
+        it_should_behave_like "can read available user"
       end
 
-      describe "project model" do
-        it{ should_not be_able_to(:read, Project) }
-        it{ should_not be_able_to(:manage, Project) }
-        it{ should_not be_able_to(:create, Project) }
+      describe "can nothing" do
+        it_should_behave_like "can nothing", [Project, Comment, RelatedTask, TimeEntry, Day]
       end
 
-      describe "comment model" do
-        it{ should_not be_able_to(:read, Comment ) }
-        it{ should_not be_able_to(:manage, Comment) }
-        it{ should_not be_able_to(:create, Comment) }
-      end
-
-      describe "related_task model" do
-        it{ should_not be_able_to(:read, RelatedTask ) }
-        it{ should_not be_able_to(:manage, RelatedTask) }
-        it{ should_not be_able_to(:create, RelatedTask) }
-      end
-
-      describe "time_entry model" do
-        it{ should_not be_able_to(:create, TimeEntry) }
-        it{ should_not be_able_to(:read, TimeEntry ) }
-        it{ should_not be_able_to(:manage, TimeEntry) }
-      end
-
-      describe "customer model" do
-        it{ should be_able_to(:create, Customer) }
-        it{ should be_able_to(:read, Customer ) }
-        it{ should be_able_to(:manage, Customer) }
+      describe "can manage" do
+        it_should_behave_like "can manage", [Customer]
       end
 
       describe "contact model" do
@@ -336,17 +194,8 @@ describe "User" do
         it{ should_not be_able_to(:manage, Contact) }
       end
 
-      describe "day model" do
-        it{ should_not be_able_to(:read, Day) }
-        it{ should_not be_able_to(:manage, Day) }
-        it{ should_not be_able_to(:create, Day) }
-      end
-
       describe "article model" do
-        it{ should be_able_to(:read, Article) }
-        it{ should be_able_to(:create, Article) }
-        it{ should be_able_to(:manage, FactoryGirl.create(:article, user: user)) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:article)) }
+        it_should_behave_like "can read and create articles"
       end
     end
 
@@ -357,19 +206,12 @@ describe "User" do
       let!(:project) { FactoryGirl.create(:project) }
       let!(:project_user) { FactoryGirl.create(:project_user, project: project, user: user) }
 
-      describe "user model" do
-        it{ should be_able_to(:read, FactoryGirl.create(:user, :manager)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:user, :nobody) ) }
-        it{ should_not be_able_to(:manage, User) }
-        it{ should_not be_able_to(:create, User) }
+      describe "can read available user" do
+        it_should_behave_like "can read available user"
       end
 
-      describe "project model" do
-        it{ should be_able_to(:read, project) }
-        it{ should_not be_able_to(:create, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:manage, project) }
+      describe "can read only this project" do
+        it_should_behave_like "can read only this project"
       end
 
       describe "comment model" do
@@ -396,11 +238,8 @@ describe "User" do
         it{ should_not be_able_to(:read, FactoryGirl.create(:related_task)) }
       end
 
-      describe "time_entry model" do
-        it{ should be_able_to(:create, TimeEntry) }
-        it{ should be_able_to(:manage, FactoryGirl.create(:time_entry, related_task: FactoryGirl.create(:related_task, user: user))) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:time_entry)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:time_entry)) }
+      describe "manage own time entries" do
+        it_should_behave_like "manage own time entries"
       end
 
       describe "customer model" do
@@ -415,17 +254,12 @@ describe "User" do
         it{ should_not be_able_to(:manage, Contact) }
       end
 
-      describe "day model" do
-        it{ should_not be_able_to(:read, Day) }
-        it{ should_not be_able_to(:manage, Day) }
-        it{ should_not be_able_to(:create, Day) }
+      describe "can nothing" do
+        it_should_behave_like "can nothing", [Day]
       end
 
       describe "article model" do
-        it{ should be_able_to(:read, Article) }
-        it{ should be_able_to(:create, Article) }
-        it{ should be_able_to(:manage, FactoryGirl.create(:article, user: user)) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:article)) }
+        it_should_behave_like "can read and create articles"
       end
     end
 
@@ -438,24 +272,12 @@ describe "User" do
       let!(:project) { FactoryGirl.create(:project, customer: customer) }
       let!(:project_user) { FactoryGirl.create(:project_user, project: project, user: user) }
 
-      describe "user model" do
-        it{ should_not be_able_to(:read, User ) }
-        it{ should_not be_able_to(:manage, User) }
-        it{ should_not be_able_to(:create, User) }
+      describe "can nothing" do
+        it_should_behave_like "can nothing", [User, Comment, TimeEntry, Day]
       end
 
-      describe "project model" do
-        it{ should be_able_to(:read, project) }
-        it{ should_not be_able_to(:create, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:manage, project) }
-      end
-
-      describe "comment model" do
-        it{ should_not be_able_to(:read, Comment ) }
-        it{ should_not be_able_to(:manage, Comment) }
-        it{ should_not be_able_to(:create, Comment) }
+      describe "can read only this project" do
+        it_should_behave_like "can read only this project"
       end
 
       describe "related_task model" do
@@ -464,12 +286,6 @@ describe "User" do
         it{ should_not be_able_to(:manage, FactoryGirl.create(:related_task, project: project)) }
         it{ should_not be_able_to(:manage, FactoryGirl.create(:related_task)) }
         it{ should_not be_able_to(:read, FactoryGirl.create(:related_task)) }
-      end
-
-      describe "time_entry model" do
-        it{ should_not be_able_to(:create, TimeEntry) }
-        it{ should_not be_able_to(:read, TimeEntry ) }
-        it{ should_not be_able_to(:manage, TimeEntry) }
       end
 
       describe "customer model" do
@@ -486,12 +302,6 @@ describe "User" do
         it{ should_not be_able_to(:manage, Contact) }
       end
 
-      describe "day model" do
-        it{ should_not be_able_to(:read, Day) }
-        it{ should_not be_able_to(:manage, Day) }
-        it{ should_not be_able_to(:create, Day) }
-      end
-
       describe "article model" do
         it{ should be_able_to(:read, Article) }
         it{ should_not be_able_to(:create, Article) }
@@ -506,55 +316,20 @@ describe "User" do
       let!(:project) { FactoryGirl.create(:project) }
       let!(:project_user) { FactoryGirl.create(:project_user, project: project, user: user) }
 
-      describe "user model" do
-        it{ should be_able_to(:read, FactoryGirl.create(:user, :manager)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:user, :nobody) ) }
-        it{ should_not be_able_to(:manage, User) }
-        it{ should_not be_able_to(:create, User) }
+      describe "can read available user" do
+        it_should_behave_like "can read available user"
       end
 
-      describe "project model" do
-        it{ should be_able_to(:read, project) }
-        it{ should_not be_able_to(:create, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:manage, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:read, FactoryGirl.create(:project)) }
-        it{ should_not be_able_to(:manage, project) }
+      describe "can read only this project" do
+        it_should_behave_like "can read only this project"
       end
 
-      describe "comment model" do
-        it{ should_not be_able_to(:read, Comment ) }
-        it{ should_not be_able_to(:manage, Comment) }
-        it{ should_not be_able_to(:create, Comment) }
+      describe "can nothing" do
+        it_should_behave_like "can nothing", [Comment, RelatedTask, TimeEntry, Day]
       end
 
-      describe "related_task model" do
-        it{ should_not be_able_to(:read, RelatedTask ) }
-        it{ should_not be_able_to(:manage, RelatedTask) }
-        it{ should_not be_able_to(:create, RelatedTask) }
-      end
-
-      describe "time_entry model" do
-        it{ should_not be_able_to(:create, TimeEntry) }
-        it{ should_not be_able_to(:read, TimeEntry ) }
-        it{ should_not be_able_to(:manage, TimeEntry) }
-      end
-
-      describe "customer model" do
-        it{ should be_able_to(:create, Customer) }
-        it{ should be_able_to(:read, Customer ) }
-        it{ should be_able_to(:manage, Customer) }
-      end
-
-      describe "contact model" do
-        it{ should be_able_to(:read, Contact) }
-        it{ should be_able_to(:create, Contact) }
-        it{ should be_able_to(:manage, Contact) }
-      end
-
-      describe "day model" do
-        it{ should_not be_able_to(:read, Day) }
-        it{ should_not be_able_to(:manage, Day) }
-        it{ should_not be_able_to(:create, Day) }
+      describe "can manage" do
+        it_should_behave_like "can manage", [Customer, Contact]
       end
 
       describe "article model" do

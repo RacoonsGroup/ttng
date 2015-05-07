@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('gs.taskFormController', []).controller 'TaskFormController',
+angular.module('gs.taskFormController', []).controller 'RelatedTaskFormController',
   ['$scope', '$filter', 'RelatedTaskSearcher', 'TaskSaver', 'RemoteTaskSearcher', '$http'
     ($scope, $filter, RelatedTaskSearcher, TaskSaver, RemoteTaskSearcher, $http)->
       window.scope = $scope
@@ -60,7 +60,7 @@ angular.module('gs.taskFormController', []).controller 'TaskFormController',
 
       $scope.saveTask = ->
         TaskSaver.save $scope.task, ->
-          window.location.href='/tasks'
+          window.location.href='/related_tasks'
 
       $scope.renderTask = (item, escape)->
         pivotalLogo = ->

@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('gs.taskSaver', []).factory 'TaskSaver', ['$http', ($http)->
+angular.module('gs.taskSaver', []).factory 'RelatedTaskSaver', ['$http', ($http)->
   prepare_for_create = (task)->
     if task.name.remote
       task.name.id = task.name.name
@@ -42,14 +42,14 @@ angular.module('gs.taskSaver', []).factory 'TaskSaver', ['$http', ($http)->
 
   create = (task, callback)->
     if task.task_id?
-      $http.post("/tasks/#{task.task_id}/time_entries", time_entry: task).success ->
+      $http.post("/related_tasks/#{task.task_id}/time_entries", time_entry: task).success ->
         callback()
     else
-      $http.post('/tasks', task: task).success ->
+      $http.post('/related_tasks', task: task).success ->
         callback()
 
   update = (task, callback)->
-    $http.put("/tasks/#{task.id}", task: task).success ->
+    $http.put("/related_tasks/#{task.id}", task: task).success ->
       callback()
 
   save = (task, callback)->

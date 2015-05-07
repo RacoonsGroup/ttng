@@ -16,6 +16,7 @@ require 'support/mocks/mock'
 
 Dir[Rails.root.join('spec/support/mocks/*.rb')].each { |f| require f }
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/helpers/*.rb')].each { |f| require f }
 
 DatabaseCleaner.strategy = :truncation
 
