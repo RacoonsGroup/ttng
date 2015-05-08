@@ -7,7 +7,7 @@ table.table.time-entries-table
       th=t('simple_form.labels.time_entry.duration')
       th=t('common.labels.actions')
   tbody
-    tr ng-repeat='time_entry in task.time_entries'
+    tr ng-repeat='time_entry in related_task.time_entries'
       td
         input.form-control[datepicker ng-model='time_entry.date']
 

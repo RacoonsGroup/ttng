@@ -1,82 +1,83 @@
 'use strict'
 
 angular.module('gs.taskFormController', []).controller 'RelatedTaskFormController',
-  ['$scope', '$filter', 'RelatedTaskSearcher', 'TaskSaver', 'RemoteTaskSearcher', '$http'
-    ($scope, $filter, RelatedTaskSearcher, TaskSaver, RemoteTaskSearcher, $http)->
+  ['$scope', '$filter', 'RelatedTaskSearcher', 'RelatedTaskSaver', 'RemoteTaskSearcher', '$http'
+    ($scope, $filter, RelatedTaskSearcher, RelatedTaskSaver, RemoteTaskSearcher, $http)->
       window.scope = $scope
       $scope.projects = gon.projects
       $scope.statuses = gon.statuses
       $scope.task_types = gon.task_types
-      $scope.tasks = []
+      $scope.related_tasks = []
       $scope.compact_form = false
       $scope.edit = false
 
-      if gon.task.id?
-        $scope.task = gon.task
+      if gon.related_task.id?
+        console.log gon.related_task
+        $scope.related_task = gon.related_task
         $scope.edit = true
       else
-        $scope.task = {task_type: $scope.task_types[0], status: $scope.statuses[0], date: $filter('date')(new Date(), 'dd.MM.yyyy')}
+        $scope.related_task = {task_type: $scope.task_types[0], status: $scope.statuses[0], date: $filter('date')(new Date(), 'dd.MM.yyyy')}
 
       $scope.findTasks = (query)->
-        $scope.tasks = []
+        $scope.related_tasks = []
         params = {
           name: query
         }
-        params['project_id'] = $scope.task.project.id if $scope.task.project?
+        params['project_id'] = $scope.related_task.project.id if $scope.related_task.project?
         RelatedTaskSearcher.search params, (data)->
-          $scope.tasks = $scope.tasks.concat(data)
+          $scope.related_tasks = $scope.related_tasks.concat(data)
 
-        if $scope.task.project?
-          console.log 'looking for remote tasks'
-          RemoteTaskSearcher.search $scope.task.project.id, query, (data)->
-            $scope.tasks = $scope.tasks.concat(data)
+        if $scope.related_task.project?
+          console.log 'looking for remote related_tasks'
+          RemoteTaskSearcher.search $scope.related_task.project.id, query, (data)->
+            $scope.related_tasks = $scope.related_tasks.concat(data)
 
       $scope.removeTimeEntity = (index)->
-        $scope.task.time_entries.splice(index, 1)
+        $scope.related_task.time_entries.splice(index, 1)
 
       $scope.projectChanged = ->
-        $scope.tasks = []
+        $scope.related_tasks = []
         $scope.compact_form = false
-        $scope.tasks = _.filter $scope.tasks, (task)->
-          task.project_id == $scope.task.project.id
+        $scope.related_tasks = _.filter $scope.related_tasks, (related_task)->
+          related_task.project_id == $scope.related_task.project.id
 
       $scope.nameChanged = ->
-        if $scope.task.name.project_id
-          $scope.task.project = _.find $scope.projects, (p)->
-            p.id == $scope.task.name.project_id
+        if $scope.related_task.name.project_id
+          $scope.related_task.project = _.find $scope.projects, (p)->
+            p.id == $scope.related_task.name.project_id
           $scope.compact_form = true
         else
           $scope.compact_form = false
 
-        if $scope.task.name.remote
-          $scope.task.url = $scope.task.name.url
-          $scope.task.description = $scope.task.name.description
+        if $scope.related_task.name.remote
+          $scope.related_task.url = $scope.related_task.name.url
+          $scope.related_task.description = $scope.related_task.name.description
 
-          $scope.task.task_type = _.find $scope.task_types, (t)->
-            t.id == $scope.task.name.type
+          $scope.related_task.task_type = _.find $scope.task_types, (t)->
+            t.id == $scope.related_task.name.type
 
-          $scope.task.status = _.find $scope.statuses, (t)->
-            t.id == $scope.task.name.status
+          $scope.related_task.status = _.find $scope.statuses, (t)->
+            t.id == $scope.related_task.name.status
 
-      $scope.saveTask = ->
-        TaskSaver.save $scope.task, ->
+      $scope.saveRelatedTask = ->
+        RelatedTaskSaver.save $scope.related_task, ->
           window.location.href='/related_tasks'
 
       $scope.renderTask = (item, escape)->
         pivotalLogo = ->
           '<img src="/images/pivotal.png"/>'
-        "<div class='task-row'>#{escape(item.name)}<span class='pull-right'>#{ if item.remote then pivotalLogo() else '' }</span></div>"
+        "<div class='related_task-row'>#{escape(item.name)}<span class='pull-right'>#{ if item.remote then pivotalLogo() else '' }</span></div>"
 
 
       $scope.urlChanged = ->
-        if $scope.task.project?
+        if $scope.related_task.project?
           re = new RegExp('pivotaltracker.com/story/show/([0-9]+)')
-          if re.test($scope.task.url)
-            task_id = re.exec($scope.task.url)[1]
+          if re.test($scope.related_task.url)
+            task_id = re.exec($scope.related_task.url)[1]
             $scope.loading_remote_task = true
 
-            $http.get("/api/projects/#{$scope.task.project.id}/remote_tasks/#{task_id}").success (task)->
-              $scope.tasks = [task]
-              $scope.task.name = task
+            $http.get("/api/projects/#{$scope.related_task.project.id}/remote_tasks/#{task_id}").success (related_task)->
+              $scope.related_tasks = [related_task]
+              $scope.related_task.name = related_task
               $scope.nameChanged()
 ]
