@@ -1,8 +1,9 @@
 .row
   .col-lg-4
     h2 =@contact.full_name
-  .col-lg-4
-    h2 =link_to @contact.customer.name, customer_path(@contact.customer)
+  - if @contact.customer    
+    .col-lg-4
+      h2 =link_to @contact.customer.name, customer_path(@contact.customer) 
   .col-lg-4
     h2
       |email: 
