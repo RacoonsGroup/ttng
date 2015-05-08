@@ -1,20 +1,31 @@
-.row
-  .col-lg-3
-    h2 =@customer.name
-  .col-lg-3
-    h2 =@customer.source
-  .col-lg-3
-    h2
-      =@customer.describe
-    p
-      |Technologies: #{@customer.technology_list}
-  .col-lg-3
-    h2
-      |Contacts:
-    table.table
-      tbody
-        - @customer.contacts.each do |contact|
-          tr
-            td =link_to contact.full_name, contact
-            td =contact.mobile
-    
+h1
+  =@customer.name
+  .pull-right
+    td =actions_for @customer
+.island
+  table.table
+    tbody
+      tr.well
+        td
+          dl.without-margin
+            dt Subject:
+            dd =I18n.t :"customer_subject.#{@customer.subject}"
+            dt Profile:
+            dd =I18n.t :"customer_profile.#{@customer.profile}"
+            dt URL:
+            dd =@customer.url
+            dt Source:
+            dd =@customer.source
+            dt Techologies:
+            dd =@customer.technology_list
+            dt Contacts:
+            - @customer.contacts.each do |contact|
+              dt =link_to contact.full_name, contact
+              dd =contact.mobile
+        td
+          dt Projects:
+          - @customer.projects.each do |project|
+            dt =link_to project.name, project
+        td
+          pre.bg-gray
+            =@customer.describe

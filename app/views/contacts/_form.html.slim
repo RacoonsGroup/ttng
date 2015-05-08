@@ -2,7 +2,6 @@
   .row
     .col-lg-6
       =f.input :first_name
-      =f.input :middle_name
       =f.input :last_name
       =f.association :customer, label_method: :name, collection: Customer.all, label: 'Choose customer'
     .col-lg-6

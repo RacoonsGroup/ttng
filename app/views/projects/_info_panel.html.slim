@@ -5,12 +5,12 @@
       =link_to new_project_comment_path(project), class: 'btn btn-primary btn-xs' do
         =icon(:plus)
 
-  table.project-info
+  table.table.project-info
     -project.comments.each do |info|
       tr
         td
           -if info.encrypted
             =icon(:lock)
-        td=info.form[0]
+        td=info.form[0..2]
         td=link_to info.title, project_comment_path(project, info), :'ask-password' => info.encrypted.presence
         td=actions_for([project, info], size: 'xs', edit_params: { :'ask-password' => info.encrypted.presence})

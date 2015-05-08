@@ -19,8 +19,8 @@ h1.nav-header
       -@customers.each do |customer|
         tr
           td =link_to customer.name, customer
-          td =customer.subject
-          td =customer.profile
+          td =I18n.t :"customer_subject.#{customer.subject}"
+          td =I18n.t :"customer_profile.#{customer.profile}"
           td =customer.url
           td =truncate(customer.describe, length: 20)
           td =customer.source

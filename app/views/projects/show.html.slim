@@ -4,9 +4,12 @@ div ng-controller='ProjectShowController'
     '
     small=@project.customer.name
   .row
-    .col-lg-4
+    .col-lg-6
       =render 'admin/projects/users_panel', project: @project
       =render 'info_panel', project: @project
-    .col-lg-8
+    .col-lg-6
+      .island
+        h4=t('simple_form.labels.project.description')
+        = @project.description
 
   =render 'shared/password_modal'

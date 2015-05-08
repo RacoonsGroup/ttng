@@ -10,3 +10,10 @@ en:
       filter: Filter
       close: Close
       decrypt: Decrypt
+  customer_subject:
+    phizik: Phizicheskoe lico
+    yurik: Yuridicheskoe lico
+  customer_profile:
+    start_up: StartUp
+    software_dev: Software development
+    related: Related
