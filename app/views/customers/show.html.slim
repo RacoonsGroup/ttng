@@ -13,7 +13,7 @@
       |Contacts:
     table.table
       tbody
-        - @customer.contacts.each do |contact|
+        - @customer.try(:contacts).each do |contact|
           tr
             td =link_to contact.full_name, contact
             td =contact.mobile
