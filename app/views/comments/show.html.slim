@@ -1,19 +1,21 @@
-h1
-  = @comment.id
-  .pull-right
-    td =actions_for([@comment.project, @comment], edit_params: { :'ask-password' => @comment.encrypted.presence})
-.island
-  table.table
-    tbody
-      tr
-        h1 = @comment.title
-      tr.well
-        td
-          dl.without-margin
-            dt Project:
-            dd = link_to @comment.project.name, @comment.project
-            dt Type:
-            dd =@comment.form
-        td
-          pre.bg-gray
-            =@comment.info
+div ng-controller='ProjectShowController'
+  h1
+    = @comment.id
+    .pull-right
+      =actions_for([@comment.project, @comment], edit_params: { :'ask-password' => @comment.encrypted.presence})
+  .island
+    table.table
+      tbody
+        tr
+          h1 = @comment.title
+        tr.well
+          td
+            dl.without-margin
+              dt Project:
+              dd = link_to @comment.project.name, @comment.project
+              dt Type:
+              dd =@comment.form
+          td
+            pre.bg-gray
+              =@info
+  =render 'shared/password_modal'

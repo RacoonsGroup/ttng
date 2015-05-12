@@ -1,4 +1,4 @@
-class Admin::CommentManager < ResourceManager::Base
+class CommentManager < ResourceManager::Base
   model ->{ @project.comments }
 
   before_create do |params|

@@ -1,9 +1,8 @@
 'use strict'
 
 angular.module('gs.askPassword', []).directive 'askPassword', [->
-  link: (scope, elem, attrs, ngModel) ->
+  link: (scope, elem, attrs, ngModel) ->    
     elem.on 'click', (e)->
-
       addParameterToURL = (url, param)->
         url + (if url.indexOf('?') > 0 then '&' else '?') + param;
 
