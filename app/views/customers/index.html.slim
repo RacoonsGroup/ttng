@@ -5,12 +5,12 @@ h1.nav-header
     =link_to new_customer_path, class: 'btn btn-success' do
       =icon(:plus)
 .island
-  table.table
+  table.table.pretty
     thead
       tr
-        th =t('simple_form.labels.customer.name')
-        th =t('simple_form.labels.customer.subject')
-        th =t('simple_form.labels.customer.profile')
+        th =sortable 'name'
+        th =sortable 'subject'
+        th =sortable 'profile'
         th =t('simple_form.labels.customer.url')
         th =t('simple_form.labels.customer.describe')
         th =t('simple_form.labels.customer.source')
