@@ -18,4 +18,10 @@ class ApplicationController < ActionController::Base
   before_filter do
     Thread.current[:current_user] = current_user
   end
+
+  private
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 end

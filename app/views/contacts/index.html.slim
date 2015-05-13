@@ -5,13 +5,13 @@ h1.nav-header
     =link_to new_contact_path, class: 'btn btn-success' do
       =icon(:plus)
 .island
-  table.table
+  table.table.pretty
     thead
       tr
-        th =t('simple_form.labels.contact.full_name')
+        th =sortable('first_name', 'Full name')
         th =t('simple_form.labels.contact.mobile')
-        th =t('simple_form.labels.contact.email')
-        th =t('simple_form.labels.contact.skype')
+        th =sortable 'email'
+        th =sortable 'skype'
         th =t('simple_form.labels.contact.describe')
         th =t('simple_form.labels.contact.customer')
         th =t('common.labels.actions')
