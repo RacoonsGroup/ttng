@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :users, except: [:show, :new, :create]
     resources :customers, except: [:show]
     resources :contacts
+    resources :related_tasks
+    resources :articles
     resources :projects do
       resources :comments, except: :index
       member do
