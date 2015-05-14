@@ -1,5 +1,5 @@
 .island.task-search
-  =simple_form_for(@search, url: related_tasks_path, method: 'GET', as: :search, html: { class: 'form-horizontal' }) do |f|
+  =simple_form_for(@search, url: admin_related_tasks_path, method: 'GET', as: :search, html: { class: 'form-horizontal' }) do |f|
     .row
       .col-lg-4
         .form-group.dates
@@ -15,7 +15,6 @@
     .row
       .col-lg-4
       .col-lg-4
-        -if current_user.manager? || current_user.chief?
-          =f.select :developers, developer_options, {}, multiple: true, selectize2: true
+        =f.select :developers, developer_options, {}, multiple: true, selectize2: true
 
     div[date-range-selector]

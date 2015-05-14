@@ -2,7 +2,7 @@ class RelatedTaskManager < ResourceManager::Base
   inject :current_user
   inject :time_entry_manager
 
-  model ->{ current_user.related_tasks }
+  model ->{ current_user.chief? ? RelatedTask : current_user.related_tasks }
 
   before_create do |params|
     @duration = params.delete(:duration)

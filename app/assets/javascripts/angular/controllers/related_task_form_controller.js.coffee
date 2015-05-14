@@ -7,6 +7,7 @@ angular.module('gs.taskFormController', []).controller 'RelatedTaskFormControlle
       $scope.projects = gon.projects
       $scope.statuses = gon.statuses
       $scope.task_types = gon.task_types
+      $scope.role = gon.role
       $scope.related_tasks = []
       $scope.compact_form = false
       $scope.edit = false
@@ -61,7 +62,10 @@ angular.module('gs.taskFormController', []).controller 'RelatedTaskFormControlle
 
       $scope.saveRelatedTask = ->
         RelatedTaskSaver.save $scope.related_task, ->
-          window.location.href='/related_tasks'
+          if $scope.role == 'chief'
+            window.location.href='/admin/related_tasks'
+          else
+            window.location.href='/related_tasks'
 
       $scope.renderTask = (item, escape)->
         pivotalLogo = ->
