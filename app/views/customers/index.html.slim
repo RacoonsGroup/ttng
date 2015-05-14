@@ -25,7 +25,4 @@ h1.nav-header
           td =truncate(customer.describe, length: 20)
           td =customer.source
           td =actions_for(customer)
-  .digg_pagination
-    .page_info
-      = page_entries_info @customers
-    = will_paginate @customers, container: false
+  = will_paginate @customers, container: false

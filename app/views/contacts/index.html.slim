@@ -25,7 +25,4 @@ h1.nav-header
             td =truncate(contact.describe, length: 20)
             td =link_to contact.customer.name, contact.customer if contact.customer
             td =actions_for(contact)
-  .digg_pagination
-    .page_info
-      = page_entries_info @contacts
-    = will_paginate @contacts, container: false
+  = will_paginate @contacts, container: false

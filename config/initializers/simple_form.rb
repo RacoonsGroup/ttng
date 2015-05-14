@@ -14,13 +14,18 @@ inputs = %w[
 inputs.each do |input_type|
   superclass = "SimpleForm::Inputs::#{input_type}".constantize
 
-  new_class = Class.new(superclass) do
-    def input_html_classes
-      super.push('form-control')
+  hack = %|
+    module SimpleForm
+      module Inputs
+        class #{superclass}
+          def input_html_classes
+            super.push('form-control')
+          end
+        end
+      end
     end
-  end
-
-  Object.const_set(input_type, new_class)
+  |
+  eval(hack)
 end
 
 # Use this setup block to configure all options available in SimpleForm.

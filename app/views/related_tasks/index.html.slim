@@ -32,7 +32,4 @@ h1.nav-header
               td=task.real_time
               td=task.payable
               td=actions_for(task)
-  .digg_pagination
-    .page_info
-      = page_entries_info @related_tasks
-    = will_paginate @related_tasks, container: false
+  = will_paginate @related_tasks, container: false
