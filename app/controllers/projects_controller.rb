@@ -1,8 +1,10 @@
 class ProjectsController < AuthenticatedController
   load_and_authorize_resource through: :current_user, except: [:create, :update]
   inject :project_manager
+  inject :google_exporter
 
   before_filter :prepare_gon, only: [:new, :edit]
+  before_filter :find_tasks, only: [:show, :to_google_drive]
 
   def index
     @projects = ProjectPresenter.map(@projects).paginate(page: params[:page], per_page: 10)
@@ -24,7 +26,13 @@ class ProjectsController < AuthenticatedController
   end
 
   def show
-
+    @filter = RelatedTaskSearchForm.new(params[:filter])
+    respond_to do |format|
+      format.html
+      format.xlsx do
+        render xlsx: 'show', filename: @project.name
+      end
+    end
   end
 
   def edit
@@ -48,6 +56,21 @@ class ProjectsController < AuthenticatedController
     redirect_to projects_path
   end
 
+  def export
+    session[:export_project_id] = @project.id
+    session[:export_project_from] = params[:from]
+    session[:export_project_to] = params[:to]
+
+    redirect_to '/auth/google_oauth2'
+  end
+
+  def to_google_drive
+
+    string = render_to_string(template: 'projects/show.xlsx.axlsx')
+    google_exporter.upload_file(project: @project, content: string)
+    redirect_to admin_project_path(@project.id)
+  end
+
   private
 
   def project_params
@@ -58,8 +81,24 @@ class ProjectsController < AuthenticatedController
     gon.project = @project.present? ? ProjectPresenter.new(@project).to_hash : nil
     gon.customers = Customer.all
     gon.users = UserPresenter.map(User.all)
-    gon.role = current_user.position
   end
 
+   def find_tasks
+    @related_tasks = @project.related_tasks.order('date DESC').includes(:user, :time_entries)
+    @from = session[:export_project_from].presence || params[:from]
+    @to = session[:export_project_to].presence || params[:to]
 
+    session.delete :export_project_from
+    session.delete :export_project_to
+
+    if @from.present?
+      @from = Date.strptime(@from, '%d.%m.%Y')
+      @related_tasks = @related_tasks.where('date >= ?', @from)
+    end
+
+    if @to.present?
+      @to = Date.strptime(@to, '%d.%m.%Y')
+      @related_tasks = @related_tasks.where('date <= ?', @to)
+    end
+  end
 end

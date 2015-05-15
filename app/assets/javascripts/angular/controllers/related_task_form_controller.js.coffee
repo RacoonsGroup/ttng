@@ -62,10 +62,7 @@ angular.module('gs.taskFormController', []).controller 'RelatedTaskFormControlle
 
       $scope.saveRelatedTask = ->
         RelatedTaskSaver.save $scope.related_task, ->
-          if $scope.role == 'chief'
-            window.location.href='/admin/related_tasks'
-          else
-            window.location.href='/related_tasks'
+          window.location.href='/related_tasks'
 
       $scope.renderTask = (item, escape)->
         pivotalLogo = ->

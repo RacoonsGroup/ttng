@@ -1,0 +1,26 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: @project.name) do |sheet|
+  wb.styles do |s|
+    cell = s.add_style border: { style: :thin, color: '00000000' }
+    header = s.add_style sz: 20, b: true, alignment: { horizontal: :center, vertical: :center, wrap_text: true }
+    table_header = s.add_style b: true, alignment: { wrap_text: true }, border: { style: :thin, color: '00000000' }
+
+    bold_cell = s.add_style b: true, border: { style: :thin, color: '00000000' }
+    bold = s.add_style b: true
+
+
+    sheet.add_row [@project.name, nil, nil,nil, nil, "#{ll(@from)}-#{ll(@to)}"], style: [header, nil, nil, nil, nil, bold]
+    sheet.merge_cells('A1:E1')
+
+    sheet.add_row %w(Task Time Date User Url Description), style: table_header
+
+
+
+    RelatedTaskPresenter.map(@related_tasks).each do |task|
+      sheet.add_row task.to_xlsx_row, style: [cell, bold_cell, cell, cell, cell, cell]
+    end
+
+    sheet.add_row [t('project.headers.total'), "=SUM(B3:B#{2+@related_tasks.length})"], style:[bold, bold_cell]
+  end
+end

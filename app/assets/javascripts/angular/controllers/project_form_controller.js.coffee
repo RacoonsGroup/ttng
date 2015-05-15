@@ -27,8 +27,5 @@ angular.module('gs.projectFormController', []).controller 'ProjectFormController
 
       $scope.saveProject = ->
         ProjectSaver.save $scope.project, ->
-          if gon.role == 'chief'
-            window.location.href='/admin/projects'
-          else
-            window.location.href='/projects'
+          window.location.href='/projects'
   ]

@@ -32,7 +32,7 @@ class RelatedTasksController < ApplicationController
   end
 
   def update
-    related_task = current_user.related_tasks.find(params[:id])
+    related_task = RelatedTask.find(params[:id])
     authorize! :update, related_task
     related_task_manager.update(related_task, related_task_params) do |task, saved|
       if saved
@@ -62,7 +62,6 @@ class RelatedTasksController < ApplicationController
   def prepare_gon
     gon.related_task = @related_task.present? ? RelatedTaskPresenter.new(@related_task).to_hash : nil
     gon.projects = current_user.projects
-    gon.role = current_user.position
     gon.statuses = RelatedTask.statuses_i18n.map{ |k,v| { id: k, name: v } }
     gon.task_types = RelatedTask.task_types_i18n.map{ |k,v| { id: k, name: v } }
   end
