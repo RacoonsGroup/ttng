@@ -1,0 +1,24 @@
+= hidden_field_tag :direction, params[:direction]
+= hidden_field_tag :sort, params[:sort]
+.island
+  table.table.pretty
+    thead
+      tr
+        th =sortable 'name'
+        th =sortable 'subject'
+        th =sortable 'profile'
+        th =t('simple_form.labels.customer.url')
+        th =t('simple_form.labels.customer.describe')
+        th =t('simple_form.labels.customer.source')
+        th =t('common.labels.actions')
+    tbody
+      -@customers.each do |customer|
+        tr
+          td =link_to customer.name, customer
+          td =I18n.t :"customer_subject.#{customer.subject}"
+          td =I18n.t :"customer_profile.#{customer.profile}"
+          td =customer.url
+          td =truncate(customer.describe, length: 20)
+          td =customer.source
+          td =actions_for(customer)
+  = will_paginate @customers, container: false

@@ -20,6 +20,7 @@
 //= require Chart
 //= require ng-rails-csrf
 //= require moment
+//= require search
 //= require datepicker
 //= require moment/ru.js
 //= require_tree ./angular

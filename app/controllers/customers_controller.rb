@@ -4,7 +4,7 @@ class CustomersController < AuthenticatedController
   helper_method :sort_column, :sort_direction
 
   def index
-    @customers = @customers.order("#{sort_column} #{sort_direction}").includes(:projects).paginate(page: params[:page], per_page: 20)
+    @customers = @customers.search(params[:search]).order("#{sort_column} #{sort_direction}").includes(:projects).paginate(page: params[:page], per_page: 20)
   end
 
   def new
