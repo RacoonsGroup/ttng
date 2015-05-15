@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Admin::CustomersController do
+describe CustomersController do
   let!(:customer) { FactoryGirl.create(:customer) }
   let!(:admin) { FactoryGirl.create(:user, :chief) }
 
@@ -30,17 +30,18 @@ describe Admin::CustomersController do
 
       it 'redirects to customer index' do
         post :create, customer: FactoryGirl.attributes_for(:customer)
-        expect(response).to redirect_to(admin_customers_path)
+        expect(response).to redirect_to(customers_path)
       end
     end
 
     context 'with invalid params' do
       before do
+        ManagerMock.any_instance.stubs(:result).returns(false)
         ManagerMock.any_instance.stubs(:item).returns(customer)
       end
 
       it 'renders new template' do
-        post :create, customer: FactoryGirl.attributes_for(:customer)
+        post :create, customer: FactoryGirl.attributes_for(:customer, :invalid_customer)
         expect(response).to render_template(:new)
       end
     end
@@ -63,7 +64,7 @@ describe Admin::CustomersController do
 
       it 'redirects to customer index' do
         patch :update, id: customer, customer: FactoryGirl.attributes_for(:customer)
-        expect(response).to redirect_to(admin_customers_path)
+        expect(response).to redirect_to(customers_path)
       end
     end
 
@@ -82,7 +83,7 @@ describe Admin::CustomersController do
   describe 'DELETE #destroy' do
     it 'redirects to customer index' do
       delete :destroy, id: customer
-      expect(response).to redirect_to(admin_customers_path)
+      expect(response).to redirect_to(customers_path)
     end
   end
 end

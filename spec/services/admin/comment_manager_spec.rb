@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Admin::CommentManager do
+describe CommentManager do
   let!(:project) { FactoryGirl.create(:project) }
   let!(:comment) { FactoryGirl.create(:comment, project: project) }
 
-  let!(:manager) { Admin::CommentManager.new(project) }
+  let!(:manager) { CommentManager.new(project) }
 
   describe '#create' do
     context 'without encryption' do

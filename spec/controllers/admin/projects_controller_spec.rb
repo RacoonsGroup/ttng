@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Admin::ProjectsController do
+describe ProjectsController do
   let!(:project) { FactoryGirl.create(:project) }
   let!(:admin) { FactoryGirl.create(:user, :chief) }
   let!(:project_user) { FactoryGirl.create(:project_user, project: project) }

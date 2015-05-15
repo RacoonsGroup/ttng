@@ -19,3 +19,14 @@ $(function() {
     return false;
   });
 });
+
+$(function() {
+  $("#projects td a, #projects .pagination a").on("click", function() {
+    $.getScript(this.href);
+    return false;
+  });
+  $("#projects_search input").keyup(function() {
+    $.get($("#projects_search").attr("action"), $("#projects_search").serialize(), null, "script");
+    return false;
+  });
+});

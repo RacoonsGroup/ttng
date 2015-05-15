@@ -1,4 +1,5 @@
 class Contact < ActiveRecord::Base
+
   belongs_to :customer
   validates :first_name, presence: true
 
@@ -10,7 +11,7 @@ class Contact < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('first_name LIKE ?', "%#{search}%")
+      where('first_name LIKE ? OR last_name LIKE ?', "%#{search}%", "%#{search}%")
     else
       all
     end

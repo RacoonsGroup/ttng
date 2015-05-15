@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Admin::CommentsController do
+describe CommentsController do
   let!(:admin) { FactoryGirl.create(:user, :chief) }
   let!(:project) { FactoryGirl.create(:project) }
   let!(:comment) { FactoryGirl.create(:comment, project: project) }
@@ -57,7 +57,7 @@ describe Admin::CommentsController do
 
       it 'redirects to project path' do
         put :update, project_id: project, id: comment, comment: FactoryGirl.attributes_for(:comment)
-        expect(response).to redirect_to(admin_project_path(project))
+        expect(response).to redirect_to(project_path(project))
       end
     end
 
@@ -83,7 +83,7 @@ describe Admin::CommentsController do
   describe 'DELETE #destroy' do
     it 'redirects to project_path' do
       delete :destroy, project_id: project, id: comment
-      expect(response).to redirect_to(admin_project_path(project))
+      expect(response).to redirect_to(project_path(project))
     end
   end
 end
