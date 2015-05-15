@@ -4,7 +4,7 @@ class ContactsController < AuthenticatedController
   helper_method :sort_column, :sort_direction
 
   def index
-    @contacts = @contacts.order("#{sort_column} #{sort_direction}").paginate(page: params[:page], per_page: 20)
+    @contacts = @contacts.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(page: params[:page], per_page: 20)
   end
 
   def new

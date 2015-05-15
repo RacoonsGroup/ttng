@@ -40,6 +40,7 @@ gem 'chart-js-rails'
 gem 'tracker_api', '~> 0.2.0'
 gem 'acts-as-taggable-on'
 gem 'activeadmin', github: 'activeadmin'
+gem 'pg_search'
 
 group :development do
   gem 'spring'

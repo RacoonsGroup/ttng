@@ -255,6 +255,10 @@ GEM
     paranoia (2.0.4)
       activerecord (~> 4.0)
     pg (0.18.1)
+    pg_search (1.0.3)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     pinball (0.0.8)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
@@ -451,6 +455,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   paranoia
   pg
+  pg_search
   pinball
   pry-byebug
   pry-rails

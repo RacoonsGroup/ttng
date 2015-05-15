@@ -1,0 +1,24 @@
+= hidden_field_tag :direction, params[:direction]
+= hidden_field_tag :sort, params[:sort]
+.island
+  table.table.pretty
+    thead
+      tr
+        th =sortable('first_name', 'Full name')
+        th =t('simple_form.labels.contact.mobile')
+        th =sortable 'email'
+        th =sortable 'skype'
+        th =t('simple_form.labels.contact.describe')
+        th =t('simple_form.labels.contact.customer')
+        th =t('common.labels.actions')
+      tbody
+        -@contacts.each do |contact|
+          tr
+            td =link_to contact.full_name, contact
+            td =contact.mobile
+            td =contact.email
+            td =contact.skype
+            td =truncate(contact.describe, length: 20)
+            td =link_to contact.customer.name, contact.customer if contact.customer
+            td =actions_for(contact)
+  = will_paginate @contacts, container: false
