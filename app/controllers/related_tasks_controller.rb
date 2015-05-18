@@ -61,7 +61,11 @@ class RelatedTasksController < ApplicationController
 
   def prepare_gon
     gon.related_task = @related_task.present? ? RelatedTaskPresenter.new(@related_task).to_hash : nil
-    gon.projects = current_user.projects
+    gon.projects = if current_user.chief?
+                      Project.all
+                    else
+                      current_user.projects
+                    end
     gon.statuses = RelatedTask.statuses_i18n.map{ |k,v| { id: k, name: v } }
     gon.task_types = RelatedTask.task_types_i18n.map{ |k,v| { id: k, name: v } }
   end
