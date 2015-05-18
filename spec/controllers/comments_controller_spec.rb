@@ -25,7 +25,7 @@ describe CommentsController do
 
       it 'redirects to project page' do
         post :create, project_id: project, comment: FactoryGirl.attributes_for(:comment)
-        expect(response).to redirect_to(admin_project_path(project))
+        expect(response).to redirect_to(project_path(project))
       end
     end
 

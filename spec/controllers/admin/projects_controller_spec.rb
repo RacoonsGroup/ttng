@@ -3,7 +3,7 @@ require 'rails_helper'
 describe ProjectsController do
   let!(:project) { FactoryGirl.create(:project) }
   let!(:admin) { FactoryGirl.create(:user, :chief) }
-  let!(:project_user) { FactoryGirl.create(:project_user, project: project) }
+  let!(:project_user) { FactoryGirl.create(:project_user, project: project, user: admin) }
   let!(:related_task) { FactoryGirl.create(:related_task, project: project, date: Date.parse('01.01.2014')) }
 
   before do
@@ -98,7 +98,7 @@ describe ProjectsController do
   describe 'DELETE #destroy' do
     it 'redirects to project index' do
       delete :destroy, id: project
-      expect(response).to redirect_to(admin_projects_path)
+      expect(response).to redirect_to(projects_path)
     end
   end
 
