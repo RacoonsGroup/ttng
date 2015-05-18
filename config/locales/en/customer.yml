@@ -1,5 +1,14 @@
 en:
   simple_form:
+    options:
+      customer:
+        subject:
+          phizik: "Phizicheskoe lico"
+          yurik: "Yuridicheskoe lico"
+        profile:
+          start_up: "StartUp"
+          software_dev: "Software developing"
+          related: "Related"
     labels:
       customer:
         name: Name
