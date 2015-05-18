@@ -20,7 +20,7 @@ class ManagerStatisticsPresenter < StatisticsPresenter
 
   def finished
     percentage = spent_hours / hours.to_f * 100
-    "#{spent_hours} (#{percentage.round}%)"
+    percentage.nan? ? "0" : "#{spent_hours} (#{percentage.round}%)"
   end
 
 end

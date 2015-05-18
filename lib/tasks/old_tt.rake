@@ -3,7 +3,7 @@ namespace :old_tt do
   task migrate_old_tt: :environment do
     data = YAML.load_file("#{Rails.root}/data.yml")
     Project.create!(name: "Empty Project",
-                    customer: Customer.create(name: "Empty Customer"),
+                    customer: Customer.create(name: "Empty Customer", subject: 'phizik', source: 'anything'),
                     description: "empty",
                     rate: 0
     )
@@ -39,7 +39,7 @@ def projects_migrate(data)
     project.each_with_index {|value, index| project_h.merge!(Hash[cols[index], value])}
 
     Project.create!(name: project_h["project_name"],
-                    customer: Customer.create(name: project_h["project_name"]),
+                    customer: Customer.create(name: project_h["project_name"], subject: 'phizik', source: 'anything'),
                     description: project_h["project_description"],
                     rate: 0
     )
@@ -53,7 +53,7 @@ def tasks_migrate(data)
     task_h = {}
     task.each_with_index {|value, index| task_h.merge!(Hash[cols[index], value])}
 
-    new_task = Task.create!(name: task_h["name"],
+    new_task = RelatedTask.create!(name: task_h["name"],
                  user_id: task_h["user_id"],
                  project: Project.find_by_name(task_h["project"]) || Project.find_by_name("Empty Project"),
                  description: task_h["description"],
