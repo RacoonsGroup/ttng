@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508110108) do
+ActiveRecord::Schema.define(version: 20150519121027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20150508110108) do
   create_table "time_entries", force: :cascade do |t|
     t.integer  "related_task_id", null: false
     t.text     "description"
-    t.integer  "duration",        null: false
+    t.float    "duration",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "date",            null: false

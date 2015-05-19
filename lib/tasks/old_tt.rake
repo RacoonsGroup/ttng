@@ -2,13 +2,13 @@ namespace :old_tt do
   desc "TODO"
   task migrate_old_tt: :environment do
     data = YAML.load_file("#{Rails.root}/data.yml")
-    Project.create!(name: "Empty Project",
-                    customer: Customer.create(name: "Empty Customer", subject: 'phizik', source: 'anything'),
-                    description: "empty",
-                    rate: 0
-    )
-    users_migrate(data["users"])
-    projects_migrate(data["projects"])
+    # Project.create!(name: "Empty Project",
+    #                 customer: Customer.create(name: "Empty Customer", subject: 'phizik', source: 'anything'),
+    #                 description: "empty",
+    #                 rate: 0
+    # )
+    # users_migrate(data["users"])
+    # projects_migrate(data["projects"])
     tasks_migrate(data["time_entries"])
   end
 end
