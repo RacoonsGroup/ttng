@@ -22,7 +22,7 @@ module TaskHelper
   end
 
   def developer_options
-    User.where('position = ?', User.positions[:developer]).map{ |d| [d.full_name, d.id] }
+    User.developers.map{ |d| [d.full_name, d.id] }
   end
 
   def payable_glyph(task)

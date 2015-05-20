@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
       saler: 8
   }
 
-  scope :developers, -> { where('position = ?', User.positions[:developer]) }
+  scope :developers, -> { where('position = ? OR position = ?', User.positions[:developer] , User.positions[:teamleader]) }
   scope :chiefs, -> { where('position = ?', User.positions[:chief]) }
   scope :nobodies, -> { where('position = ?', User.positions[:nobody]) }
   scope :managers, -> { where('position = ?', User.positions[:manager]) }
