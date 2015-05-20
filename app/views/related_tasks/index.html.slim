@@ -15,9 +15,13 @@ h1.nav-header
         th=t('simple_form.labels.task.name')
         th=t('simple_form.labels.task.project')
         th=t('simple_form.labels.task.status')
-        th=t('simple_form.labels.task.date')
+        th
+          =t('simple_form.labels.task.date')
         - unless current_user.customer?
-          th=t('simple_form.labels.task.real_time')
+          th
+            =t('simple_form.labels.task.real_time')
+            '
+            |(#{@sum})
           th=t('common.labels.actions')
           - if current_user.chief?
             th=t('simple_form.labels.task.payable')

@@ -9,7 +9,9 @@ class RelatedTasksController < ApplicationController
   def index
     @search = RelatedTaskSearchForm.new(params[:search])
     @projects = current_user.projects.map{ |p| [p.name, p.id] }
-    @related_tasks = related_task_searcher.find_by_form(@search).includes(:project, :time_entries).order('date DESC, created_at').paginate(page: params[:page], per_page: 20)
+    @related_tasks = related_task_searcher.find_by_form(@search).includes(:project, :time_entries).order('date DESC, created_at')
+    @sum = @related_tasks.to_a.inject(0) { |sum, task| sum + task.real_time }
+    @related_tasks = @related_tasks.paginate(page: params[:page], per_page: 20)
   end
 
   def new
