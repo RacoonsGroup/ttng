@@ -10,3 +10,7 @@ Task Tracker next generation
 * RAILS_ENV=production bundle exec rake old_tt:migrate_old_tt
 * Пользователи импортируются с позицией nobody - выставить после импорта
 *
+
+# PG::DatetimeFieldOverflow: ERROR:  date/time field value out of range
+
+* ALTER DATABASE ttng_production SET datestyle TO "ISO, DMY";

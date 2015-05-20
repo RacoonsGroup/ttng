@@ -18,8 +18,9 @@ h1.nav-header
         th=t('simple_form.labels.task.date')
         - unless current_user.customer?
           th=t('simple_form.labels.task.real_time')
-          th=t('simple_form.labels.task.payable')
           th=t('common.labels.actions')
+          - if current_user.chief?
+            th=t('simple_form.labels.task.payable')
       tbody
         -@related_tasks.each do |task|
           tr
@@ -30,6 +31,7 @@ h1.nav-header
             td=l(task.date)
             - unless current_user.customer?
               td=task.real_time
-              td=task.payable
               td=actions_for(task)
+              - if current_user.chief?
+                td=task.payable
   = will_paginate @related_tasks, container: false

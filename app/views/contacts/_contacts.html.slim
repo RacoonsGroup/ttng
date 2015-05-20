@@ -8,7 +8,6 @@
         th =t('simple_form.labels.contact.mobile')
         th =sortable 'email'
         th =sortable 'skype'
-        th =t('simple_form.labels.contact.describe')
         th =t('simple_form.labels.contact.customer')
         th =t('common.labels.actions')
       tbody
@@ -18,7 +17,6 @@
             td =contact.mobile
             td =contact.email
             td =contact.skype
-            td =truncate(contact.describe, length: 20)
             td =link_to contact.customer.name, contact.customer if contact.customer
             td =actions_for(contact)
   = will_paginate @contacts, container: false
