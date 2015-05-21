@@ -7,7 +7,7 @@ class ProjectsController < AuthenticatedController
   before_filter :find_tasks, only: [:show, :to_google_drive]
 
   def index
-    @projects = ProjectPresenter.map(@projects.search(params[:search])).paginate(page: params[:page], per_page: 10)
+    @projects = ProjectPresenter.map(@projects.search(params[:search]).order('projects.created_at DESC')).paginate(page: params[:page], per_page: 10)
   end
 
   def new
