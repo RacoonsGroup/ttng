@@ -61,6 +61,9 @@ angular.module('gs.taskFormController', []).controller 'RelatedTaskFormControlle
             t.id == $scope.related_task.name.status
 
       $scope.saveRelatedTask = ->
+        if $scope.related_task_form.$invalid
+          return false
+        $scope.button_clicked = true
         RelatedTaskSaver.save $scope.related_task, ->
           window.location.href='/related_tasks'
 
