@@ -9,6 +9,6 @@ div ng-controller='ProjectShowController'
       =render 'admin/projects/info_panel', project: @project
       =render 'admin/projects/export'
     .col-lg-9
-      =render 'admin/projects/tasks_panel', tasks: @tasks
+      =render 'admin/projects/tasks_panel', tasks: @related_tasks
 
   =render 'shared/password_modal'

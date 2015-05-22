@@ -17,10 +17,10 @@ wb.add_worksheet(name: @project.name) do |sheet|
 
 
 
-    TaskPresenter.map(@tasks).each do |task|
+    RelatedTaskPresenter.map(@related_tasks).each do |task|
       sheet.add_row task.to_xlsx_row, style: [cell, bold_cell, cell, cell, cell, cell]
     end
 
-    sheet.add_row [t('project.headers.total'), "=SUM(B3:B#{2+@tasks.length})"], style:[bold, bold_cell]
+    sheet.add_row [t('project.headers.total'), "=SUM(B3:B#{2+@related_tasks.length})"], style:[bold, bold_cell]
   end
 end

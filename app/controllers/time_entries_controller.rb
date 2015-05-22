@@ -5,7 +5,7 @@ class TimeEntriesController < ApplicationController
 
   def create
     authorize! :create, TimeEntry
-    time_entry_manager.create(@task, create_task_params) do |time_entry, saved|
+    time_entry_manager.create(@related_task, create_task_params) do |time_entry, saved|
       if saved
         render json: time_entry
       else
@@ -17,7 +17,7 @@ class TimeEntriesController < ApplicationController
   protected
 
   def find_task
-    @task = current_user.tasks.find(params[:task_id])
+    @related_task = current_user.related_tasks.find(params[:related_task_id])
   end
 
   def create_task_params

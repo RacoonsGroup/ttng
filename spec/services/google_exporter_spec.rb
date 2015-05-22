@@ -7,7 +7,7 @@ describe GoogleExporter do
 
   describe '#upload_file' do
     it 'do something' do
-      subject.upload_file(project: project, content: 'content')
+      subject.upload_file(project, "content")
     end
   end
 end

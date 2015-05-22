@@ -1,13 +1,13 @@
 class Admin::ProjectsController < Admin::AdminController
   load_and_authorize_resource except: [:create, :update]
-  inject :project_manager
+  inject :admin_project_manager
   inject :google_exporter
 
   before_filter :prepare_gon, only: [:new, :edit]
   before_filter :find_tasks, only: [:show, :to_google_drive]
 
   def index
-    @projects = ProjectPresenter.map(@projects.includes(:customer, :users, :tasks, :features, :bugs, :chores)).paginate(page: params[:page], per_page: 5)
+    @projects = ProjectPresenter.map(@projects.includes(:customer, :users, :related_tasks, :features, :bugs, :chores)).paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -16,7 +16,7 @@ class Admin::ProjectsController < Admin::AdminController
 
   def create
     authorize! :create, Project
-    project_manager.create(project_params) do |project, saved|
+    admin_project_manager.create(project_params) do |project, saved|
       if saved
         render json: project
       else
@@ -26,7 +26,7 @@ class Admin::ProjectsController < Admin::AdminController
   end
 
   def show
-    @filter = TaskSearchForm.new(params[:filter])
+    @filter = RelatedTaskSearchForm.new(params[:filter])
     respond_to do |format|
       format.html
       format.xlsx do
@@ -42,7 +42,7 @@ class Admin::ProjectsController < Admin::AdminController
   def update
     @project = Project.find(params[:id])
     authorize! :update, @project
-    project_manager.update(@project, project_params) do |project, saved|
+    admin_project_manager.update(@project, project_params) do |project, saved|
       if saved
         render json: project
       else
@@ -52,7 +52,7 @@ class Admin::ProjectsController < Admin::AdminController
   end
 
   def destroy
-    project_manager.destroy(@project)
+    admin_project_manager.destroy(@project)
     redirect_to admin_projects_path
   end
 
@@ -84,7 +84,7 @@ class Admin::ProjectsController < Admin::AdminController
   end
 
   def find_tasks
-    @tasks = @project.tasks.order('date DESC').includes(:user, :time_entries)
+    @related_tasks = @project.related_tasks.order('date DESC').includes(:user, :time_entries)
     @from = session[:export_project_from].presence || params[:from]
     @to = session[:export_project_to].presence || params[:to]
 
@@ -93,12 +93,12 @@ class Admin::ProjectsController < Admin::AdminController
 
     if @from.present?
       @from = Date.strptime(@from, '%d.%m.%Y')
-      @tasks = @tasks.where('date >= ?', @from)
+      @related_tasks = @related_tasks.where('date >= ?', @from)
     end
 
     if @to.present?
       @to = Date.strptime(@to, '%d.%m.%Y')
-      @tasks = @tasks.where('date <= ?', @to)
+      @related_tasks = @related_tasks.where('date <= ?', @to)
     end
   end
 
