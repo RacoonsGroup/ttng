@@ -1,5 +1,7 @@
 class Comment < ActiveRecord::Base
   belongs_to :project
+  has_many :attaches, dependent: :destroy
+  accepts_nested_attributes_for :attaches, allow_destroy: true
 
   attr_accessor :password
 

@@ -17,6 +17,16 @@ GIT
       sass-rails
 
 GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: d7b18dd002cc11ef2da76508e0b700c300e3023d
+  specs:
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+
+GIT
   remote: git://github.com/zhulik/simple_presenter.git
   revision: 0d6f3bd164d3cdc8b2766ee6cd74e8154ab400d3
   specs:
@@ -229,6 +239,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nested_form (0.3.2)
     ng-rails-csrf (0.1.0)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
@@ -428,6 +439,7 @@ DEPENDENCIES
   bootstrap-sass-extras
   byebug
   cancancan
+  carrierwave!
   chart-js-rails
   coffee-rails (~> 4.0.0)
   database_cleaner
@@ -446,6 +458,7 @@ DEPENDENCIES
   mocha
   momentjs-rails
   money
+  nested_form
   ng-rails-csrf
   omniauth (~> 1.2.2)
   omniauth-google-oauth2

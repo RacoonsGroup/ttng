@@ -15,6 +15,9 @@ div ng-controller='ProjectShowController'
               dd = link_to @comment.project.name, @comment.project
               dt Type:
               dd =@comment.form
+              dt Attaches:
+              - @comment.attaches.each do |att|
+                dd =link_to att.title, att.attachment.url
           td
             pre.bg-gray
               =@info
