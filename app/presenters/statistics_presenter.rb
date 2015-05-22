@@ -2,7 +2,7 @@ class StatisticsPresenter
   include ApplicationHelper
 
   def initialize
-    @task_searcher = TaskSearcher.new
+    @task_searcher = RelatedTaskSearcher.new
   end
 
   def iteration

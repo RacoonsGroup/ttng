@@ -27,5 +27,5 @@ angular.module('gs.projectFormController', []).controller 'ProjectFormController
 
       $scope.saveProject = ->
         ProjectSaver.save $scope.project, ->
-          window.location.href='/admin/projects'
+          window.location.href='projects'
   ]

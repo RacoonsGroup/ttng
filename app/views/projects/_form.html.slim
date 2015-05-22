@@ -1,0 +1,23 @@
+form ng-controller='ProjectFormController' name='project_form'
+  .row
+    .col-lg-4
+      =form_group(label: t('simple_form.labels.project.customer'), required: true) do
+        div.form-control[selectize2 selectize-options='customers' ng-model='project.customer' required]
+    .col-lg-4
+      =form_group(label: t('simple_form.labels.project.name'), required: true) do
+        input[required type='text' ng-model='project.name' class='form-control']
+    .col-lg-4
+      =form_group(label: t('simple_form.labels.project.rate'), required: true) do
+        input[required type='number' ng-model='project.rate' class='form-control']
+
+  .row
+    .col-lg-6
+      =render 'users_table'
+    .col-lg-6
+      =form_group(label: t('simple_form.labels.project.pivotal_id')) do
+        input[type='number' ng-model='project.pivotal_id' class='form-control']
+      =form_group(label: t('simple_form.labels.project.description')) do
+        textarea ng-model='project.description' class='form-control'
+      .pull-right
+        button.btn.btn-success ng-click='saveProject()' ng-disabled='project_form.$invalid' =t('common.buttons.save')
+

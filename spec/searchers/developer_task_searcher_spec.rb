@@ -6,41 +6,41 @@ describe DeveloperTaskSearcher do
 
   describe '#find' do
     context 'with searching by name' do
-      let!(:task) { FactoryGirl.create(:task, user: user, name: 'test') }
+      let!(:related_task) { FactoryGirl.create(:related_task, user: user, name: 'test') }
 
       it 'finds tasks' do
-        expect(searcher.find(name: 'test')).to match_array([task])
+        expect(searcher.find(name: 'test')).to match_array([related_task])
       end
     end
 
     context 'with searching by project_id' do
       let!(:project) { FactoryGirl.create(:project) }
-      let!(:task) { FactoryGirl.create(:task, user: user, name: 'test', project: project) }
+      let!(:related_task) { FactoryGirl.create(:related_task, user: user, name: 'test', project: project) }
 
       it 'finds tasks' do
-        expect(searcher.find(project_id: project.id)).to match_array([task])
+        expect(searcher.find(project_id: project.id)).to match_array([related_task])
       end
     end
   end
 
   describe '#find_by_form' do
     let!(:project) { FactoryGirl.create(:project) }
-    let!(:task) { FactoryGirl.create(:task, user: user, project: project, date: Date.today) }
+    let!(:related_task) { FactoryGirl.create(:related_task, user: user, project: project, date: Date.today) }
 
 
     context 'with project' do
-      let!(:form) { TaskSearchForm.new(projects: [project.id.to_s], from: Date.today, to: Date.today, payable: 'false') }
+      let!(:form) { RelatedTaskSearchForm.new(projects: [project.id.to_s], from: Date.today, to: Date.today, payable: 'false') }
 
       it 'finds tasks' do
-        expect(searcher.find_by_form(form)).to match_array([task])
+        expect(searcher.find_by_form(form)).to match_array([related_task])
       end
     end
 
     context 'without project' do
-      let!(:form) { TaskSearchForm.new(from: Date.today, to: Date.today, payable: 'false') }
+      let!(:form) { RelatedTaskSearchForm.new(from: Date.today, to: Date.today, payable: 'false') }
 
       it 'finds tasks' do
-        expect(searcher.find_by_form(form)).to match_array([task])
+        expect(searcher.find_by_form(form)).to match_array([related_task])
       end
     end
   end

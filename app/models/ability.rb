@@ -6,7 +6,7 @@ class Ability
 
     if user.admin?
       can :manage, :all
-      cannot :create, Task
+      cannot :create, RelatedTask
       cannot :create, TimeEntry
     end
 
@@ -15,24 +15,25 @@ class Ability
       can :manage, Customer
       can :manage, Project
       can :manage, Day
-      can :manage, ProjectInfo
-      can :read, Task
+      can :manage, Comment, project: { id: user.project_ids }
+      can :read, RelatedTask
       can :read, TimeEntry
     end
 
     if user.developer?
-      can :manage, Task, user_id: user.id
+      can :manage, RelatedTask, user_id: user.id
       can :manage, TimeEntry, user_id: user.id
       can :manage, Article, user_id: user.id
-      can :manage, ProjectInfo
+      can :manage, Comment, form: "developer", project: { id: user.project_ids }
+      can :read, Comment, form: "general", project: { id: user.project_ids }
       can :read, Project
       can :read, User
       can [:read, :unread], Article
     end
 
     if user.customer?
-      can :read, Task
-      can :manage, ProjectInfo
+      can :read, RelatedTask
+      can :manage, Comment
       can :read, Project
       can :read, User
     end

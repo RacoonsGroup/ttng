@@ -1,9 +1,9 @@
-class ManagerTaskSearcher < TaskSearcher
+class ManagerTaskSearcher < RelatedTaskSearcher
   inject :current_user
 
   protected
 
   def scope
-    Task.where(project: current_user.projects)
+    RelatedTask.where(project: current_user.projects)
   end
 end

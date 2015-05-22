@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
   has_many :project_users
   has_many :projects, through: :project_users
 
-  has_many :tasks, dependent: :destroy
-  has_many :time_entries, through: :tasks
+  has_many :related_tasks, dependent: :destroy
+  has_many :time_entries, through: :related_tasks
 
   has_many :articles
 
@@ -59,10 +59,6 @@ class User < ActiveRecord::Base
   def official_salary=(value)
     value = Money.new(value.to_i * 100, 'RUB')
     write_attribute :official_salary_kopeks, value.cents
-  end
-
-  def admin_or_manager?
-    admin? || manager?
   end
 
   def avatar
