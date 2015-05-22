@@ -1,0 +1,20 @@
+.row
+  .col-lg-3
+    h2 =@customer.name
+  .col-lg-3
+    h2 =@customer.source
+  .col-lg-3
+    h2
+      =@customer.describe
+    p
+      |Technologies: #{@customer.technology_list}
+  .col-lg-3
+    h2
+      |Contacts:
+    table.table
+      tbody
+        - @customer.contacts.each do |contact|
+          tr
+            td =link_to contact.full_name, contact
+            td =contact.mobile
+    

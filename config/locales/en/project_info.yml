@@ -1,8 +1,9 @@
 en:
   simple_form:
     labels:
-      project_info:
+      comment:
         info: Info
+        form: Type
         password: Password
   activerecord:
     models:

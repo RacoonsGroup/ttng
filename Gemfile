@@ -38,6 +38,7 @@ gem 'omniauth-google-oauth2'
 gem 'json'
 gem 'chart-js-rails'
 gem 'tracker_api', '~> 0.2.0'
+gem 'acts-as-taggable-on'
 
 group :development do
   gem 'spring'

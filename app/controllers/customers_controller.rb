@@ -1,4 +1,4 @@
-class Admin::CustomersController < Admin::AdminController
+class CustomersController < AuthenticatedController
   load_and_authorize_resource
   inject :customer_manager
 
@@ -13,7 +13,7 @@ class Admin::CustomersController < Admin::AdminController
   def create
     customer_manager.create(customer_params) do |customer, saved|
       if saved
-        redirect_to admin_customers_path
+        redirect_to customers_path
       else
         @customer = customer
         render :new
@@ -28,7 +28,7 @@ class Admin::CustomersController < Admin::AdminController
   def update
     customer_manager.update(@customer, customer_params) do |customer, saved|
       if saved
-        redirect_to admin_customers_path
+        redirect_to customers_path
       else
         @customer = customer
         render :edit
@@ -38,7 +38,7 @@ class Admin::CustomersController < Admin::AdminController
 
   def destroy
     customer_manager.destroy(@customer)
-    redirect_to admin_customers_path
+    redirect_to customers_path
   end
 
   private
