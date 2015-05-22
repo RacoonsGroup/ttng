@@ -131,9 +131,9 @@ ActiveRecord::Schema.define(version: 20150407092623) do
     t.boolean  "admin",                  default: false,        null: false
     t.string   "first_name",             default: "",           null: false
     t.string   "last_name",              default: "",           null: false
-    t.date     "birth_date",             default: '2015-04-03', null: false
+    t.date     "birth_date",             default: '2015-04-17', null: false
     t.integer  "position",               default: 0,            null: false
-    t.date     "hire_date",              default: '2015-04-03', null: false
+    t.date     "hire_date",              default: '2015-04-17', null: false
     t.date     "fire_date"
     t.integer  "salary_kopeks",          default: 0,            null: false
     t.integer  "official_salary_kopeks", default: 0,            null: false

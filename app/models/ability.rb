@@ -29,5 +29,12 @@ class Ability
       can :read, User
       can [:read, :unread], Article
     end
+
+    if user.customer?
+      can :read, Task
+      can :manage, ProjectInfo
+      can :read, Project
+      can :read, User
+    end
   end
 end

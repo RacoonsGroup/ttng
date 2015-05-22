@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   end
 
   resources :projects, only: [:index, :show] do
-    resources :project_infos, only: [:show]
+    resources :project_infos, except: [:index]
   end
 
   root to: 'welcome#show'

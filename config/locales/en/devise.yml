@@ -16,6 +16,7 @@ en:
     forms:
       first_name: First name
       last_name: Last name
+      mobile: Mobile phone
       email: Email
       password: Password
       password_confirmation: Password confirmation
