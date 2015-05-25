@@ -1,37 +1,37 @@
-form ng-controller='TaskFormController' name='task_form'
+form ng-controller='RelatedTaskFormController' name='related_task_form'
   .row
     .col-lg-6
       =form_group(label: t('simple_form.labels.task.project'), required: true) do
-        .form-control[selectize2 required ng-model='task.project' selectize-options='projects' ng-change='projectChanged()']
+        .form-control[selectize2 required ng-model='related_task.project' selectize-options='projects' ng-change='projectChanged()']
     .col-lg-6
       =form_group(label: t('simple_form.labels.task.date'), required: true) do
-        input.form-control[required ng-model='task.date' datepicker]
+        input.form-control[required ng-model='related_task.date' datepicker]
 
 
   =form_group(label: t('simple_form.labels.task.name'), required: true) do
-    .form-control[selectize2 required ng-model='task.name' selectize-on-render='renderTask(item, escape)' selectize-options='tasks' create='true' on-load='findTasks(query)' ng-change='nameChanged()' include-model='true']
+    .form-control[selectize2 required ng-model='related_task.name' selectize-on-render='renderTask(item, escape)' selectize-options='related_tasks' create='true' on-load='findTasks(query)' ng-change='nameChanged()' include-model='true']
 
   .row
     .col-lg-6
       div ng-show='!compact_form'
         =form_group(label: t('simple_form.labels.task.url'))do
-          input.form-control[ng-model='task.url' ng-change='urlChanged()']
+          input.form-control[ng-model='related_task.url' ng-change='urlChanged()']
 
         =form_group(label: t('simple_form.labels.task.type'), required: true) do
-          .form-control[selectize2 required ng-model='task.task_type' selectize-options='task_types']
+          .form-control[selectize2 required ng-model='related_task.task_type' selectize-options='task_types']
 
       =form_group(label: t('simple_form.labels.task.status'), required: true) do
-        .form-control[selectize2 required ng-model='task.status' selectize-options='statuses']
+        .form-control[selectize2 required ng-model='related_task.status' selectize-options='statuses']
 
       div ng-show='!edit'
         =form_group(label: t('simple_form.labels.task.real_time'), required: true) do
-          input.form-control[required ng-model='task.duration']
+          input.form-control[required ng-model='related_task.duration']
 
     .col-lg-6
       =form_group(label: t('simple_form.labels.task.description')) do
-        textarea.form-control[ng-model='task.description' rows=12]
+        textarea.form-control[ng-model='related_task.description' rows=12]
 
   div ng-show='edit'
     =render 'time_entries'
 
-  button.btn.btn-success type='button' ng-disabled='task_form.$invalid' ng-click='saveTask()'=t('common.buttons.save')
+  button.btn.btn-success type='button' ng-disabled='task_form.$invalid' ng-click='saveRelatedTask()'=t('common.buttons.save')

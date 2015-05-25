@@ -3,7 +3,7 @@ FactoryGirl.define do
     name { Faker::Name.name }
     subject 'phizik'
     profile 'start_up'
-    describe { Faker::Name.name }
-    source { Faker::Name.name }
+    describe { Faker::Lorem.sentence }
+    source { Faker::Lorem.word }
   end
 end

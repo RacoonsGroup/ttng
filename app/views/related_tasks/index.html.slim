@@ -1,4 +1,10 @@
-h1.nav-header=t('navigation.tasks')
+h1.nav-header
+  =t('navigation.tasks')
+  '
+  - if can? :create, RelatedTask
+    =link_to new_related_task_path, class: 'btn btn-success' do
+      =icon(:plus)
+
 =render 'search_form', search: @search
 
 .island

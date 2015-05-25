@@ -1,8 +1,9 @@
 h1.nav-header
   =t('navigation.articles')
   '
-  =link_to new_article_path, class: 'btn btn-success' do
-    =icon(:plus)
+  - if can? :create, Article
+    =link_to new_article_path, class: 'btn btn-success' do
+      =icon(:plus)
 .island
   table.table
     thead

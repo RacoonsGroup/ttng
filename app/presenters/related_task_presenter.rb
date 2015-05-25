@@ -1,11 +1,12 @@
 class RelatedTaskPresenter < Presenter
+  include ApplicationHelper
   expose_all
 
   def to_hash
     {
       id: id,
       name: subject,
-      date: date,
+      date: ll(date),
       project: project,
       status: {id: status, name: status_i18n},
       task_type: {id: task_type, name: task_type_i18n},

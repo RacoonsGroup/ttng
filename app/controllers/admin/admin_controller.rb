@@ -3,6 +3,6 @@ class Admin::AdminController < AuthenticatedController
   layout 'admin'
 
   def authenticate_admin!
-    raise CanCan::AccessDenied.new unless current_user.admin?
+    raise CanCan::AccessDenied.new unless current_user.chief?
   end
 end
