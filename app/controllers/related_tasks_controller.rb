@@ -1,6 +1,7 @@
 class RelatedTasksController < ApplicationController
   inject :related_task_manager
   inject :related_task_searcher
+  inject :time_entry_searcher
 
   load_and_authorize_resource except: [:create, :update]
 
@@ -9,9 +10,9 @@ class RelatedTasksController < ApplicationController
   def index
     @search = RelatedTaskSearchForm.new(params[:search])
     @projects = current_user.projects.map{ |p| [p.name, p.id] }
-    @related_tasks = related_task_searcher.find_by_form(@search).includes(:project, :time_entries).order('date DESC, created_at')
-    @sum = @related_tasks.to_a.inject(0) { |sum, task| sum + task.real_time }
-    @related_tasks = @related_tasks.paginate(page: params[:page], per_page: 20)
+    @time_entries = time_entry_searcher.find_by_form(@search).includes(:related_task).order(date: :DESC)
+    @sum = @time_entries.to_a.inject(0) { |sum, task| sum + task.duration }
+    @time_entries = @time_entries.paginate(page: params[:page], per_page: 20)
   end
 
   def new

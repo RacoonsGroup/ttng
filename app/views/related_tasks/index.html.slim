@@ -26,16 +26,17 @@ h1.nav-header
           - if current_user.chief?
             th=t('simple_form.labels.task.payable')
       tbody
-        -@related_tasks.each do |task|
+        -@time_entries.each do |te|
           tr
-            th=task_glyph(task)
-            td=task.name
-            td=task.project_name
-            td=task.status_i18n
-            td=l(task.date)
+            th=task_glyph(te.related_task)
+            td=te.related_task.name
+            td=te.related_task.project_name
+            td=te.related_task.status_i18n
+            td=l(te.date)
             - unless current_user.customer?
-              td=task.real_time
-              td=actions_for(task)
+              td=te.duration
+              - if can? :modify, te
+                td=actions_for(te.related_task)
               - if current_user.chief?
-                td=task.payable
-  = will_paginate @related_tasks, container: false
+                td=te.related_task.payable
+  = will_paginate @time_entries, container: false

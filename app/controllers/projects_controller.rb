@@ -84,7 +84,7 @@ class ProjectsController < AuthenticatedController
   end
 
    def find_tasks
-    @related_tasks = @project.related_tasks.order('date DESC').includes(:user, :time_entries)
+    @related_tasks = @project.related_tasks.order(date: :DESC).includes(:user, :time_entries)
     @from = session[:export_project_from].presence || params[:from]
     @to = session[:export_project_to].presence || params[:to]
 

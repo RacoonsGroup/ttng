@@ -38,5 +38,13 @@ Pinball::Container.configure do
     end
   end
 
-
+  define :time_entry_searcher do
+    if current_user.chief?
+      TimeEntrySearcher.new
+    elsif current_user.manager? || current_user.teamleader?
+      ManagerTESearcher.new
+    else
+      DeveloperTESearcher.new
+    end
+  end
 end
