@@ -3,10 +3,10 @@ module ApplicationHelper
     content_tag(:span, '', class: "glyphicon glyphicon-#{name}")
   end
 
-  def button(icon:, text:, url:, method: :get, type:'primary', params:{})
+  def button(icon:, text:, url:, method: :get, params:{})
     params.tap do |p|
       p[:'data-method'] = method if method != :get
-      p[:class] = "btn btn-#{type}"
+      p[:class] = "btn btn-default"
       p[:href] = url
     end
     content_tag(:a, params) do
@@ -29,11 +29,11 @@ module ApplicationHelper
       StringIO.open do |s|
 
         if can? :edit, entity
-          s << button(icon: :edit, text: t('actions.edit'), url: edit_polymorphic_path(array.flatten), type: 'success', params: edit_params)
+          s << button(icon: :pencil, text: t('actions.edit'), url: edit_polymorphic_path(array.flatten), params: edit_params)
         end
 
         if can? :destroy, entity
-          s << button(icon: :remove, text: t('actions.destroy'), url: polymorphic_path(array.flatten), method: :delete, type: 'danger')
+          s << button(icon: :remove, text: t('actions.destroy'), url: polymorphic_path(array.flatten), method: :delete)
         end
         s.string.html_safe
       end

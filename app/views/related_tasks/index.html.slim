@@ -36,7 +36,7 @@ h1.nav-header
             - unless current_user.customer?
               td=te.duration
               - if can? :modify, te
-                td=actions_for(te.related_task)
+                td=actions_for(te.related_task, size: 'xs')
               - if current_user.chief?
                 td=te.related_task.payable
   = will_paginate @time_entries, container: false

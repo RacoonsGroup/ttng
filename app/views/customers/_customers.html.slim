@@ -14,5 +14,5 @@
           td =link_to customer.name, customer
           td =I18n.t :"customer_subject.#{customer.subject}"
           td =I18n.t :"customer_profile.#{customer.profile}"
-          td =actions_for(customer)
+          td =actions_for(customer, size: 'xs')
   = will_paginate @customers, container: false
