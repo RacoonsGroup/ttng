@@ -1,9 +1,9 @@
 Pinball::Container.configure do
   define_singleton :user_manager, Admin::UserManager
-  define_singleton :project_manager, Admin::ProjectManager
   define_singleton :day_manager, Admin::DayManager
 
 
+  define_singleton :project_manager, ProjectManager
   define_singleton :related_task_manager, RelatedTaskManager
   define_singleton :customer_manager, CustomerManager
   define_singleton :contact_manager, ContactManager

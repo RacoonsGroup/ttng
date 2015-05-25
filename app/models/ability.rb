@@ -14,7 +14,9 @@ class Ability
       can :manage, User
       can :manage, Customer
       can :manage, Contact
-      can :manage, Project
+      can :manage, Project, id: user.project_ids 
+      can :create, Project
+      can :manage, ProjectPresenter
       can :manage, Day
       can :manage, Comment, project: { id: user.project_ids }
       can :read, RelatedTask
