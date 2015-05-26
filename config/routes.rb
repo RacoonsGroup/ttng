@@ -41,5 +41,7 @@ Rails.application.routes.draw do
   resources :contacts
   resources :customers
 
+  post '/update_inline_object' => "inline_objects#update", as: :update_inline_object
+
   root to: 'welcome#show'
 end

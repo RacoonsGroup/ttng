@@ -39,6 +39,6 @@ h1.nav-header
               - if can? :modify, te
                 td=actions_for(te.related_task, size: 'xs')
               - if current_user.chief?
-                td=te.related_task.payable
-                td=te.delivered_time
+                = inline_object(:td, te.related_task, :payable)
+                = inline_object(:td, te, :delivered_time)
   = will_paginate @time_entries, container: false
