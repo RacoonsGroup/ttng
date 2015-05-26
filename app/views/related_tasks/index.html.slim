@@ -25,6 +25,7 @@ h1.nav-header
           th=t('common.labels.actions')
           - if current_user.chief?
             th=t('simple_form.labels.task.payable')
+            th=t('simple_form.labels.task.delivered_time')
       tbody
         -@time_entries.each do |te|
           tr
@@ -39,4 +40,5 @@ h1.nav-header
                 td=actions_for(te.related_task, size: 'xs')
               - if current_user.chief?
                 td=te.related_task.payable
+                td=te.delivered_time
   = will_paginate @time_entries, container: false
