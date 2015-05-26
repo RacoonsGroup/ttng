@@ -83,7 +83,7 @@ class ProjectsController < AuthenticatedController
     gon.users = UserPresenter.map(User.available)
   end
 
-   def find_tasks
+  def find_tasks
     @related_tasks = @project.related_tasks.order(date: :DESC).includes(:user, :time_entries)
     @from = session[:export_project_from].presence || params[:from]
     @to = session[:export_project_to].presence || params[:to]
@@ -91,14 +91,15 @@ class ProjectsController < AuthenticatedController
     session.delete :export_project_from
     session.delete :export_project_to
 
-    if @from.present?
-      @from = Date.strptime(@from, '%d.%m.%Y')
-      @related_tasks = @related_tasks.where('date >= ?', @from)
-    end
+    @related_tasks = between_date(@related_tasks, @from, '>=')
+    @related_tasks = between_date(@related_tasks, @to, '<=')
+  end
 
-    if @to.present?
-      @to = Date.strptime(@to, '%d.%m.%Y')
-      @related_tasks = @related_tasks.where('date <= ?', @to)
+  def between_date(tasks, var, eq)
+    if var.present?
+      var = Date.strptime(var, '%d.%m.%Y')
+      tasks = tasks.where("date #{eq} ?", var)
     end
+    tasks
   end
 end
