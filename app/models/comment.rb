@@ -11,9 +11,9 @@ class Comment < ActiveRecord::Base
       developer: 2
   }
 
-  scope :generals, -> { where('form = ?', Comment.forms[:general]) }
-  scope :commercials, -> { where('form = ?', Comment.forms[:commercial]) }
-  scope :developers, -> { where('form = ?', Comment.forms[:developer]) }
+  scope :generals, -> { where(form: Comment.forms[:general]) }
+  scope :commercials, -> { where(form: Comment.forms[:commercial]) }
+  scope :developers, -> { where(form: Comment.forms[:developer]) }
 
 
   validates :title, :info, presence: true

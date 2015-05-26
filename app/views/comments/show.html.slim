@@ -1,18 +1,18 @@
 div ng-controller='ProjectShowController'
   h1
-    = @comment.id
+    =@comment.id
     .pull-right
       =actions_for([@comment.project, @comment], edit_params: { :'ask-password' => @comment.encrypted.presence})
   .island
     table.table
       tbody
         tr
-          h1 = @comment.title
+          h1 =@comment.title
         tr.well
           td
             dl.without-margin
               dt Project:
-              dd = link_to @comment.project.name, @comment.project
+              dd =link_to @comment.project.name, @comment.project
               dt Type:
               dd =@comment.form
               dt Attaches:
@@ -20,5 +20,5 @@ div ng-controller='ProjectShowController'
                 dd =link_to att.title, att.attachment.url
           td
             pre.bg-gray
-              =@info
+              =Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@info).html_safe
   =render 'shared/password_modal'

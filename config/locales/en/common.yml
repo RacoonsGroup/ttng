@@ -11,8 +11,8 @@ en:
       close: Close
       decrypt: Decrypt
   customer_subject:
-    phizik: Phizicheskoe lico
-    yurik: Yuridicheskoe lico
+    indiv: Individual
+    legal_ent: Legal entity
   customer_profile:
     start_up: StartUp
     software_dev: Software development

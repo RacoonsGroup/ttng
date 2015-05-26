@@ -4,6 +4,6 @@ class DeveloperTESearcher < TimeEntrySearcher
   protected
 
   def scope
-    TimeEntry.joins(:related_task).where(related_tasks: { user_id: current_user } )
+    TimeEntry.joins(:related_task).where(related_tasks: { user_id: current_user })
   end
 end

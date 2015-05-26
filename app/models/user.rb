@@ -16,16 +16,16 @@ class User < ActiveRecord::Base
       saler: 8
   }
 
-  scope :developers, -> { where('position = ? OR position = ?', User.positions[:developer] , User.positions[:teamleader]) }
-  scope :chiefs, -> { where('position = ?', User.positions[:chief]) }
-  scope :nobodies, -> { where('position = ?', User.positions[:nobody]) }
-  scope :managers, -> { where('position = ?', User.positions[:manager]) }
-  scope :customers, -> { where('position = ?', User.positions[:customer]) }
-  scope :hrs, -> { where('position = ?', User.positions[:hr]) }
-  scope :buhs, -> { where('position = ?', User.positions[:buh]) }
-  scope :teamleaders, -> { where('position = ?', User.positions[:teamleader]) }
-  scope :salers, -> { where('position = ?', User.positions[:sale]) }
-  scope :available, -> { where('position != ?', User.positions[:nobody]) }
+  scope :developers, -> { where(position: [User.positions[:developer], User.positions[:teamleader]]) }
+  scope :chiefs, -> { where(position: User.positions[:chief]) }
+  scope :nobodies, -> { where(position: User.positions[:nobody]) }
+  scope :managers, -> { where(position: User.positions[:manager]) }
+  scope :customers, -> { where(position: User.positions[:customer]) }
+  scope :hrs, -> { where(position: User.positions[:hr]) }
+  scope :buhs, -> { where(position: User.positions[:buh]) }
+  scope :teamleaders, -> { where(position: User.positions[:teamleader]) }
+  scope :salers, -> { where(position: User.positions[:sale]) }
+  scope :available, -> { where(position: User.positions[:nobody]) }
 
   self.per_page = 10
 

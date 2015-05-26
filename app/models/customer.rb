@@ -5,8 +5,8 @@ class Customer < ActiveRecord::Base
   validates :name, :subject, :source, presence: true
   
   enum subject: {
-    phizik: 0,
-    yurik: 1
+    indiv: 0,
+    legal_ent: 1
   }
 
   enum profile: {
