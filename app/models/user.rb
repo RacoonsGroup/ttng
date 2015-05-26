@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   scope :buhs, -> { where(position: User.positions[:buh]) }
   scope :teamleaders, -> { where(position: User.positions[:teamleader]) }
   scope :salers, -> { where(position: User.positions[:sale]) }
-  scope :available, -> { where(position: User.positions[:nobody]) }
+  scope :available, -> { where('position != ?', User.positions[:nobody]) }
 
   self.per_page = 10
 

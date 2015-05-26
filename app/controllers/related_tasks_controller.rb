@@ -17,7 +17,7 @@ class RelatedTasksController < ApplicationController
 
   def new
     authorize! :create, RelatedTask
-    gon.last_project = current_user.time_entries.last.related_task.project
+    gon.last_project = current_user.time_entries.last.related_task.project if current_user.time_entries.last
   end
 
   def create
