@@ -107,7 +107,7 @@ table.project-info {
     .btn-group {
       margin-left: 20px;
       a {
-        color: #ffffff;
+        color: #333333;
       }
     }
   }
@@ -118,10 +118,6 @@ table.project-info {
 
     .avatar {
       margin: 2px
-    }
-
-    > div {
-      width: 33.3333%;
     }
 
     .project-image {
@@ -225,9 +221,13 @@ h1.nav-header {
 }
 
 .pretty th .asc {
-  background-image: url(/images/up_arrow.gif);
+  background-image: image_url('up_arrow.gif');
 }
 
 .pretty th .desc {
-  background-image: url(/images/down_arrow.gif);
+  background-image: image_url('down_arrow.gif');
+}
+
+.bg-gray {
+  background-color: #DFDFDF;
 }

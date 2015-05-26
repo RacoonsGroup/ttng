@@ -1,16 +1,22 @@
-.row
-  .col-lg-4
-    h2 =@contact.full_name
-  - if @contact.customer    
-    .col-lg-4
-      h2 =link_to @contact.customer.name, customer_path(@contact.customer) 
-  .col-lg-4
-    h2
-      |email: 
-      =@contact.email
-    h2
-      |skype: 
-      =@contact.skype
-    h2
-      |mobile: 
-      =@contact.mobile
+h1
+  = @contact.full_name
+  .pull-right
+    td =actions_for @contact
+.island
+  table.table
+    tbody
+      tr.well
+        td
+          dl
+            - if @contact.customer
+              dt Customer:
+              dd = link_to @contact.customer.name, @contact.customer
+            dt Skype:
+            dd =@contact.skype
+            dt Mobile phone:
+            dd =@contact.mobile
+            dt Email:
+            dd =@contact.email
+        td
+          pre.bg-gray
+            =@contact.describe

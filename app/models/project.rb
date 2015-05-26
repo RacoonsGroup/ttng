@@ -24,5 +24,11 @@ class Project < ActiveRecord::Base
     write_attribute :rate_kopeks, value.cents
   end
 
-
+  def self.search(search)
+    if search
+      where('name LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
 end

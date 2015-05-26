@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429122011) do
+ActiveRecord::Schema.define(version: 20150521113113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20150429122011) do
 
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
+  create_table "attaches", force: :cascade do |t|
+    t.string   "title"
+    t.string   "attachment"
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "attaches", ["comment_id"], name: "index_attaches_on_comment_id", using: :btree
+
   create_table "comments", force: :cascade do |t|
     t.integer  "project_id",                 null: false
     t.string   "title",                      null: false
@@ -44,7 +54,6 @@ ActiveRecord::Schema.define(version: 20150429122011) do
   create_table "contacts", force: :cascade do |t|
     t.integer  "customer_id"
     t.string   "first_name"
-    t.string   "middle_name"
     t.string   "last_name"
     t.string   "mobile"
     t.string   "skype"
@@ -61,10 +70,10 @@ ActiveRecord::Schema.define(version: 20150429122011) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subject"
+    t.integer  "profile"
     t.string   "source"
     t.text     "describe"
     t.string   "url"
-    t.integer  "profile"
   end
 
   create_table "days", force: :cascade do |t|
@@ -141,7 +150,7 @@ ActiveRecord::Schema.define(version: 20150429122011) do
   create_table "time_entries", force: :cascade do |t|
     t.integer  "related_task_id", null: false
     t.text     "description"
-    t.integer  "duration",        null: false
+    t.float    "duration",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "date",            null: false
@@ -172,9 +181,9 @@ ActiveRecord::Schema.define(version: 20150429122011) do
     t.boolean  "admin",                  default: false,        null: false
     t.string   "first_name",             default: "",           null: false
     t.string   "last_name",              default: "",           null: false
-    t.date     "birth_date",             default: '2015-04-27', null: false
+    t.date     "birth_date",             default: '2015-05-19', null: false
     t.integer  "position",               default: 0,            null: false
-    t.date     "hire_date",              default: '2015-04-27', null: false
+    t.date     "hire_date",              default: '2015-05-19', null: false
     t.date     "fire_date"
     t.integer  "salary_kopeks",          default: 0,            null: false
     t.integer  "official_salary_kopeks", default: 0,            null: false
@@ -188,5 +197,6 @@ ActiveRecord::Schema.define(version: 20150429122011) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "attaches", "comments"
   add_foreign_key "contacts", "customers"
 end

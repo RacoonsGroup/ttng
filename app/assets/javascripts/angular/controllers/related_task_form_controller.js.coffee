@@ -4,15 +4,16 @@ angular.module('gs.taskFormController', []).controller 'RelatedTaskFormControlle
   ['$scope', '$filter', 'RelatedTaskSearcher', 'RelatedTaskSaver', 'RemoteTaskSearcher', '$http'
     ($scope, $filter, RelatedTaskSearcher, RelatedTaskSaver, RemoteTaskSearcher, $http)->
       window.scope = $scope
+      $scope.last_project = gon.last_project
       $scope.projects = gon.projects
       $scope.statuses = gon.statuses
       $scope.task_types = gon.task_types
+      $scope.role = gon.role
       $scope.related_tasks = []
       $scope.compact_form = false
       $scope.edit = false
 
       if gon.related_task.id?
-        console.log gon.related_task
         $scope.related_task = gon.related_task
         $scope.edit = true
       else
@@ -31,6 +32,9 @@ angular.module('gs.taskFormController', []).controller 'RelatedTaskFormControlle
           console.log 'looking for remote related_tasks'
           RemoteTaskSearcher.search $scope.related_task.project.id, query, (data)->
             $scope.related_tasks = $scope.related_tasks.concat(data)
+
+      unless $scope.related_task.project?
+        $scope.related_task.project = $scope.last_project
 
       $scope.removeTimeEntity = (index)->
         $scope.related_task.time_entries.splice(index, 1)
@@ -60,6 +64,9 @@ angular.module('gs.taskFormController', []).controller 'RelatedTaskFormControlle
             t.id == $scope.related_task.name.status
 
       $scope.saveRelatedTask = ->
+        if $scope.related_task_form.$invalid
+          return false
+        $scope.button_clicked = true
         RelatedTaskSaver.save $scope.related_task, ->
           window.location.href='/related_tasks'
 

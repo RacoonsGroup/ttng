@@ -15,7 +15,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authenticate_admin!
+    redirect_to new_user_session_path unless current_user.chief?
+  end
+
   before_filter do
     Thread.current[:current_user] = current_user
+  end
+
+  private
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

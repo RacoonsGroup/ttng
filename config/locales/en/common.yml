@@ -10,3 +10,10 @@ en:
       filter: Filter
       close: Close
       decrypt: Decrypt
+  customer_subject:
+    indiv: Individual
+    legal_ent: Legal entity
+  customer_profile:
+    start_up: StartUp
+    software_dev: Software development
+    related: Related

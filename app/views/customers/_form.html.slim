@@ -1,7 +1,7 @@
 =simple_form_for customer do |f|
   =f.input :name
-  =f.input :subject
-  =f.input :profile
+  =f.input :subject, as: :select, collection: Customer.subjects.keys, label_method: lambda { |subject| I18n.t :"customer_subject.#{subject}" }
+  =f.input :profile, as: :select, collection: Customer.profiles.keys, label_method: lambda { |profile| I18n.t :"customer_profile.#{profile}" }
   =f.input :url
   =f.input :source
   =f.input :describe

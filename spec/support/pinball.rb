@@ -11,6 +11,7 @@ Pinball::Container.configure do
   define_singleton :day_manager, ManagerMock
 
   define_singleton :related_task_searcher, RelatedTaskSearcherMock
+  define_singleton :time_entry_searcher, TimeEntrySearcherMock
   define_singleton :comment_manager, ManagerMock
   define_singleton :google_exporter, Mock
   define_singleton :pivotal_api, PivotalApiMock

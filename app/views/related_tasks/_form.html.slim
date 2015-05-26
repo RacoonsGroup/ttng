@@ -32,6 +32,6 @@ form ng-controller='RelatedTaskFormController' name='related_task_form'
         textarea.form-control[ng-model='related_task.description' rows=12]
 
   div ng-show='edit'
-    =render 'time_entries'
+    =render 'related_tasks/time_entries'
 
-  button.btn.btn-success type='button' ng-disabled='task_form.$invalid' ng-click='saveRelatedTask()'=t('common.buttons.save')
+  button.btn.btn-success type='button' ng-disabled='button_clicked' ng-click='saveRelatedTask()'=t('common.buttons.save')

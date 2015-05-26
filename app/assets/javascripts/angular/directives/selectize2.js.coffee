@@ -70,7 +70,6 @@ angular.module('gs.selectize2', []).directive 'selectize2', [->
     else
       load = null
 
-    console.log attrs
     if attrs.selectizeOnRender
       render = {
         option: (item, escape)->

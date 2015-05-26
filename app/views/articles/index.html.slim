@@ -26,11 +26,8 @@ h1.nav-header
               =read_button(article)
               -if can? :edit, article
                 =link_to edit_article_path(article), class: 'btn btn-primary', title: t('actions.edit'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
-                  =glyph(:edit)
+                  =glyph(:pencil)
               -if can? :destroy, article
                 =link_to article_path(article), method: :DELETE, class: 'btn btn-danger', title: t('actions.destroy'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
                   =glyph(:remove)
-  .digg_pagination
-    .page_info
-      = page_entries_info @articles
-    = will_paginate @articles, container: false
+  = will_paginate @articles, container: false

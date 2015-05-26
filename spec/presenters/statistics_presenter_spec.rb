@@ -43,7 +43,7 @@ describe StatisticsPresenter do
 
     describe '#finished' do
       it 'return percentage for spent hours' do
-        expect(subject.finished).to eq("30 (38%)")
+        expect(subject.finished).to eq("30.0 (38%)")
       end
     end
   end

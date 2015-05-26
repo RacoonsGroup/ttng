@@ -58,3 +58,10 @@ shared_examples 'can read and create articles' do
   it{ should_not be_able_to(:manage, FactoryGirl.create(:article)) }
 end
 
+shared_examples 'can read' do |models|
+  models.each do |model|
+    it{ should be_able_to(:read, model) }
+    it{ should_not be_able_to(:manage, model) }
+    it{ should_not be_able_to(:create, model) }
+  end
+end

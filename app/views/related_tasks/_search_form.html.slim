@@ -15,7 +15,7 @@
     .row
       .col-lg-4
       .col-lg-4
-        -if current_user.manager?
+        -if current_user.manager? || current_user.chief? || current_user.teamleader?
           =f.select :developers, developer_options, {}, multiple: true, selectize2: true
 
     div[date-range-selector]

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   devise_for :users
 
   namespace :api do
@@ -7,19 +8,6 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :admin do
-    resources :users, except: [:show, :new, :create]
-    resources :customers, except: [:show]
-    resources :contacts
-    resources :projects do
-      resources :comments, except: :index
-      member do
-        get :export
-        get :to_google_drive
-      end
-    end
-    resources :days, except: [:show]
-  end
   controller :sessions do
     get '/auth/:provider/callback' => 'sessions#create'
   end
@@ -44,6 +32,10 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :comments, except: [:index]
+    member do
+      get :export
+      get :to_google_drive
+    end
   end
 
   resources :contacts

@@ -6,7 +6,7 @@ require 'mina/rvm'
 set :domain, '78.46.73.243'
 set :deploy_to, '/home/deployer/ttng'
 set :repository, 'git@github.com:RacoonsGroup/ttng.git'
-set :branch, 'master'
+set :branch, 'AZ-several-tasks'
 
 set :user, 'deployer'
 set :port, '2004'

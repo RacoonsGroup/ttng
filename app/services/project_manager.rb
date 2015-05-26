@@ -3,7 +3,7 @@ class ProjectManager < ResourceManager::Base
   model Project
 
   before_create do |params|
-    params[:users] << {id: current_user.id} if current_user.try(:manager?)
+    params[:users] << {id: current_user.id}
     @users = params.delete(:users)
   end
 

@@ -2,11 +2,11 @@ class Customer < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :contacts
   acts_as_taggable_on :technologies
-  validates :name, :subject, :profile, :source, presence: true
+  validates :name, :subject, :source, presence: true
   
   enum subject: {
-    phizik: 0,
-    yurik: 1
+    indiv: 0,
+    legal_ent: 1
   }
 
   enum profile: {
@@ -14,4 +14,11 @@ class Customer < ActiveRecord::Base
     software_dev: 1,
     related: 2
   }
+  def self.search(search)
+    if search
+      where('name LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
 end

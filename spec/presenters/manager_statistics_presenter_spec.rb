@@ -44,7 +44,7 @@ describe ManagerStatisticsPresenter do
 
     describe '#finished' do
       it 'return percentage for spent hours' do
-        expect(subject.finished).to eq("30 (19%)")
+        expect(subject.finished).to eq("30.0 (19%)")
       end
     end
   end

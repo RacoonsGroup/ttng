@@ -1,9 +1,10 @@
 class ContactsController < AuthenticatedController
 	load_and_authorize_resource
   inject :contact_manager
+  helper_method :sort_column, :sort_direction
 
   def index
-    @contacts = @contacts.paginate(page: params[:page], per_page: 20)
+    @contacts = @contacts.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(page: params[:page], per_page: 20)
   end
 
   def new
@@ -45,5 +46,9 @@ class ContactsController < AuthenticatedController
 
   def contact_params
   	ContactPermitter.permit(params)
+  end
+
+  def sort_column
+    Contact.column_names.include?(params[:sort]) ? params[:sort] : "first_name"
   end
 end

@@ -118,16 +118,8 @@ describe "User" do
         it_should_behave_like "manage own time entries"
       end
 
-      describe "customer model" do
-        it{ should be_able_to(:read, Customer) }
-        it{ should_not be_able_to(:create, Customer) }
-        it{ should_not be_able_to(:manage, Customer) }
-      end
-
-      describe "contact model" do
-        it{ should be_able_to(:read, Contact) }
-        it{ should_not be_able_to(:create, Contact) }
-        it{ should_not be_able_to(:manage, Contact) }
+      describe "can read" do
+        it_should_behave_like "can read", [Customer, Contact]
       end
 
       describe "can nothing" do
@@ -158,10 +150,8 @@ describe "User" do
         it_should_behave_like "can manage", [Customer]
       end
 
-      describe "contact model" do
-        it{ should be_able_to(:read, Contact) }
-        it{ should_not be_able_to(:create, Contact) }
-        it{ should_not be_able_to(:manage, Contact) }
+      describe "can read" do
+        it_should_behave_like "can read", [Contact]
       end
 
       describe "article model" do
@@ -188,10 +178,8 @@ describe "User" do
         it_should_behave_like "can manage", [Customer]
       end
 
-      describe "contact model" do
-        it{ should be_able_to(:read, Contact) }
-        it{ should_not be_able_to(:create, Contact) }
-        it{ should_not be_able_to(:manage, Contact) }
+      describe "can read" do
+        it_should_behave_like "can read", [Contact]
       end
 
       describe "article model" do
@@ -242,16 +230,8 @@ describe "User" do
         it_should_behave_like "manage own time entries"
       end
 
-      describe "customer model" do
-        it{ should be_able_to(:read, Customer) }
-        it{ should_not be_able_to(:create, Customer) }
-        it{ should_not be_able_to(:manage, Customer) }
-      end
-
-      describe "contact model" do
-        it{ should be_able_to(:read, Contact) }
-        it{ should_not be_able_to(:create, Contact) }
-        it{ should_not be_able_to(:manage, Contact) }
+      describe "can read" do
+        it_should_behave_like "can read", [Customer, Contact]
       end
 
       describe "can nothing" do
@@ -302,10 +282,9 @@ describe "User" do
         it{ should_not be_able_to(:manage, Contact) }
       end
 
-      describe "article model" do
-        it{ should be_able_to(:read, Article) }
-        it{ should_not be_able_to(:create, Article) }
-        it{ should_not be_able_to(:manage, Article) }
+      
+      describe "can read" do
+        it_should_behave_like "can read", [Article]
       end
     end
 
@@ -332,10 +311,8 @@ describe "User" do
         it_should_behave_like "can manage", [Customer, Contact]
       end
 
-      describe "article model" do
-        it{ should be_able_to(:read, Article) }
-        it{ should_not be_able_to(:create, Article) }
-        it{ should_not be_able_to(:manage, Article) }
+      describe "can read" do
+        it_should_behave_like "can read", [Article]
       end
     end
   end
