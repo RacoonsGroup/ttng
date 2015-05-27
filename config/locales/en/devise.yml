@@ -18,6 +18,11 @@ en:
       last_name: Last name
       mobile: Mobile phone
       email: Email
+      inn: INN
+      snils: SNILS
+      birth_date: Birth day
+      hire_date: Hire date
+      fire_date: Fire date
       password: Password
       password_confirmation: Password confirmation
       remember_me: Remember me

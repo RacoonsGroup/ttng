@@ -8,6 +8,7 @@ class Ability
       can :manage, :all
       cannot :create, RelatedTask
       cannot :create, TimeEntry
+      cannot :destroy, User
     end
 
     if user.developer?
@@ -40,6 +41,7 @@ class Ability
 
     if user.hr? || user.buh?
       can :read, User
+      can :update, User
       cannot :read, User, position: 'nobody'
       can :manage, Customer
       can :read, Contact

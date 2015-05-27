@@ -1,6 +1,7 @@
 class Attach < ActiveRecord::Base
   belongs_to :comment
-  validates :title, :attachment, presence: true
+  belongs_to :user
+  validates :title, presence: true
 
   mount_uploader :attachment, AttachUploader
 end
