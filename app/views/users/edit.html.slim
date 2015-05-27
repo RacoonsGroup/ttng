@@ -1,0 +1,17 @@
+h1.nav-header=@user.full_name
+.island
+ = simple_nested_form_for @user, html: {multipart: true} do |f|
+    = f.input :first_name, required: true, autofocus: true, placeholder: t('devise.forms.first_name'), label: false
+    = f.input :last_name, required: true, autofocus: true, placeholder: t('devise.forms.last_name'), label: false
+    = f.input :birth_date, as: :date_picker
+    = f.input :inn, placeholder: t('devise.forms.inn')
+    = f.input :snils, placeholder: t('devise.forms.snils')
+    = f.input :mobile, placeholder: t('devise.forms.mobile')
+    = f.input :hire_date, as: :date_picker
+    = f.input :fire_date, as: :date_picker
+    =f.simple_fields_for :attaches do |p|
+      =p.input :title
+      =p.input :attachment
+      =p.link_to_remove 'Delete this attach'
+    p =f.link_to_add "Add a file", :attaches
+    = f.button :submit, t('devise.buttons.update'), class: 'btn-success'

@@ -2,11 +2,13 @@ h1.nav-header=t('navigation.users')
 .user-list
   -@users.each do |user|
     .island.user
-      =image_tag(user.avatar, size: '74x74', class: 'img-circle')
-      h4=user.full_name
-      h5=user.mobile if user.mobile
+      = actions_for(user)
+      = link_to user
+        = image_tag(user.avatar, size: '74x74', class: 'img-circle')
+        h4 = user.full_name
+      h5 = user.mobile if user.mobile
       .text-muted=user.email
-      div=user.position_i18n
-      div=ll(user.birth_date)
-      div=ll(user.fire_date)
+      div = user.position_i18n
+      div = ll(user.birth_date)
+      div = ll(user.fire_date)
   = will_paginate @users, container: false
