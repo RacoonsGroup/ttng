@@ -35,8 +35,13 @@ h1.nav-header
             td=l(te.date)
             - unless current_user.customer?
               td=te.duration
-              - if can? :modify, te
-                td=actions_for(te.related_task, size: 'xs')
+              td.btn-group.btn-group-xs
+                -if can? :modify, te
+                  =link_to edit_related_task_path(te.related_task), class: 'btn btn-default', title: t('actions.edit'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
+                    =glyph(:pencil)
+                -if can? :destroy, te
+                  =link_to related_task_time_entry_path(te.related_task, te), method: :DELETE, class: 'btn btn-default', title: t('actions.destroy'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
+                    =glyph(:remove)
               - if current_user.chief?
                 td=te.related_task.payable
   = will_paginate @time_entries, container: false
