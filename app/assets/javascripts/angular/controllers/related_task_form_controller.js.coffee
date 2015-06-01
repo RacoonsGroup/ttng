@@ -1,11 +1,12 @@
 'use strict'
 
 angular.module('gs.taskFormController', []).controller 'RelatedTaskFormController',
-  ['$scope', '$filter', 'RelatedTaskSearcher', 'RelatedTaskSaver', 'RemoteTaskSearcher', '$http'
-    ($scope, $filter, RelatedTaskSearcher, RelatedTaskSaver, RemoteTaskSearcher, $http)->
+  ['$scope', '$filter', 'RelatedTaskSearcher', 'RelatedTaskSaver', 'RemoteTaskSearcher', '$http', 'Restangular'
+    ($scope, $filter, RelatedTaskSearcher, RelatedTaskSaver, RemoteTaskSearcher, $http, Restangular)->
       window.scope = $scope
       $scope.last_project = gon.last_project
       $scope.projects = gon.projects
+      $scope.name = 'awesome'
       $scope.statuses = gon.statuses
       $scope.task_types = gon.task_types
       $scope.role = gon.role
