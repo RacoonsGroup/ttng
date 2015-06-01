@@ -34,7 +34,7 @@ class Ability
       can :manage, RelatedTask, user_id: user.id
       can :manage, TimeEntry, related_task: { id: user.related_task_ids }
       can :read, Customer
-      can :read, Contact
+      can :manage, Contact
       can :manage, Article, user_id: user.id
       can [:read, :unread], Article
     end
