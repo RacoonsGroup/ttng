@@ -2,7 +2,7 @@ class StatisticsPresenter
   include ApplicationHelper
 
   def initialize
-    @task_searcher = RelatedTaskSearcher.new
+    @task_searcher = TimeEntrySearcher.new
   end
 
   def iteration
@@ -19,7 +19,7 @@ class StatisticsPresenter
 
   def spent_hours
     tasks = @task_searcher.between(Date.today.iteration.beginning, Date.today.iteration.end)
-    tasks.to_a.inject(0){ |s, t| s + t.real_time }
+    tasks.to_a.inject(0){ |s, t| s + t.duration }
   end
 
   def finished
