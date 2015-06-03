@@ -1,6 +1,4 @@
-editable-form ng-controller='RelatedTaskFormController' name='related_task_form' role="form"
-  a href="#" editable-text="projects[0].name"
-    | {{ projects[0].name }}
+form ng-controller='RelatedTaskFormController' name='related_task_form' role="form"
   .row
     .col-lg-6
       =form_group(label: t('simple_form.labels.task.project'), required: true) do
