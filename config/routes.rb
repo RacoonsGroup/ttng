@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       get :find
     end
 
-    resources :time_entries, only: :create
+    resources :time_entries, only: [:create, :destroy]
   end
 
   resources :articles do

@@ -1,4 +1,5 @@
-class TimeEntryManager
+class TimeEntryManager < ResourceManager::Base
+  model TimeEntry
   def create(task, params)
     status = params.delete(:status)
     item = task.time_entries.new(params)

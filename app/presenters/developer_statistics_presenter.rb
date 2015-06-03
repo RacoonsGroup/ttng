@@ -1,7 +1,7 @@
 class DeveloperStatisticsPresenter < StatisticsPresenter
 
   def initialize
-    @task_searcher = DeveloperTaskSearcher.new
+    @task_searcher = DeveloperTESearcher.new
   end
 
 end

@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    render file: "#{Rails.root}/public/403.html", status: 403, layout: false
+  end
+
   def authenticate_admin!
     redirect_to new_user_session_path unless current_user.chief?
   end
