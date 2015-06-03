@@ -23,11 +23,7 @@ class TimeEntriesController < ApplicationController
   protected
 
   def find_task
-    @related_task = if current_user.chief?
-                    RelatedTask.find(params[:related_task_id])
-                  else
-                    current_user.related_tasks.find(params[:related_task_id])
-                  end
+    @related_task = RelatedTask.find(params[:related_task_id]) 
   end
 
   def create_task_params
@@ -35,10 +31,6 @@ class TimeEntriesController < ApplicationController
   end
 
   def find_time_entry
-    @time_entry = if current_user.chief?
-                    TimeEntry.find(params[:id])
-                  else
-                    current_user.time_entries.find(params[:id])
-                  end
+    @time_entry = TimeEntry.find(params[:id])
   end
 end
