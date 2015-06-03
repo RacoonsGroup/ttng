@@ -171,7 +171,7 @@ describe "User" do
       end
 
       describe "can nothing" do
-        it_should_behave_like "can nothing", [Project, Comment, RelatedTask, TimeEntry, Day]
+        it_should_behave_like "can nothing", [Project, Comment, Day]
       end
 
       describe "can manage" do
@@ -179,7 +179,7 @@ describe "User" do
       end
 
       describe "can read" do
-        it_should_behave_like "can read", [Contact]
+        it_should_behave_like "can read", [Contact, RelatedTask, TimeEntry]
       end
 
       describe "article model" do

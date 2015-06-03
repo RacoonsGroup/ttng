@@ -39,13 +39,25 @@ class Ability
       can [:read, :unread], Article
     end
 
-    if user.hr? || user.buh?
+    if user.hr?
       can :read, User
       can :update, User
       cannot :read, User, position: 'nobody'
       can :manage, Customer
       can :read, Contact
       can :manage, Article, user_id: user.id
+      can [:read, :unread], Article
+    end
+
+    if user.buh?
+      can :read, User
+      can :update, User
+      cannot :read, User, position: 'nobody'
+      can :manage, Customer
+      can :read, Contact
+      can :manage, Article, user_id: user.id
+      can :read, TimeEntry
+      can :read, RelatedTask
       can [:read, :unread], Article
     end
 
