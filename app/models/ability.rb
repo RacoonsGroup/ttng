@@ -8,6 +8,7 @@ class Ability
       can :manage, :all
       cannot :create, RelatedTask
       cannot :create, TimeEntry
+      cannot :destroy, User
     end
 
     if user.developer?
@@ -33,17 +34,30 @@ class Ability
       can :manage, RelatedTask, user_id: user.id
       can :manage, TimeEntry, related_task: { id: user.related_task_ids }
       can :read, Customer
+      can :manage, Contact
+      can :manage, Article, user_id: user.id
+      can [:read, :unread], Article
+    end
+
+    if user.hr?
+      can :read, User
+      can :update, User
+      cannot :read, User, position: 'nobody'
+      can :manage, Customer
       can :read, Contact
       can :manage, Article, user_id: user.id
       can [:read, :unread], Article
     end
 
-    if user.hr? || user.buh?
+    if user.buh?
       can :read, User
+      can :update, User
       cannot :read, User, position: 'nobody'
       can :manage, Customer
       can :read, Contact
       can :manage, Article, user_id: user.id
+      can :read, TimeEntry
+      can :read, RelatedTask
       can [:read, :unread], Article
     end
 

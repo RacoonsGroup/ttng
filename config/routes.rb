@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get '/auth/:provider/callback' => 'sessions#create'
   end
   resources :sessions, only: :index
-  resources :users, only: :index
+  resources :users, except: [:new, :create, :destroy]
 
   
   resources :related_tasks do
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       get :find
     end
 
-    resources :time_entries, only: :create
+    resources :time_entries, only: [:create, :destroy]
   end
 
   resources :articles do

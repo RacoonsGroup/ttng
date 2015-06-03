@@ -1,0 +1,28 @@
+h1
+  = @user.full_name
+  .pull-right
+    = actions_for(@user)
+.island
+  table.table
+    tbody
+      tr.well
+        td
+          dl.without-margin
+            dt = t('devise.forms.mobile')
+            dd = @user.mobile
+            dt = t('devise.forms.birth_date')
+            dd = ll(@user.birth_date)
+            dt = t('devise.forms.inn')
+            dd = @user.inn
+            dt = t('devise.forms.snils')
+            dd = @user.snils
+            dt = t('devise.forms.hire_date')
+            dd = @user.hire_date
+            dt = t('devise.forms.fire_date')
+            dd = @user.fire_date
+        - if current_user.chief? || current_user.hr?
+          td
+            dl.without-margin
+              dt Attaches:
+              - @user.attaches.each do |att|
+                dd = link_to att.title, att.attachment.url

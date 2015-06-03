@@ -2,6 +2,7 @@ class TimeEntriesController < ApplicationController
   inject :time_entry_manager
 
   before_filter :find_task
+  before_filter :find_time_entry, only: :destroy
 
   def create
     authorize! :create, TimeEntry
@@ -14,13 +15,22 @@ class TimeEntriesController < ApplicationController
     end
   end
 
+  def destroy
+    time_entry_manager.destroy(@time_entry)
+    redirect_to :back
+  end
+
   protected
 
   def find_task
-    @related_task = current_user.related_tasks.find(params[:related_task_id])
+    @related_task = RelatedTask.find(params[:related_task_id]) 
   end
 
   def create_task_params
     TimeEntryPermitter.permit(params)
+  end
+
+  def find_time_entry
+    @time_entry = TimeEntry.find(params[:id])
   end
 end
