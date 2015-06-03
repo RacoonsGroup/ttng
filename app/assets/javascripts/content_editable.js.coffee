@@ -1,2 +1,2 @@
 #= require ckeditor-jquery
-#= require partials/content_editable 
+#= require partials/content_editable

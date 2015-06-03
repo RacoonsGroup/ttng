@@ -3017,7 +3017,7 @@
 	Selectize.count = 0;
 	Selectize.defaults = {
 		plugins: [],
-		delimiter: ',',
+		delimiter: '`',
 		persist: true,
 		diacritics: true,
 		create: false,

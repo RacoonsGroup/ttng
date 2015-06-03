@@ -1,6 +1,6 @@
 'use strict'
 
-app = angular.module('TTNG', [
+angular.module('TTNG', [
   'ng-rails-csrf',
   'gs.selectize2',
   'gs.projectFormController',
@@ -18,11 +18,5 @@ app = angular.module('TTNG', [
   'gs.exportController',
   'gs.dateRangeSelector',
   'gs.dateEqualizer',
-  'gs.remoteTaskSearcher',
-  'xeditable',
-  'restangular'
+  'gs.remoteTaskSearcher'
 ])
-
-app.run(editableOptions) ->
-  editableOptions.theme = 'bs3'
-  return
