@@ -42,7 +42,7 @@ gem 'chart-js-rails'
 gem 'tracker_api', '~> 0.2.0'
 gem 'acts-as-taggable-on'
 gem 'activeadmin', github: 'activeadmin'
-gem 'ckeditor_rails'
+gem 'best_in_place'
 
 group :development do
   gem 'spring'

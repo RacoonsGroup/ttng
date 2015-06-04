@@ -44,6 +44,6 @@ h1.nav-header
                   =link_to related_task_time_entry_path(te.related_task, te), method: :DELETE, class: 'btn btn-default', title: t('actions.destroy'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
                     =glyph(:remove)
               - if current_user.chief?
-                = inline_object(:td, te.related_task, :payable)
-                = inline_object(:td, te, :delivered_time)
+                td = te.related_task.payable
+                td = te.delivered_time
   = will_paginate @time_entries, container: false
