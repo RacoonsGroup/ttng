@@ -27,6 +27,5 @@ class RelatedTaskManager < ResourceManager::Base
     @time_entries.each do |te|
       item.time_entries.find(te[:id]).update_attributes(te)
     end
-
   end
 end

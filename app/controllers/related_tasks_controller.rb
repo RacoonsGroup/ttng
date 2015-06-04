@@ -3,6 +3,8 @@ class RelatedTasksController < ApplicationController
   inject :related_task_searcher
   inject :time_entry_searcher
 
+  respond_to :html, :json
+
   load_and_authorize_resource except: [:create, :update]
 
   before_filter :prepare_gon, only: [:new, :edit]
@@ -38,12 +40,17 @@ class RelatedTasksController < ApplicationController
   def update
     related_task = RelatedTask.find(params[:id])
     authorize! :update, related_task
-    related_task_manager.update(related_task, related_task_params) do |task, saved|
-      if saved
-        render json: task
-      else
-        render json: task.errors.messages, status: 422
+    if params[:related_task][:payable].nil?
+      related_task_manager.update(related_task, related_task_params) do |task, saved|
+        if saved
+          render json: task
+        else
+          render json: task.errors.messages, status: 422
+        end
       end
+    else
+      related_task.update_attribute(:payable, params[:related_task][:payable])
+      respond_with related_task
     end
   end
 
