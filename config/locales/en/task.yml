@@ -3,6 +3,7 @@ en:
     labels:
       task:
         name: Name
+        user: User
         project: Project
         real_time: Real time
         description: Description
