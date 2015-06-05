@@ -34,7 +34,9 @@ h1.nav-header
             td=te.related_task.status_i18n
             td=l(te.date)
             - unless current_user.customer?
-              td=te.duration
+              td
+                div title = "#{te.description}"
+                  = te.duration
               td.btn-group.btn-group-xs
                 -if can? :modify, te
                   =link_to edit_related_task_path(te.related_task), class: 'btn btn-default', title: t('actions.edit'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
