@@ -12,4 +12,14 @@ class NotifMailer < ApplicationMailer
     mail(to: comment.project.users.collect(&:email).join(","),
          subject: "In project #{comment.project.name} added/edited comment - #{comment.title}")
   end
+
+  def attestation(user)
+    @user = user
+    mail(to: User.find_by_position(5).email, subject: "Time to attestation")
+  end
+
+  def birth_dates(user)
+    @user = user
+    mail(to: User.find_by_position(5).email, subject: "Birthday coming!!!")
+  end
 end
