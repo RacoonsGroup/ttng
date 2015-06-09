@@ -14,4 +14,5 @@
     =p.input :attachment
     =p.link_to_remove 'Delete this attach'
   p =f.link_to_add "Add a file", :attaches
+  =f.input :notify, as: :boolean, input_html: {checked: false}, label: 'Inform all users by e-mail'
   =f.submit class: 'btn btn-success'

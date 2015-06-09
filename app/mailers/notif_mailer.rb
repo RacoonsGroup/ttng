@@ -1,16 +1,15 @@
 class NotifMailer < ApplicationMailer
-  def welcome_email(user)
-    @user = user
-    @url  = 'http://example.com/log'
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
-  end
-
   def project_edit(users, project)
     @project = project
-    @users = []
-    users.each { |user| @users << User.find(user[:user][:id]) }
-    @users -= @project.users
-    emails = @users.collect(&:email).join(",")
+    @notif_users = []
+    users.each { |user| @notif_users << User.find(user[:user][:id]) unless @project.users.include?(User.find(user[:user][:id])) }
+    emails = @notif_users.collect(&:email).join(",")
     mail(to: emails, subject: "You were added in project #{@project.name}") unless emails.empty?
+  end
+
+  def comment_create(comment)
+    @comment = comment
+    mail(to: comment.project.users.collect(&:email).join(","),
+         subject: "In project #{comment.project.name} added/edited comment - #{comment.title}")
   end
 end
