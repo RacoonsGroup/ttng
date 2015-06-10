@@ -9,8 +9,16 @@ class RelatedTasksController < ApplicationController
 
   def index
     @search = RelatedTaskSearchForm.new(params[:search])
+    @search.from ||= session[:search_from]
+    @search.to ||= session[:search_to]
+    @search.projects ||= session[:search_projects]
+    @search.developers ||= session[:search_developers]
     @projects = current_user.projects.map{ |p| [p.name, p.id] }
     @time_entries = time_entry_searcher.find_by_form(@search).includes(:related_task).order(date: :DESC)
+    session[:search_from] = @search.from
+    session[:search_to] = @search.to
+    session[:search_projects] = @search.projects
+    session[:search_developers] = @search.developers
     @sum = @time_entries.to_a.inject(0) { |sum, task| sum + task.duration }
     @time_entries = @time_entries.paginate(page: params[:page], per_page: 20)
   end
