@@ -1,18 +1,19 @@
 div ng-controller='ProjectShowController'
   h1
-    =@project.name
+    = @project.name
     '
-    small=@project.customer.name
+    small = @project.customer.name
   .row
     .col-lg-6
-      =render 'users_panel', project: @project
-      =render 'info_panel', project: @project
+      = render 'users_panel', project: @project
+      = render 'info_panel', project: @project
     .col-lg-6
       .island
-        h4=t('simple_form.labels.project.description')
+        h4 = t('simple_form.labels.project.description')
         = @project.description
-  - if current_user.chief?
-    =render 'tasks_panel', tasks: @related_tasks
-    =render 'export'
+    - if current_user.chief?
+      .col-lg-12
+        = render 'tasks_panel', tasks: @time_entries
+        = render 'export'
 
-  =render 'shared/password_modal'
+  = render 'shared/password_modal'

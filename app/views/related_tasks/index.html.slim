@@ -1,11 +1,11 @@
 h1.nav-header
-  =t('navigation.tasks')
+  = t('navigation.tasks')
   '
   - if can? :create, RelatedTask
-    =link_to new_related_task_path, class: 'btn btn-success' do
-      =icon(:plus)
+    = link_to new_related_task_path, class: 'btn btn-success' do
+      = icon(:plus)
 
-=render 'search_form', search: @search
+= render 'search_form', search: @search
 
 .island
   table.table
@@ -18,17 +18,18 @@ h1.nav-header
         th=t('simple_form.labels.task.project')
         th=t('simple_form.labels.task.status')
         th
-          =t('simple_form.labels.task.date')
+          = t('simple_form.labels.task.date')
         - unless current_user.customer?
           th
-            =t('simple_form.labels.task.real_time')
+            = t('simple_form.labels.task.real_time')
             '
             |(#{@sum})
-          th=t('common.labels.actions')
+          th = t('common.labels.actions')
           - if current_user.chief?
-            th=t('simple_form.labels.task.payable')
+            th = t('simple_form.labels.task.payable')
+            th = t('simple_form.labels.task.delivered_time')
       tbody
-        -@time_entries.each do |te|
+        - @time_entries.each do |te|
           tr
             th=task_glyph(te.related_task)
             -if current_user.chief? || current_user.manager? || current_user.teamleader?
@@ -44,12 +45,13 @@ h1.nav-header
                 div title = "#{te.description}"
                   = te.duration
               td.btn-group.btn-group-xs
-                -if can? :modify, te
-                  =link_to edit_related_task_path(te.related_task), class: 'btn btn-default', title: t('actions.edit'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
-                    =glyph(:pencil)
-                -if can? :destroy, te
-                  =link_to related_task_time_entry_path(te.related_task, te), method: :DELETE, class: 'btn btn-default', title: t('actions.destroy'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
-                    =glyph(:remove)
+                - if can? :modify, te
+                  = link_to edit_related_task_path(te.related_task), class: 'btn btn-default', title: t('actions.edit'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
+                    = glyph(:pencil)
+                - if can? :destroy, te
+                  = link_to related_task_time_entry_path(te.related_task, te), method: :DELETE, class: 'btn btn-default', title: t('actions.destroy'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
+                    = glyph(:remove)
               - if current_user.chief?
-                td=te.related_task.payable
+                td = best_in_place te.related_task, :payable, type: :select, collection: [["true", "Yes"], ["false", "No"]]
+                td = best_in_place te, :delivered_time, path: related_task_time_entry_path(te.related_task, te)
   = will_paginate @time_entries, container: false

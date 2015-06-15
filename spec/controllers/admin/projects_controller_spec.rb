@@ -7,6 +7,7 @@ describe ProjectsController do
   let!(:related_task) { FactoryGirl.create(:related_task, project: project, date: Date.parse('01.01.2014')) }
 
   before do
+    byebug
     sign_in admin
   end
 

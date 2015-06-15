@@ -17,6 +17,6 @@ angular.module('TTNG', [
   'gs.iterationStatChart',
   'gs.exportController',
   'gs.dateRangeSelector',
-  'gs.dateEqualizer'
+  'gs.dateEqualizer',
   'gs.remoteTaskSearcher'
 ])

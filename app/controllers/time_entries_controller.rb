@@ -1,8 +1,10 @@
 class TimeEntriesController < ApplicationController
   inject :time_entry_manager
 
+  respond_to :html, :json
+
   before_filter :find_task
-  before_filter :find_time_entry, only: :destroy
+  before_filter :find_time_entry, only: [:update, :destroy]
 
   def create
     authorize! :create, TimeEntry
@@ -13,6 +15,11 @@ class TimeEntriesController < ApplicationController
         render json: time_entry.errors.messages, status: 422
       end
     end
+  end
+
+  def update
+    @time_entry.update_attributes(create_task_params)
+    respond_with @time_entry
   end
 
   def destroy

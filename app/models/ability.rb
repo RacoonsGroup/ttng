@@ -51,7 +51,6 @@ class Ability
 
     if user.buh?
       can :read, User
-      can :update, User
       cannot :read, User, position: 'nobody'
       can :manage, Customer
       can :read, Contact
@@ -63,6 +62,7 @@ class Ability
 
     if user.teamleader?
       can :read, User
+      can :update, User, id: user.id
       cannot :read, User, position: 'nobody'
       can :read, Project, id: user.project_ids
       can :manage, Comment, form: 'developer', project: { id: user.project_ids }

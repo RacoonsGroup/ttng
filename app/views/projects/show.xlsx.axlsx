@@ -10,17 +10,17 @@ wb.add_worksheet(name: @project.name) do |sheet|
     bold = s.add_style b: true
 
 
-    sheet.add_row [@project.name, nil, nil,nil, nil, "#{ll(@from)}-#{ll(@to)}"], style: [header, nil, nil, nil, nil, bold]
+    sheet.add_row [@project.name, nil, nil,nil, nil, "#{@from}-#{@to}"], style: [header, nil, nil, nil, nil, bold]
     sheet.merge_cells('A1:E1')
 
     sheet.add_row %w(Task Time Date User Url Description), style: table_header
 
 
 
-    RelatedTaskPresenter.map(@related_tasks).each do |task|
+    TimeEntryPresenter.map(@time_entries).each do |task|
       sheet.add_row task.to_xlsx_row, style: [cell, bold_cell, cell, cell, cell, cell]
     end
 
-    sheet.add_row [t('project.headers.total'), "=SUM(B3:B#{2+@related_tasks.length})"], style:[bold, bold_cell]
+    sheet.add_row [t('project.headers.total'), "=SUM(B3:B#{2+@time_entries.length})"], style:[bold, bold_cell]
   end
 end

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery_nested_form
+//= require jquery.purr
 
 //= require bootstrap
 //= require underscore
@@ -24,6 +25,8 @@
 //= require search
 //= require datepicker
 //= require moment/ru.js
+//= require best_in_place
+//= require related_tasks
 //= require_tree ./angular
 //= require_tree ./ext
 //= require_tree ./libs

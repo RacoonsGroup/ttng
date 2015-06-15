@@ -11,6 +11,7 @@ en:
         type: Type
         date: Date
         payable: Payable
+        delivered_time: Deliv. Time
         url: URL
         time_entries: Time entries
 

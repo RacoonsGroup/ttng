@@ -119,7 +119,11 @@ describe "User" do
       end
 
       describe "can read" do
-        it_should_behave_like "can read", [Customer, Contact]
+        it_should_behave_like "can read", [Customer]
+      end
+
+      describe "can manage" do
+        it_should_behave_like "can manage", [Contact]
       end
 
       describe "can nothing" do

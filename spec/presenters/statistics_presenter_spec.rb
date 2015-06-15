@@ -5,9 +5,9 @@ describe StatisticsPresenter do
   let!(:task_feature) { FactoryGirl.create(:related_task, user: user, task_type: 0) }
   let!(:task_bug) { FactoryGirl.create(:related_task, user: user, task_type: 1) }
   let!(:task_chore) { FactoryGirl.create(:related_task, user: user, task_type: 2) }
-  let!(:time_entry1) { FactoryGirl.create(:time_entry, related_task: task_feature, duration: 14) }
-  let!(:time_entry2) { FactoryGirl.create(:time_entry, related_task: task_bug, duration: 15) }
-  let!(:time_entry3) { FactoryGirl.create(:time_entry, related_task: task_chore, duration: 1) }
+  let!(:time_entry1) { FactoryGirl.create(:time_entry, related_task: task_feature, duration: 14, date: "2015-02-06") }
+  let!(:time_entry2) { FactoryGirl.create(:time_entry, related_task: task_bug, duration: 15, date: "2015-02-07") }
+  let!(:time_entry3) { FactoryGirl.create(:time_entry, related_task: task_chore, duration: 1, date: "2015-02-08") }
 
   subject { StatisticsPresenter.new }
 

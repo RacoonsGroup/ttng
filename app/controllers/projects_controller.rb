@@ -86,15 +86,15 @@ class ProjectsController < AuthenticatedController
   end
 
   def find_tasks
-    @related_tasks = @project.related_tasks.order(date: :DESC).includes(:user, :time_entries)
+    @time_entries = TimeEntry.where(related_task: @project.related_tasks).order(date: :DESC).includes(:user, :related_task)
     @from = session[:export_project_from].presence || params[:from]
     @to = session[:export_project_to].presence || params[:to]
 
     session.delete :export_project_from
     session.delete :export_project_to
 
-    @related_tasks = between_date(@related_tasks, @from, '>=')
-    @related_tasks = between_date(@related_tasks, @to, '<=')
+    @time_entries = between_date(@time_entries, @from, '>=')
+    @time_entries = between_date(@time_entries, @to, '<=')
   end
 
   def between_date(tasks, var, eq)
