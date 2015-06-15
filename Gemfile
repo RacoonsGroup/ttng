@@ -5,6 +5,8 @@ gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-script', '2.3.0'
+gem 'coffee-script-source', '1.8.0'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap-sass-extras'
@@ -22,7 +24,7 @@ gem 'resource_manager'
 gem 'enum_help'
 gem 'money'
 gem 'bootstrap-datepicker-rails'
-gem 'angularjs-rails'
+gem 'angularjs-rails', '1.3.8'
 gem 'ng-rails-csrf'
 gem 'paranoia'
 gem 'gon'
@@ -77,4 +79,3 @@ end
 group :production do
   gem 'unicorn'
 end
-
