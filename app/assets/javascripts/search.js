@@ -23,7 +23,9 @@ $(function() {
 $(function() {
   $('#clear_form')[0].onclick = function () {
     $('#search_projects')[0].selectize.clear();
-    $('#search_developers')[0].selectize.clear();
+    if ($('#search_developers')[0]) {
+      $('#search_developers')[0].selectize.clear();
+    }
     $('#search_payable')[0].selectize.clear();
     $('#search_from')[0].value = '';
     $('#search_to')[0].value = '';
