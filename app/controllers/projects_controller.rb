@@ -18,6 +18,7 @@ class ProjectsController < AuthenticatedController
     authorize! :create, Project
     project_manager.create(project_params) do |project, saved|
       if saved
+        NotifMailer.project_edit(params[:project][:users], project).deliver_now! if params[:project][:users]
         render json: project
       else
         render json: project.errors.messages, status: 422
@@ -44,6 +45,7 @@ class ProjectsController < AuthenticatedController
     authorize! :update, @project
     project_manager.update(@project, project_params) do |project, saved|
       if saved
+        NotifMailer.project_edit(params[:project][:users], @project).deliver_now! if params[:project][:users]
         render json: project
       else
         render json: project.errors.messages, status: 422

@@ -122,6 +122,7 @@ GEM
     cancancan (1.10.1)
     chart-js-rails (0.0.9)
       railties (> 3.1)
+    chronic (0.10.2)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -441,6 +442,8 @@ GEM
     webmock (1.21.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
     will_paginate (3.0.7)
 
 PLATFORMS
@@ -510,4 +513,5 @@ DEPENDENCIES
   underscore-rails
   unicorn
   webmock
+  whenever
   will_paginate
