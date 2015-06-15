@@ -10,7 +10,8 @@ class RelatedTasksController < ApplicationController
   before_filter :prepare_gon, only: [:new, :edit]
 
   def index
-    @search = RelatedTaskSearchForm.new(params[:search])
+    session[:search_rt] = (session[:search_rt] || {}).merge(params[:search] || {})
+    @search = RelatedTaskSearchForm.new(session[:search_rt])
     @projects = current_user.projects.map{ |p| [p.name, p.id] }
     @time_entries = time_entry_searcher.find_by_form(@search).includes(:related_task).order(date: :DESC)
     @sum = @time_entries.to_a.inject(0) { |sum, task| sum + task.duration }

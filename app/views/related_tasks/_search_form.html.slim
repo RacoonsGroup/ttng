@@ -17,5 +17,9 @@
       .col-lg-4
         -if current_user.manager? || current_user.chief? || current_user.teamleader? || current_user.buh?
           =f.select :developers, developer_options, {}, multiple: true, selectize2: true
+      .col-lg-2
+      .col-lg-2
+        div.buttons
+          input type='button' value='Reset' id='clear_form'
 
     div[date-range-selector]
