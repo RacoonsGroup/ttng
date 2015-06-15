@@ -15,6 +15,7 @@ class CommentsController < AuthenticatedController
   def create
     comment_manager.create(comment_params) do |comment, saved|
       if saved
+        NotifMailer.comment_create(comment).deliver_now! if params[:comment][:notify] == '1'
         redirect_to project_path(@project)
       else
         @comment = comment
@@ -30,6 +31,7 @@ class CommentsController < AuthenticatedController
   def update
     comment_manager.update(@comment, comment_params) do |comment, saved|
       if saved
+        NotifMailer.comment_create(comment).deliver_now! if params[:comment][:notify] == '1'
         redirect_to project_path(@project)
       else
         @comment = comment

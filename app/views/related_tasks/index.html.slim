@@ -12,6 +12,8 @@ h1.nav-header
     thead
       tr
         th
+        -if current_user.chief? || current_user.manager? || current_user.teamleader?
+          th = t('simple_form.labels.task.user')
         th=t('simple_form.labels.task.name')
         th=t('simple_form.labels.task.project')
         th=t('simple_form.labels.task.status')
@@ -29,12 +31,18 @@ h1.nav-header
         -@time_entries.each do |te|
           tr
             th=task_glyph(te.related_task)
+            -if current_user.chief? || current_user.manager? || current_user.teamleader?
+              td
+                div title = "#{te.user.full_name}"
+                  = image_tag(te.user.avatar, size: '32x32', class: 'img-circle')
             td=te.related_task.name
             td=te.related_task.project_name
             td=te.related_task.status_i18n
             td=l(te.date)
             - unless current_user.customer?
-              td=te.duration
+              td
+                div title = "#{te.description}"
+                  = te.duration
               td.btn-group.btn-group-xs
                 -if can? :modify, te
                   =link_to edit_related_task_path(te.related_task), class: 'btn btn-default', title: t('actions.edit'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do

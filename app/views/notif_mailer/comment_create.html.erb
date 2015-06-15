@@ -1,0 +1,9 @@
+<h1>Comment: <%= @comment.title %></h1>
+<p>
+  Description:<br>
+  <%= Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@comment.info).html_safe %>
+</p>
+<p>
+  To show info about comment just follow <%= link_to 'this link', project_comment_url(@comment.project, @comment) %>.
+</p>
+<p>Have a nice day!</p>
