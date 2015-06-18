@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
       saler: 8
   }
 
-  scope :developers, -> { where(position: [User.positions[:developer], User.positions[:teamleader]]) }
+  scope :developers, -> { where(position: [User.positions[:developer], User.positions[:teamleader], User.positions[:manager]]) }
   scope :chiefs, -> { where(position: User.positions[:chief]) }
   scope :nobodies, -> { where(position: User.positions[:nobody]) }
   scope :managers, -> { where(position: User.positions[:manager]) }
