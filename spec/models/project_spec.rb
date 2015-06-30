@@ -18,10 +18,20 @@ describe Project do
     end
 
     describe 'when user position is not nobody' do
-      let(:user)         { FactoryGirl.create :user, :chief }
-      let(:project_user) { FactoryGirl.build :project_user, user: user }
-      it { expect(project_user.valid?).to eq(true) }
-      it { expect{ project.users << user }.to change{ project.users.count } }
+      let(:users) do
+        availables = User.positions
+        availables.delete(:nobody)
+        availables.map do |position, number|
+           FactoryGirl.create(:user, position.to_sym)
+        end
+      end
+
+      it 'should be pused' do
+        users.each do |user|
+          expect(FactoryGirl.build(:project_user, user: user).valid?).to eq(true)
+          expect{ project.users << user }.to change{ project.users.count }
+        end
+      end
     end
   end
 end
