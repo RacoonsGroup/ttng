@@ -31,4 +31,8 @@ class Project < ActiveRecord::Base
       all
     end
   end
+
+  def check_position(user)
+    user.position != User.positions[:nobody]
+  end
 end
