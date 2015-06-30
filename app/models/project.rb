@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :customer
 
   validates :name, :customer_id, :rate, presence: true
+  validates_uniqueness_of :name, scope: :customer_id
 
   delegate :name, to: :customer, prefix: true
 
