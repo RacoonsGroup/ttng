@@ -49,15 +49,13 @@ class User < ActiveRecord::Base
 
   def self.groupe(form)
     if form == Comment.forms[:developer]
-      positions = [:chief, :developer, :manager, :teamleader]
-      where position: User.positions.values_at(*positions)
+      positions = [:chief, :developer, :teamleader]
     elsif form == Comment.forms[:commercial]
-      positions = [:chief, :manager, :teamleader]
-      where position: User.positions.values_at(*positions)
+      positions = [:chief, :manager]
     else
       positions = [:chief, :developer, :manager, :teamleader]
-      where position: User.positions.values_at(*positions)
-    end   
+    end
+    where position: User.positions.values_at(*positions)
   end
 
   def full_name

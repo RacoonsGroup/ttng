@@ -47,14 +47,14 @@ describe User do
 
     context 'when form is developer' do
       let(:groupe) { users.groupe(Comment.forms[:developer]) }
-      let(:positions) { ['chief', 'developer', 'manager', 'teamleader'] }
+      let(:positions) { ['chief', 'developer', 'teamleader'] }
       it { expect(groupe.map(&:position).uniq).to eq(positions) }
       it { expect(groupe.count).to eq(positions.size * 2) }
     end
 
     context 'when form is commercial' do
       let(:groupe) { users.groupe(Comment.forms[:commercial]) }
-      let(:positions) { ['chief', 'manager', 'teamleader'] }
+      let(:positions) { ['chief', 'manager'] }
       it { expect(groupe.map(&:position).uniq).to eq(positions) }
       it { expect(groupe.count).to eq(positions.size * 2) }
     end
