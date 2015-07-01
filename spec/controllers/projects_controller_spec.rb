@@ -8,7 +8,7 @@ describe ProjectsController do
     sign_in user
   end
 
-  describe 'GET #index' do
+  describe '#index' do
     it 'renders index template' do
       get :index
       expect(response).to render_template(:index)
