@@ -58,7 +58,7 @@ class Project < ActiveRecord::Base
     end
 
     event :complite do
-      transition [:contract_is_signed] => :done
+      transition [:developing] => :done
     end
   end
 end
