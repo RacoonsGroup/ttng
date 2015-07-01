@@ -9,7 +9,7 @@ class NotifMailer < ApplicationMailer
 
   def comment_create(comment)
     @comment = comment
-    mail(to: comment.project.users.collect(&:email).join(","),
+    mail(to: comment.project.users.groupe(comment.form).collect(&:email).join(","),
          subject: "In project #{comment.project.name} added/edited comment - #{comment.title}")
   end
 
