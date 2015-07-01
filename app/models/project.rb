@@ -16,15 +16,6 @@ class Project < ActiveRecord::Base
   has_many :features, ->{ includes(:time_entries).feature }, class: RelatedTask
   has_many :chores, ->{ includes(:time_entries).chore }, class: RelatedTask
 
-  enum state: {
-    first_contact: 0,
-    # rating: 1,
-    negotiate: 2,
-    contract_is_signed: 3,
-    developing: 4,
-    done: 5
-  }
-
   def rate
     Money.new rate_kopeks, 'RUB'
   end
@@ -43,8 +34,31 @@ class Project < ActiveRecord::Base
   end
 
   state_machine :state, initial: :first_contact do
+    state :first_contact,      value: 0
+    state :rating,             value: 1
+    state :negotiate,          value: 2
+    state :contract_is_signed, value: 3
+    state :developing,         value: 4
+    state :done,               value: 5
+
     event :estimate do
       transition [:first_contact] => :rating
+    end
+
+    event :discuss do
+      transition [:rating] => :negotiate
+    end
+
+    event :sign do
+      transition [:negotiate] => :contract_is_signed
+    end
+
+    event :develop do
+      transition [:contract_is_signed] => :developing
+    end
+
+    event :complite do
+      transition [:contract_is_signed] => :done
     end
   end
 end
