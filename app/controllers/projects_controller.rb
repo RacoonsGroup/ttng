@@ -73,6 +73,13 @@ class ProjectsController < AuthenticatedController
     redirect_to admin_project_path(@project.id)
   end
 
+  def event
+    @project.send(params[:event])
+    respond_to do |format|
+      format.html { redirect_to projects_path }
+    end
+  end
+
   private
 
   def project_params
