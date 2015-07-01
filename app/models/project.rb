@@ -16,6 +16,15 @@ class Project < ActiveRecord::Base
   has_many :features, ->{ includes(:time_entries).feature }, class: RelatedTask
   has_many :chores, ->{ includes(:time_entries).chore }, class: RelatedTask
 
+  enum state: {
+    first_contact: 0,
+    # rating: 1,
+    negotiate: 2,
+    contract_is_signed: 3,
+    developing: 4,
+    done: 5
+  }
+
   def rate
     Money.new rate_kopeks, 'RUB'
   end
@@ -30,6 +39,12 @@ class Project < ActiveRecord::Base
       where('name LIKE ?', "%#{search}%")
     else
       all
+    end
+  end
+
+  state_machine :state, initial: :first_contact do
+    event :estimate do
+      transition [:first_contact] => :rating
     end
   end
 end
