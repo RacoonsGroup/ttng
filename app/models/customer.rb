@@ -21,4 +21,26 @@ class Customer < ActiveRecord::Base
       all
     end
   end
+
+  def state
+    not_complited.any? ? :working : :not_working
+  end
+
+  def substate
+    if not_complited.many?
+      :regular
+    elsif not_complited.any?
+      :new
+    elsif projects.any?
+      :finished
+    else
+      :not_started
+    end
+  end
+
+  private
+
+  def not_complited
+    projects.where('state != ?', 5)
+  end
 end
