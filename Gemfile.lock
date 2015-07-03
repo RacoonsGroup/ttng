@@ -405,6 +405,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    state_machine (1.2.0)
     temple (0.7.6)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
@@ -508,6 +509,7 @@ DEPENDENCIES
   simplecov-html
   slim-rails
   spring
+  state_machine
   thin
   timecop
   tracker_api (~> 0.2.0)

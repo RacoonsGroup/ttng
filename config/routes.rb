@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     member do
       get :export
       get :to_google_drive
+      post :event
     end
   end
 
