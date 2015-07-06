@@ -22,6 +22,16 @@ class Customer < ActiveRecord::Base
     end
   end
 
+  def self.filter(state)
+    state = state.to_sym
+    if state == :not_working
+      customer_ids = Customer.all.map(&:id) - Project.working_customer_ids
+    else
+      customer_ids = Project.working_customer_ids
+    end
+    where(id: customer_ids)
+  end
+
   def state
     not_complited.any? ? :working : :not_working
   end
@@ -41,6 +51,6 @@ class Customer < ActiveRecord::Base
   private
 
   def not_complited
-    projects.where('state != ?', 5)
+    projects.not_complited
   end
 end

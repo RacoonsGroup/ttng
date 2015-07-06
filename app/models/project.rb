@@ -33,6 +33,14 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def self.not_complited
+    where('state != ?', 5)
+  end
+
+  def self.working_customer_ids
+    not_complited.map(&:customer_id)
+  end
+
   state_machine :state, initial: :first_contact do
     state :first_contact,      value: 0
     state :rating,             value: 1

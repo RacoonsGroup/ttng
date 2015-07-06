@@ -1,6 +1,32 @@
 require 'rails_helper'
 
 describe Customer do
+  describe '.filter' do
+    let!(:working_customers) { FactoryGirl.create_list :customer, 10 }
+    let!(:not_working_customers) { FactoryGirl.create_list :customer, 10 }
+    let!(:projects) do
+      working_customers.map do |customer|
+        FactoryGirl.create :project, customer: customer
+      end
+    end
+    let!(:finished_project) do
+      not_working_customers[0..5].map do |customer|
+        FactoryGirl.create :project, :finished, customer: customer
+      end
+    end
+    context 'working' do
+      let(:working_filter) { Customer.filter(:working) }
+      it { expect(working_filter).to include(*working_customers) }
+      it { expect(working_filter.count).to eq(working_customers.count) }
+    end
+
+    context 'not working' do
+      let(:not_working_filter) { Customer.filter(:not_working)}
+      it { expect(not_working_filter).to include(*not_working_customers) }
+      it { expect(not_working_filter.count).to eq(not_working_customers.count) }
+    end
+  end
+
   describe '#state' do
     let(:customer) { FactoryGirl.create :customer }
 
