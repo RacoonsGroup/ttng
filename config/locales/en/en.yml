@@ -13,6 +13,12 @@ en:
       create: "Create %{model}"
       update: "Update %{model}"
   activerecord:
+    errors:
+      models:
+        project_user:
+          attributes:
+            user:
+              user_position: cannot have a position nobody
     state_machines:
       states:
         first_contact: Первый контакт
@@ -26,4 +32,3 @@ en:
         discuss: Обсудить
         sign: Подписать
         develop: В разработку
-        complite: Завершить
