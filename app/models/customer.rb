@@ -25,10 +25,11 @@ class Customer < ActiveRecord::Base
   def self.filter(state)
     state = state.to_sym
     if state == :not_working
-      customer_ids = Customer.all.map(&:id) - Project.working_customer_ids
-      where(id: customer_ids)
+      Customer.includes(:projects)
+        .where('projects.customer_id is ? or projects.state = ?', nil, 5)
+        .references(:projects)
     else
-      Customer.includes(:projects).where('projects.state != ?', 5).references(:projects)
+      Customer.includes(:projects).where.not(projects: { state: 5 })
     end
   end
 
