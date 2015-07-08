@@ -3,7 +3,7 @@ class Customer < ActiveRecord::Base
   has_many :contacts
   acts_as_taggable_on :technologies
   validates :name, :subject, :source, presence: true
-  
+
   enum subject: {
     indiv: 0,
     legal_ent: 1
@@ -26,10 +26,10 @@ class Customer < ActiveRecord::Base
     state = state.to_sym
     if state == :not_working
       customer_ids = Customer.all.map(&:id) - Project.working_customer_ids
+      where(id: customer_ids)
     else
-      customer_ids = Project.working_customer_ids
+      Customer.includes(:projects).where('projects.state != ?', 5).references(:projects)
     end
-    where(id: customer_ids)
   end
 
   def state
