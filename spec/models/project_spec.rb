@@ -32,6 +32,14 @@ describe Project do
           expect{ project.users << user }.to change{ project.users.count }
         end
       end
+
+  describe '#search' do
+    context 'when differ case' do
+      let!(:first_project)  { FactoryGirl.create :project, name: 'First project' }
+      let!(:second_project) { FactoryGirl.create :project, name: 'Second PROJECT' }
+
+      let(:search_resonse) { Project.search('project') }
+      it { expect(search_resonse.count).to eq(2) }
     end
   end
 end

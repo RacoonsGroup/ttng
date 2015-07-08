@@ -6,6 +6,13 @@
           =image_tag('project.png', class: 'pull-left project-image')
           =link_to truncate(project.name, length: 20), project_path(project)
           =actions_for(project, size: 'xs')
+        .btn-group
+          button.btn-sm.btn.btn-default.dropdown-toggle aria={ expanded: false, haspopup: true } data={ toggle: 'dropdown' } type='button'
+            = project.human_state_name
+            span.caret
+          ul.dropdown-menu
+            - project.state_events.map do |event|
+              li= link_to Project.human_state_event_name(event), event_project_path(project, event: event), method: :post
         .text-muted=project.customer_name
 
         canvas[project_stat_chart height='100' width='100' bugs="#{project.bug_time_by(current_user)}" related_tasks="#{project.feature_time_by(current_user)}" chores="#{project.chore_time_by(current_user)}"]

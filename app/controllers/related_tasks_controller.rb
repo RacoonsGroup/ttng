@@ -35,7 +35,7 @@ class RelatedTasksController < ApplicationController
   end
 
   def edit
-    
+
   end
 
   def update
@@ -61,7 +61,7 @@ class RelatedTasksController < ApplicationController
   end
 
   def find
-    related_tasks = related_task_searcher.find(params)
+    related_tasks = DeveloperTaskSearcher.new.find(params)
     render json: related_tasks
   end
 

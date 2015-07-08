@@ -46,6 +46,7 @@ gem 'acts-as-taggable-on'
 gem 'activeadmin', github: 'activeadmin'
 gem 'best_in_place'
 gem 'whenever', :require => false
+gem 'state_machine'
 
 group :development do
   gem 'spring'

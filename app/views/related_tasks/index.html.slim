@@ -35,7 +35,8 @@ h1.nav-header
             -if current_user.chief? || current_user.manager? || current_user.teamleader?
               td
                 div title = "#{te.user.full_name}"
-                  = image_tag(te.user.avatar, size: '32x32', class: 'img-circle')
+                  = link_to te.user do
+                    = image_tag(te.user.avatar, size: '32x32', class: 'img-circle')
             td=te.related_task.name
             td=te.related_task.project_name
             td=te.related_task.status_i18n
