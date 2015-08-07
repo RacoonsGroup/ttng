@@ -1,18 +1,19 @@
 =simple_nested_form_for([project, comment], html: {multipart: true, autocomplete: 'off'}) do |f|
+  = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
   .row
     .col-lg-4
-      =f.input :title, input_html: { autocomplete: 'off' }
+      = f.input :title, as: :string
     .col-lg-4
-      =f.input :form
+      = f.input :form
     .col-lg-4
-      =f.input :password, input_html: { autocomplete: 'off' }
+      = f.input :password, as: :string
   .text-muted
-    =link_to 'Markdown', 'https://help.github.com/articles/markdown-basics/', target: '_blank'
-  =f.input :info, input_html: { value: comment.decrypted_info(params[:password]), rows: 30 }
-  =f.simple_fields_for :attaches do |p|
-    =p.input :title
-    =p.input :attachment
-    =p.link_to_remove 'Delete this attach'
-  p =f.link_to_add "Add a file", :attaches
-  =f.input :notify, as: :boolean, input_html: {checked: false}, label: 'Inform all users by e-mail'
-  =f.submit class: 'btn btn-success'
+    = link_to 'Markdown', 'https://help.github.com/articles/markdown-basics/', target: '_blank'
+  = f.input :info, input_html: { value: comment.decrypted_info(params[:password]), rows: 30 }
+  = f.simple_fields_for :attaches do |p|
+    = p.input :title
+    = p.input :attachment
+    = p.link_to_remove 'Delete this attach'
+  p = f.link_to_add "Add a file", :attaches
+  = f.input :notify, as: :boolean, input_html: {checked: false}, label: 'Inform all users by e-mail'
+  = f.submit class: 'btn btn-success'

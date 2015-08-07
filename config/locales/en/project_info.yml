@@ -16,5 +16,12 @@ en:
       edit: Edit comment
       enter_password: Enter password
       export: Export
+      comments: Comments
+      type: Type
+      user: 'Created by'
+      title: Title
+      actions: Actions
+      created_at: 'Created at'
+      updated_at: 'Updated at'
     buttons:
       add: Create comment
