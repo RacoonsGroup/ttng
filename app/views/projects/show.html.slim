@@ -11,7 +11,7 @@ div ng-controller='ProjectShowController'
       .island
         h4 = t('simple_form.labels.project.description')
         = @project.description
-    - if current_user.chief?
+    - if current_user.chief? || current_user.manager?
       .col-lg-12
         = render 'tasks_panel', tasks: @time_entries
         = render 'export'
