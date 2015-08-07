@@ -46,6 +46,18 @@ class User < ActiveRecord::Base
 
   validates :first_name, :last_name, :birth_date, :email, :position, :hire_date, presence: true
 
+
+  def self.groupe(form)
+    if form == Comment.forms[:developer]
+      positions = [:chief, :developer, :teamleader]
+    elsif form == Comment.forms[:commercial]
+      positions = [:chief, :manager]
+    else
+      positions = [:chief, :developer, :manager, :teamleader]
+    end
+    where position: User.positions.values_at(*positions)
+  end
+
   def full_name
     "#{last_name} #{first_name}"
   end

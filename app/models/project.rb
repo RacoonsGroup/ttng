@@ -32,4 +32,41 @@ class Project < ActiveRecord::Base
       all
     end
   end
+
+  def self.not_complited
+    where('state != ?', 5)
+  end
+
+  def self.working_customer_ids
+    not_complited.map(&:customer_id)
+  end
+
+  state_machine :state, initial: :first_contact do
+    state :first_contact,      value: 0
+    state :rating,             value: 1
+    state :negotiate,          value: 2
+    state :contract_is_signed, value: 3
+    state :developing,         value: 4
+    state :done,               value: 5
+
+    event :estimate do
+      transition [:first_contact] => :rating
+    end
+
+    event :discuss do
+      transition [:rating] => :negotiate
+    end
+
+    event :sign do
+      transition [:negotiate] => :contract_is_signed
+    end
+
+    event :develop do
+      transition [:contract_is_signed] => :developing
+    end
+
+    event :complite do
+      transition [:developing] => :done
+    end
+  end
 end

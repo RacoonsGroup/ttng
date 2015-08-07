@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527101824) do
+ActiveRecord::Schema.define(version: 20150701091606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,13 +100,14 @@ ActiveRecord::Schema.define(version: 20150527101824) do
   add_index "project_users", ["user_id"], name: "index_project_users_on_user_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.integer  "customer_id", null: false
+    t.string   "name",                    null: false
+    t.integer  "customer_id",             null: false
     t.text     "description"
-    t.integer  "rate_kopeks", null: false
+    t.integer  "rate_kopeks",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "pivotal_id"
+    t.integer  "state",       default: 0
   end
 
   add_index "projects", ["customer_id"], name: "index_projects_on_customer_id", using: :btree
@@ -183,9 +184,9 @@ ActiveRecord::Schema.define(version: 20150527101824) do
     t.boolean  "admin",                  default: false,        null: false
     t.string   "first_name",             default: "",           null: false
     t.string   "last_name",              default: "",           null: false
-    t.date     "birth_date",             default: '2015-06-23', null: false
+    t.date     "birth_date",             default: '2015-07-08', null: false
     t.integer  "position",               default: 0,            null: false
-    t.date     "hire_date",              default: '2015-06-23', null: false
+    t.date     "hire_date",              default: '2015-07-08', null: false
     t.date     "fire_date"
     t.integer  "salary_kopeks",          default: 0,            null: false
     t.integer  "official_salary_kopeks", default: 0,            null: false
