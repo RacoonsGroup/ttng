@@ -18,10 +18,11 @@ div ng-controller='ProjectShowController'
           td
             pre.bg-gray
               =Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@info).html_safe
-        tr
-          th Attaches:
-        - @comment.attaches.each do |att|
+        - if @comment.attaches.present?
           tr
-            td = link_to att.title, att.attachment.url
-            td = att.created_at.strftime("Created at %I:%M %d-%m-%y")
+            th Attaches:
+          - @comment.attaches.each do |att|
+            tr
+              td = link_to att.title, att.attachment.url
+              td = att.created_at.strftime("Created at %I:%M %d-%m-%y")
   =render 'shared/password_modal'
