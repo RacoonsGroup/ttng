@@ -18,10 +18,10 @@
       tr
         td
           -if info.encrypted
-            =icon(:lock)
-        td=info.form[0..2] if info.form
-        td=link_to info.title, project_comment_path(project, info), :'ask-password' => info.encrypted.presence
-        td=info.user.try(:email)
-        td=info.created_at.strftime("%I:%M %d-%m-%y")
-        td=info.updated_at.strftime("%I:%M %d-%m-%y")
-        td=actions_for([project, info], size: 'xs', edit_params: { :'ask-password' => info.encrypted.presence})
+            = icon(:lock)
+        td = info.form[0..2] if info.form
+        td = link_to info.title, project_comment_path(project, info), :'ask-password' => info.encrypted.presence
+        td = info.user.try(:email)
+        td = info.created_at.strftime("%I:%M %d-%m-%y")
+        td = info.updated_at.strftime("%I:%M %d-%m-%y")
+        td = actions_for([project, info], size: 'xs', edit_params: { :'ask-password' => info.encrypted.presence})
