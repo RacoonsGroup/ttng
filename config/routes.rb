@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :sessions, only: :index
   resources :users, except: [:new, :create, :destroy]
 
-  
+
   resources :related_tasks do
     collection do
       get :find
@@ -41,5 +41,6 @@ Rails.application.routes.draw do
   resources :contacts
   resources :customers
 
+  wiki_root '/wiki/all'
   root to: 'welcome#show'
 end
