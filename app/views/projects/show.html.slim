@@ -6,11 +6,12 @@ div ng-controller='ProjectShowController'
   .row
     .col-lg-6
       = render 'users_panel', project: @project
-      = render 'info_panel', project: @project
     .col-lg-6
       .island
         h4 = t('simple_form.labels.project.description')
         = @project.description
+    .col-lg-12
+      = render 'info_panel', project: @project
     - if current_user.chief? || current_user.manager?
       .col-lg-12
         = render 'tasks_panel', tasks: @time_entries
