@@ -47,6 +47,7 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'best_in_place'
 gem 'whenever', :require => false
 gem 'state_machine'
+gem 'acts_as_commentable'
 
 group :development do
   gem 'spring'

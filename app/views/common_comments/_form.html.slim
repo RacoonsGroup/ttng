@@ -1,0 +1,7 @@
+= form_tag '/contacts/add_new_comment' do
+  = hidden_field_tag 'id', commentable.id
+= simple_nested_form_for([commentable, common_comment], html: {multipart: true, autocomplete: 'off'}) do |f|
+  = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+  = f.input :title, as: :string
+  = f.input :info, input_html: { value: comment.decrypted_info(params[:password]), rows: 30 }
+  = f.submit class: 'btn btn-success'

@@ -27,6 +27,7 @@
 //= require moment/ru.js
 //= require best_in_place
 //= require related_tasks
+//= require common_comments
 //= require_tree ./angular
 //= require_tree ./ext
 //= require_tree ./libs
