@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   resources :contacts
   resources :customers
+  resources :common_comments
   post 'contacts/add_new_comment' => 'contacts#add_new_comment'
   root to: 'welcome#show'
 end

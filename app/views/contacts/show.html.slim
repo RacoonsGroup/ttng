@@ -24,7 +24,7 @@ h1
   h4.pull-left=t('project_info.headers.comments')
   - if can? :create, CommonComment
     .pull-right
-      =link_to new_contact_common_comment_path(@contact), id: 'common_comment_link',class: 'btn btn-primary btn-xs' do
+      a#common_comment_link.btn.btn-primary.btn-xs
         = icon(:plus)
 
     = form_tag '/contacts/add_new_comment', id: 'common_coment_form', class: 'form-horizontal' do
@@ -51,12 +51,12 @@ h1
       th = t('project_info.headers.created_at')
       th = t('project_info.headers.updated_at')
       th = t('project_info.headers.actions')
-    - @contact.comments.each do |info|
+    - @contact.comments.reorder(updated_at: :desc).each do |comment|
       tr
-        td = link_to info.title, project_comment_path(@contact, info)
-        td = info.comment
-        td = info.user.try(:email)
-        td = info.created_at.strftime("%I:%M %d-%m-%y")
-        td = info.updated_at.strftime("%I:%M %d-%m-%y")
-        td = actions_for([@contact, info], size: 'xs')
+        td = link_to comment.title, comment
+        td = comment.comment
+        td = comment.user.try(:email)
+        td = comment.created_at.strftime("%I:%M %d-%m-%y")
+        td = comment.updated_at.strftime("%I:%M %d-%m-%y")
+        td = actions_for(comment, size: 'xs')
 

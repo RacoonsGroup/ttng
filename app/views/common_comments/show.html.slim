@@ -1,0 +1,19 @@
+div
+  h1
+    |ID:
+    = @common_comment.id
+    .pull-right
+      = actions_for(@common_comment)
+  .island
+    table.table
+      tbody
+        tr
+          h1 = @common_comment.title
+        tr.well
+          td
+            dl.without-margin
+              dt Commentable:
+              dd = link_to @common_comment.commentable.class, @common_comment.commentable
+          td
+            pre.bg-gray
+              = @common_comment.comment
