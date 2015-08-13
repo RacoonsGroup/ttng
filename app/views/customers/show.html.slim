@@ -1,7 +1,7 @@
 h1
-  =@customer.name
+  = @customer.name
   .pull-right
-    td =actions_for @customer
+    td = actions_for @customer
 .island
   table.table
     tbody
@@ -9,23 +9,49 @@ h1
         td
           dl.without-margin
             dt Subject:
-            dd =I18n.t :"customer_subject.#{@customer.subject}"
+            dd = I18n.t :"customer_subject.#{@customer.subject}"
             dt Profile:
-            dd =I18n.t :"customer_profile.#{@customer.profile}"
+            dd = I18n.t :"customer_profile.#{@customer.profile}"
             dt URL:
-            dd =@customer.url
+            dd = @customer.url
             dt Source:
-            dd =@customer.source
+            dd = @customer.source
             dt Techologies:
-            dd =@customer.technology_list
+            dd = @customer.technology_list
             dt Contacts:
             - @customer.contacts.each do |contact|
-              dt =link_to contact.full_name, contact
-              dd =contact.mobile
+              dt = link_to contact.full_name, contact
+              dd = contact.mobile
         td
           dt Projects:
           - @customer.projects.each do |project|
-            dt =link_to project.name, project
+            dt = link_to project.name, project
         td
           pre.bg-gray
-            =@customer.describe
+            = @customer.describe
+
+.island
+  h4.pull-left = t('project_info.headers.comments')
+  - if can? :create, CommonComment
+    .pull-right
+      a#common_comment_link.btn.btn-primary.btn-xs
+        = icon(:plus)
+
+    = form_tag '/customers/add_new_comment', id: 'common_coment_form', class: 'form-horizontal' do
+      table.table
+        tbody
+          tr
+            td
+              = hidden_field_tag 'id', @customer.id
+              = hidden_field_tag 'common_comment[user_id]', current_user.id
+              .form-group
+                = label_tag 'common_comment[title]', 'Title'
+                = text_field_tag 'common_comment[title]', nil, class: 'form-control'
+              .form-group
+                = label_tag 'common_comment[comment]', 'Text'
+                = text_area_tag 'common_comment[comment]', nil, class: 'form-control'
+              .form-group
+                = submit_tag 'Post Comment', class: 'btn btn-default'
+
+  = render 'shared/common_comments', commentable: @customer
+

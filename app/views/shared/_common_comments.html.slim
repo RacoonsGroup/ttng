@@ -1,0 +1,16 @@
+table.table.project-info
+  thead
+    th = t('project_info.headers.title')
+    th = t('project_info.headers.comment')
+    th = t('project_info.headers.user')
+    th = t('project_info.headers.created_at')
+    th = t('project_info.headers.updated_at')
+    th = t('project_info.headers.actions')
+  - commentable.comments.reorder(updated_at: :desc).each do |comment|
+    tr
+      td = link_to comment.title, comment
+      td = comment.comment
+      td = comment.user.try(:email)
+      td = comment.created_at.strftime("%I:%M %d-%m-%y")
+      td = comment.updated_at.strftime("%I:%M %d-%m-%y")
+      td = actions_for(comment, size: 'xs')

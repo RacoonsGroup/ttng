@@ -1,8 +1,10 @@
 class Customer < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :contacts
+
   acts_as_taggable_on :technologies
   acts_as_commentable class_name: 'CommonComment'
+
   validates :name, :subject, :source, presence: true
 
   enum subject: {
