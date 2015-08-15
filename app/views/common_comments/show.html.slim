@@ -1,0 +1,29 @@
+div
+  h1
+    |ID:
+    = @common_comment.id
+    .pull-right
+      = actions_for(@common_comment)
+  .island
+    table.table
+      tbody
+        tr
+          h1 = @common_comment.title
+        tr.well
+          td
+            dl.without-margin
+              dt Commentable:
+              dd = link_to @common_comment.commentable.class, @common_comment.commentable
+          td
+            pre.bg-gray
+              = @common_comment.comment
+        - if @common_comment.attaches.present?
+          tr
+            th Attaches:
+          - @common_comment.attaches.each do |att|
+            tr
+              - if att.title.present?
+                td = link_to att.title, att.attachment.url
+              - else
+                td = link_to att.attachment.url
+              td = att.created_at.strftime("Created at %I:%M %d-%m-%y")

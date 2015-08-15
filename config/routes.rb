@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :sessions, only: :index
   resources :users, except: [:new, :create, :destroy]
 
-  
+
   resources :related_tasks do
     collection do
       get :find
@@ -41,6 +41,8 @@ Rails.application.routes.draw do
 
   resources :contacts
   resources :customers
-
+  resources :common_comments
+  post 'contacts/add_new_comment' => 'contacts#add_new_comment'
+  post 'customers/add_new_comment' => 'customers#add_new_comment'
   root to: 'welcome#show'
 end

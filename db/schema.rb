@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150807104523) do
+ActiveRecord::Schema.define(version: 20150814072223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,14 @@ ActiveRecord::Schema.define(version: 20150807104523) do
     t.string   "title"
     t.string   "attachment"
     t.integer  "comment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "user_id"
+    t.integer  "attacheable_id"
+    t.string   "attacheable_type"
   end
 
+  add_index "attaches", ["attacheable_type", "attacheable_id"], name: "index_attaches_on_attacheable_type_and_attacheable_id", using: :btree
   add_index "attaches", ["comment_id"], name: "index_attaches_on_comment_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
@@ -52,6 +55,21 @@ ActiveRecord::Schema.define(version: 20150807104523) do
   end
 
   add_index "comments", ["project_id"], name: "index_comments_on_project_id", using: :btree
+
+  create_table "common_comments", force: :cascade do |t|
+    t.string   "title",            limit: 50, default: ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.string   "role",                        default: "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "common_comments", ["commentable_id"], name: "index_common_comments_on_commentable_id", using: :btree
+  add_index "common_comments", ["commentable_type"], name: "index_common_comments_on_commentable_type", using: :btree
+  add_index "common_comments", ["user_id"], name: "index_common_comments_on_user_id", using: :btree
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "customer_id"
@@ -200,6 +218,33 @@ ActiveRecord::Schema.define(version: 20150807104523) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "wiki_page_versions", force: :cascade do |t|
+    t.integer  "page_id",    null: false
+    t.integer  "updator_id"
+    t.integer  "number"
+    t.string   "comment"
+    t.string   "path"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "updated_at"
+  end
+
+  add_index "wiki_page_versions", ["page_id"], name: "index_wiki_page_versions_on_page_id", using: :btree
+  add_index "wiki_page_versions", ["updator_id"], name: "index_wiki_page_versions_on_updator_id", using: :btree
+
+  create_table "wiki_pages", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.integer  "updator_id"
+    t.string   "path"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wiki_pages", ["creator_id"], name: "index_wiki_pages_on_creator_id", using: :btree
+  add_index "wiki_pages", ["path"], name: "index_wiki_pages_on_path", unique: true, using: :btree
 
   add_foreign_key "attaches", "comments"
   add_foreign_key "contacts", "customers"

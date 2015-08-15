@@ -1,7 +1,7 @@
 h1
   = @contact.full_name
   .pull-right
-    td =actions_for @contact
+    td = actions_for @contact
 .island
   table.table
     tbody
@@ -12,11 +12,37 @@ h1
               dt Customer:
               dd = link_to @contact.customer.name, @contact.customer
             dt Skype:
-            dd =@contact.skype
+            dd = @contact.skype
             dt Mobile phone:
-            dd =@contact.mobile
+            dd = @contact.mobile
             dt Email:
-            dd =@contact.email
+            dd = @contact.email
         td
           pre.bg-gray
-            =@contact.describe
+            = @contact.describe
+.island
+  h4.pull-left=t('project_info.headers.comments')
+  - if can? :create, CommonComment
+    .pull-right
+      a#common_comment_link.btn.btn-primary.btn-xs
+        = icon(:plus)
+
+    = simple_nested_form_for CommonComment.new, url: contacts_add_new_comment_path,
+                      method: :post, html: { id: 'common_coment_form',
+                      class: 'form-horizontal' } do |f|
+      table.table
+        tbody
+          tr
+            td
+              = f.hidden_field :commentable_id, as: :hidden, value: @contact.id
+              = f.hidden_field :user_id, as: :hidden, value: current_user.id
+              = f.input :title, class: 'form-control'
+              = f.input :comment, class: 'form-control'
+              = f.simple_fields_for :attaches do |p|
+                = p.input :title, label: 'Name'
+                = p.input :attachment
+                = p.link_to_remove 'Delete this attach'
+              p = f.link_to_add "Add a file", :attaches
+              = f.button :submit, 'Post Comment', class: 'btn btn-default'
+
+  = render 'shared/common_comments', commentable: @contact

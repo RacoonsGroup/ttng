@@ -17,6 +17,7 @@ en:
       enter_password: Enter password
       export: Export
       comments: Comments
+      count_attaches: 'Number of attaches'
       type: Type
       user: 'Created by'
       title: Title
