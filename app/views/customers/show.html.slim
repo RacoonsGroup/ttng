@@ -37,21 +37,56 @@ h1
       a#common_comment_link.btn.btn-primary.btn-xs
         = icon(:plus)
 
-    = form_tag '/customers/add_new_comment', id: 'common_coment_form', class: 'form-horizontal' do
+    = simple_nested_form_for CommonComment.new, url: customers_add_new_comment_path,
+                      method: :post, html: { id: 'common_coment_form',
+                      class: 'form-horizontal' } do |f|
       table.table
         tbody
           tr
             td
-              = hidden_field_tag 'id', @customer.id
-              = hidden_field_tag 'common_comment[user_id]', current_user.id
-              .form-group
-                = label_tag 'common_comment[title]', 'Title'
-                = text_field_tag 'common_comment[title]', nil, class: 'form-control'
-              .form-group
-                = label_tag 'common_comment[comment]', 'Text'
-                = text_area_tag 'common_comment[comment]', nil, class: 'form-control'
-              .form-group
-                = submit_tag 'Post Comment', class: 'btn btn-default'
-
+              = f.hidden_field :commentable_id, as: :hidden, value: @customer.id
+              = f.hidden_field :user_id, as: :hidden, value: current_user.id
+              = f.input :title, class: 'form-control'
+              = f.input :comment, class: 'form-control'
+              = f.simple_fields_for :attaches do |p|
+                = p.input :title, label: 'Name'
+                = p.input :attachment
+                = p.link_to_remove 'Delete this attach'
+              p = f.link_to_add "Add a file", :attaches
+              = f.button :submit, 'Post Comment', class: 'btn btn-default'
   = render 'shared/common_comments', commentable: @customer
 
+- if @customer.contacts.present?
+  .btn.btn-default#toggle_contact_comments Show contacts comments
+  #contact_comments
+    - @customer.contacts.each do |contact|
+      .island
+        h4.pull-left = "Contact \"#{contact.full_name}\" comments:"
+        = render 'shared/common_comments', commentable: contact
+
+- if @customer.projects.present?
+  .btn.btn-default#toggle_project_comments Show projects comments
+  #project_comments
+    - @customer.projects.each do |project|
+      .island
+        h4.pull-left = "Project \"#{project.name}\" comments:"
+        table.table.project-info
+          thead
+            th
+            th = t('project_info.headers.type')
+            th = t('project_info.headers.title')
+            th = t('project_info.headers.user')
+            th = t('project_info.headers.created_at')
+            th = t('project_info.headers.updated_at')
+            th = t('project_info.headers.actions')
+          -project.comments.each do |info|
+            tr
+              td
+                -if info.encrypted
+                  = icon(:lock)
+              td = info.form[0..2] if info.form
+              td = link_to info.title, project_comment_path(project, info), :'ask-password' => info.encrypted.presence
+              td = info.user.try(:email)
+              td = info.created_at.strftime("%I:%M %d-%m-%y")
+              td = info.updated_at.strftime("%I:%M %d-%m-%y")
+              td = actions_for([project, info], size: 'xs', edit_params: { :'ask-password' => info.encrypted.presence})

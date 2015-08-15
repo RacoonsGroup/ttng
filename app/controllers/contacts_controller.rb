@@ -44,7 +44,7 @@ class ContactsController < AuthenticatedController
   end
 
   def add_new_comment
-    @contact = Contact.find(params[:id])
+    @contact = Contact.find(params[:common_comment][:commentable_id])
     @contact.comments << CommonComment.new(common_comment_params)
     redirect_to :back
   end

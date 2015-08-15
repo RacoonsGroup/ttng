@@ -27,21 +27,22 @@ h1
       a#common_comment_link.btn.btn-primary.btn-xs
         = icon(:plus)
 
-    = form_tag '/contacts/add_new_comment', id: 'common_coment_form', class: 'form-horizontal' do
+    = simple_nested_form_for CommonComment.new, url: contacts_add_new_comment_path,
+                      method: :post, html: { id: 'common_coment_form',
+                      class: 'form-horizontal' } do |f|
       table.table
         tbody
           tr
             td
-              = hidden_field_tag 'id', @contact.id
-              = hidden_field_tag 'common_comment[user_id]', current_user.id
-              .form-group
-                = label_tag 'common_comment[title]', 'Title'
-                = text_field_tag 'common_comment[title]', nil, class: 'form-control'
-              .form-group
-                = label_tag 'common_comment[comment]', 'Text'
-                = text_area_tag 'common_comment[comment]', nil, class: 'form-control'
-              .form-group
-                = submit_tag 'Post Comment', class: 'btn btn-default'
+              = f.hidden_field :commentable_id, as: :hidden, value: @contact.id
+              = f.hidden_field :user_id, as: :hidden, value: current_user.id
+              = f.input :title, class: 'form-control'
+              = f.input :comment, class: 'form-control'
+              = f.simple_fields_for :attaches do |p|
+                = p.input :title, label: 'Name'
+                = p.input :attachment
+                = p.link_to_remove 'Delete this attach'
+              p = f.link_to_add "Add a file", :attaches
+              = f.button :submit, 'Post Comment', class: 'btn btn-default'
 
   = render 'shared/common_comments', commentable: @contact
-

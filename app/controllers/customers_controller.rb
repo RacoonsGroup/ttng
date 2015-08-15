@@ -43,7 +43,7 @@ class CustomersController < AuthenticatedController
   end
 
   def add_new_comment
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(params[:common_comment][:commentable_id])
     @customer.comments << CommonComment.new(common_comment_params)
     redirect_to :back
   end

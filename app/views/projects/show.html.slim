@@ -12,6 +12,20 @@ div ng-controller='ProjectShowController'
         = @project.description
     .col-lg-12
       = render 'info_panel', project: @project
+  - if @project.customer.comments.present?
+    .btn.btn-default#toggle_customer_comments Show customer comments
+    #customer_comments
+      .island
+        h4.pull-left = "Customer comments:"
+        = render 'shared/common_comments', commentable: @project.customer
+  - if @project.customer.contacts.present?
+    .btn.btn-default#toggle_contact_comments Show contacts comments
+    #contact_comments
+      - @project.customer.contacts.each do |contact|
+        .island
+          h4.pull-left = "Contact \"#{contact.full_name}\" comments:"
+          = render 'shared/common_comments', commentable: contact
+
     - if current_user.chief? || current_user.manager?
       .col-lg-12
         = render 'tasks_panel', tasks: @time_entries
