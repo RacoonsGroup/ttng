@@ -61,7 +61,9 @@ h1
   #contact_comments
     - @customer.contacts.each do |contact|
       .island
-        h4.pull-left = "Contact \"#{contact.full_name}\" comments:"
+        h4.pull-left
+          = link_to "Contact \"#{contact.full_name}\" ", contact
+          |comments:
         = render 'shared/common_comments', commentable: contact
 
 - if @customer.projects.present?
@@ -69,7 +71,9 @@ h1
   #project_comments
     - @customer.projects.each do |project|
       .island
-        h4.pull-left = "Project \"#{project.name}\" comments:"
+        h4.pull-left
+          = link_to "Project \"#{project.name}\" ", project
+          |comments:
         table.table.project-info
           thead
             th
