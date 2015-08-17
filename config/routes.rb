@@ -41,10 +41,11 @@ Rails.application.routes.draw do
 
   resources :contacts
   resources :customers
-
-  wiki_root '/wiki/all'
   resources :common_comments
+
   post 'contacts/add_new_comment' => 'contacts#add_new_comment'
   post 'customers/add_new_comment' => 'customers#add_new_comment'
+  get 'wiki' => 'wiki_pages#all'
+  wiki_root '/wiki/all'
   root to: 'welcome#show'
 end

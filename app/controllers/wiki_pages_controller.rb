@@ -1,5 +1,6 @@
-class WikiPagesController < ApplicationController
+class WikiPagesController < AuthenticatedController
   acts_as_wiki_pages_controller
+  layout 'wiki'
 
   before_filter :setup_page, only: [ :show, :history, :compare, :new, :edit, :update, :destroy ]
 
