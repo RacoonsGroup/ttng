@@ -46,6 +46,8 @@ Rails.application.routes.draw do
   post 'contacts/add_new_comment' => 'contacts#add_new_comment'
   post 'customers/add_new_comment' => 'customers#add_new_comment'
   get 'wiki' => 'wiki_pages#all'
-  wiki_root '/wiki/all'
+  post 'wiki' => 'wiki_pages#create'
+  post '/wiki/:title' => 'wiki_pages#update'
+  wiki_root '/wiki'
   root to: 'welcome#show'
 end

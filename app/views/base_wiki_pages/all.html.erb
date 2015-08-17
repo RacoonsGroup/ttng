@@ -2,10 +2,15 @@
 
 <h1><%=wt 'All pages' %></h1>
 
-<ul>
-  <% wiki_paginate @pages do -%>
-    <% @pages.each do |page| -%>
-      <li><%= link_to page.title, wiki_page_path( page ) %></li>
+<div class='island'>
+  <ul>
+    <% wiki_paginate @pages do -%>
+      <% @pages.each do |page| -%>
+        <li><%= link_to page.title, wiki_page_path( page ) %></li>
+      <% end -%>
     <% end -%>
-  <% end -%>
-</ul>
+  </ul>
+</div>
+<p>
+  <%= link_to "New page", new_wiki_page_path %>
+</p>

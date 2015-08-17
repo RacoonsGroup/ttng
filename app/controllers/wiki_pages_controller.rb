@@ -2,7 +2,7 @@ class WikiPagesController < AuthenticatedController
   acts_as_wiki_pages_controller
   layout 'wiki'
 
-  before_filter :setup_page, only: [ :show, :history, :compare, :new, :edit, :update, :destroy ]
+  before_filter :setup_page, only: [ :show, :history, :compare, :edit, :update, :destroy ]
 
   def show
     return not_allowed unless show_allowed?
@@ -42,14 +42,36 @@ class WikiPagesController < AuthenticatedController
 
   def new
     return not_allowed unless show_allowed? && edit_allowed?
-
+    @page = WikiPage.new
     render_template 'new'
+  end
+
+
+  def create
+    @page = WikiPage.new(wiki_page_params)
+    @page.path = @page.title
+    if @page.save
+      redirect_to wiki_path
+    else
+      render_template 'new'
+    end
   end
 
   def edit
     return not_allowed unless show_allowed? && edit_allowed?
 
     render_template 'edit'
+  end
+
+  def update
+    @page.path = params[:page][:title]
+    @page.comment = params[:page][:comment]
+    @page.updator = @current_user
+    if @page.update(wiki_page_params)
+      redirect_to url_for( :action => :show, :path => @page.path.split('/') )
+    else
+      render_template 'edit'
+    end
   end
 
   def destroy
@@ -114,4 +136,7 @@ class WikiPagesController < AuthenticatedController
     edit_allowed?
   end
 
+  def wiki_page_params
+    params.require(:page).permit(:creator_id, :updator_id, :path, :title, :content)
+  end
 end

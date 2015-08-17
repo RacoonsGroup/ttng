@@ -8,7 +8,7 @@
 </div>
 <% end %>
 
-<%= wiki_page_form do |f| %>
+<%= form_for @page, as: :page, html: { class: 'wiki_form', method: :post } do |f| %>
   <%= f.hidden_field :previous_version_number, :value => f.object.last_version_number %>
   <%= hidden_field_tag :path, @page.path %>
 
@@ -17,8 +17,6 @@
   <p><%=wt 'Comment on this change (optional):' %><br /><%= f.text_field :comment %></p>
 
   <input type="submit" name="save" value="<%=wt 'Save page' %>" class="submit" />
-  <input type="submit" name="preview" value="<%=wt 'Preview' %>" class="submit" />
-  <input type="submit" name="cancel" value="<%=wt 'Cancel' %>" class="submit" />
 <% end %>
 
 <%= wiki_page_attachments(@page) %>

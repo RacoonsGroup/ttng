@@ -19,12 +19,12 @@
         <% end %>
       </td>
       <td><%=l( v.updated_at, :format => :long ) %></td>
-      <td><%= wiki_user( v.updator ) %></td>
+      <td><%= v.updator.try(:full_name) %></td>
       <td><%= v.comment %></td>
     </tr>
   <% end %>
 </table>
-  
+
 <% if with_form %>
   <%= submit_tag wt 'Compare selected versions' %>
   </form>
