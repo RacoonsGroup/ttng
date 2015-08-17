@@ -1,5 +1,7 @@
 class Contact < ActiveRecord::Base
+  acts_as_commentable class_name: 'CommonComment'
 
+  accepts_nested_attributes_for :comments, allow_destroy: true
   belongs_to :customer
   validates :first_name, presence: true
 

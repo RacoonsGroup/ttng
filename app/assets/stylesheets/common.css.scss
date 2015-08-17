@@ -75,6 +75,12 @@ ul.users {
 
 table.project-info {
   width: 100%;
+  th{
+    text-align: center;
+  }
+  td{
+    text-align: center;
+  }
   td:first-child {
     width: 10%;
   }
@@ -113,7 +119,7 @@ table.project-info {
   }
 
   &.project {
-    height: 120px;
+    height: 132px;
     position: relative;
 
     .avatar {

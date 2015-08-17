@@ -12,3 +12,23 @@ en:
     submit:
       create: "Create %{model}"
       update: "Update %{model}"
+  activerecord:
+    errors:
+      models:
+        project_user:
+          attributes:
+            user:
+              user_position: cannot have a position nobody
+    state_machines:
+      states:
+        first_contact: Первый контакт
+        rating: Оценка
+        negotiate: Обсуждаем условия
+        contract_is_signed: Договор подписан
+        developing: В работе
+        done: Сделано
+      events:
+        estimate: В оценку
+        discuss: Обсудить
+        sign: Подписать
+        develop: В разработку

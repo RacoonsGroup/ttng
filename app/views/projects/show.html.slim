@@ -6,12 +6,31 @@ div ng-controller='ProjectShowController'
   .row
     .col-lg-6
       = render 'users_panel', project: @project
-      = render 'info_panel', project: @project
     .col-lg-6
       .island
         h4 = t('simple_form.labels.project.description')
         = @project.description
-    - if current_user.chief?
+    .col-lg-12
+      = render 'info_panel', project: @project
+  - if @project.customer.comments.present?
+    .btn.btn-default#toggle_customer_comments Show customer comments
+    #customer_comments
+      .island
+        h4.pull-left
+          = link_to 'Customer ', @project.customer
+          |comments:
+        = render 'shared/common_comments', commentable: @project.customer
+  - if @project.customer.contacts.present?
+    .btn.btn-default#toggle_contact_comments Show contacts comments
+    #contact_comments
+      - @project.customer.contacts.each do |contact|
+        .island
+          h4.pull-left
+            = link_to "Contact \"#{contact.full_name}\" ", contact
+            |comments:
+          = render 'shared/common_comments', commentable: contact
+
+    - if current_user.chief? || current_user.manager?
       .col-lg-12
         = render 'tasks_panel', tasks: @time_entries
         = render 'export'

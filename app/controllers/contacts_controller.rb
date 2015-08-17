@@ -26,6 +26,7 @@ class ContactsController < AuthenticatedController
 
   end
 
+
   def update
     contact_manager.update(@contact, contact_params) do |contact, saved|
       if saved
@@ -42,10 +43,20 @@ class ContactsController < AuthenticatedController
     redirect_to contacts_path
   end
 
+  def add_new_comment
+    @contact = Contact.find(params[:common_comment][:commentable_id])
+    @contact.comments << CommonComment.new(common_comment_params)
+    redirect_to :back
+  end
+
   private
 
   def contact_params
-  	ContactPermitter.permit(params)
+    ContactPermitter.permit(params)
+  end
+
+  def common_comment_params
+  	CommonCommentPermitter.permit(params)
   end
 
   def sort_column

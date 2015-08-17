@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702105621) do
+ActiveRecord::Schema.define(version: 20150814072223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,14 @@ ActiveRecord::Schema.define(version: 20150702105621) do
     t.string   "title"
     t.string   "attachment"
     t.integer  "comment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "user_id"
+    t.integer  "attacheable_id"
+    t.string   "attacheable_type"
   end
 
+  add_index "attaches", ["attacheable_type", "attacheable_id"], name: "index_attaches_on_attacheable_type_and_attacheable_id", using: :btree
   add_index "attaches", ["comment_id"], name: "index_attaches_on_comment_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
@@ -48,9 +51,25 @@ ActiveRecord::Schema.define(version: 20150702105621) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "form",       default: 0
+    t.integer  "user_id"
   end
 
   add_index "comments", ["project_id"], name: "index_comments_on_project_id", using: :btree
+
+  create_table "common_comments", force: :cascade do |t|
+    t.string   "title",            limit: 50, default: ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.string   "role",                        default: "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "common_comments", ["commentable_id"], name: "index_common_comments_on_commentable_id", using: :btree
+  add_index "common_comments", ["commentable_type"], name: "index_common_comments_on_commentable_type", using: :btree
+  add_index "common_comments", ["user_id"], name: "index_common_comments_on_user_id", using: :btree
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "customer_id"
@@ -100,13 +119,14 @@ ActiveRecord::Schema.define(version: 20150702105621) do
   add_index "project_users", ["user_id"], name: "index_project_users_on_user_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.integer  "customer_id", null: false
+    t.string   "name",                    null: false
+    t.integer  "customer_id",             null: false
     t.text     "description"
-    t.integer  "rate_kopeks", null: false
+    t.integer  "rate_kopeks",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "pivotal_id"
+    t.integer  "state",       default: 0
   end
 
   add_index "projects", ["customer_id"], name: "index_projects_on_customer_id", using: :btree

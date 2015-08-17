@@ -42,6 +42,12 @@ class CustomersController < AuthenticatedController
     redirect_to customers_path
   end
 
+  def add_new_comment
+    @customer = Customer.find(params[:common_comment][:commentable_id])
+    @customer.comments << CommonComment.new(common_comment_params)
+    redirect_to :back
+  end
+
   private
 
   def customer_params
@@ -50,5 +56,9 @@ class CustomersController < AuthenticatedController
 
   def sort_column
     Customer.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def common_comment_params
+    CommonCommentPermitter.permit(params)
   end
 end

@@ -48,6 +48,8 @@ gem 'best_in_place'
 gem 'whenever', :require => false
 gem 'irwi', github: 'Programatica/irwi'
 gem 'RedCloth', :require => 'redcloth'
+gem 'state_machine'
+gem 'acts_as_commentable'
 
 group :development do
   gem 'spring'

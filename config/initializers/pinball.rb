@@ -3,6 +3,7 @@ Pinball::Container.configure do
   define_singleton :related_task_manager, RelatedTaskManager
   define_singleton :customer_manager, CustomerManager
   define_singleton :contact_manager, ContactManager
+  define_singleton :common_comment_manager, CommonCommentManager
   define_singleton :time_entry_manager, TimeEntryManager
   define_singleton :article_manager, ArticleManager
   define_singleton :user_manager, UserManager
