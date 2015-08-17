@@ -30,7 +30,8 @@ div ng-controller='ProjectShowController'
             |comments:
           = render 'shared/common_comments', commentable: contact
 
-    - if current_user.chief? || current_user.manager?
+  - if current_user.chief? || current_user.manager?
+    .row
       .col-lg-12
         = render 'tasks_panel', tasks: @time_entries
         = render 'export'
