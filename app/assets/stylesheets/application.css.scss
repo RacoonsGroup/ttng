@@ -17,6 +17,8 @@
  *= require comments
  *= require_tree ./libs
  *= require_self
+ *= require sortable_tree
+ *= require nested_options
  */
 
 @import "bootstrap-sprockets";

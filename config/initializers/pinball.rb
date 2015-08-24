@@ -7,6 +7,7 @@ Pinball::Container.configure do
   define_singleton :time_entry_manager, TimeEntryManager
   define_singleton :article_manager, ArticleManager
   define_singleton :user_manager, UserManager
+  define_singleton :category_manager, CategoryManager
   define_singleton :google_exporter, GoogleExporter
   define :google_drive do
     GoogleDrive

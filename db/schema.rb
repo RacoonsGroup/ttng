@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814072223) do
+ActiveRecord::Schema.define(version: 20150818075611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,21 @@ ActiveRecord::Schema.define(version: 20150814072223) do
 
   add_index "attaches", ["attacheable_type", "attacheable_id"], name: "index_attaches_on_attacheable_type_and_attacheable_id", using: :btree
   add_index "attaches", ["comment_id"], name: "index_attaches_on_comment_id", using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.integer  "lft",                        null: false
+    t.integer  "rgt",                        null: false
+    t.integer  "depth",          default: 0, null: false
+    t.integer  "children_count", default: 0, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "categories", ["lft"], name: "index_categories_on_lft", using: :btree
+  add_index "categories", ["parent_id"], name: "index_categories_on_parent_id", using: :btree
+  add_index "categories", ["rgt"], name: "index_categories_on_rgt", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "project_id",                 null: false
@@ -241,6 +256,7 @@ ActiveRecord::Schema.define(version: 20150814072223) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category_id"
   end
 
   add_index "wiki_pages", ["creator_id"], name: "index_wiki_pages_on_creator_id", using: :btree

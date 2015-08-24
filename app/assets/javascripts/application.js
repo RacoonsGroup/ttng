@@ -31,3 +31,5 @@
 //= require_tree ./angular
 //= require_tree ./ext
 //= require_tree ./libs
+//= require jquery.ui.nestedSortable
+//= require sortable_tree/initializer

@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   resources :contacts
   resources :customers
   resources :common_comments
+  resources :categories
 
   post 'contacts/add_new_comment' => 'contacts#add_new_comment'
   post 'customers/add_new_comment' => 'customers#add_new_comment'

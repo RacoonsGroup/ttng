@@ -50,6 +50,8 @@ gem 'irwi', github: 'Programatica/irwi'
 gem 'RedCloth', :require => 'redcloth'
 gem 'state_machine'
 gem 'acts_as_commentable'
+gem 'awesome_nested_set'
+gem 'the_sortable_tree', '~> 2.5.0'
 
 group :development do
   gem 'spring'
