@@ -23,18 +23,18 @@ class CategoriesController < AuthenticatedController
   end
 
   def update
-    common_comment_manager.update(@common_comment, common_comment_params) do |comment, saved|
+    category_manager.update(@category, category_params) do |category, saved|
       if saved
-        redirect_to @common_comment.commentable
+        redirect_to wiki_path
       else
-        @common_comment = comment
+        @category = category
         render :edit
       end
     end
   end
 
   def destroy
-    common_comment_manager.destroy(@common_comment)
+    category_manager.destroy(@category)
     redirect_to :back
   end
 
@@ -42,9 +42,5 @@ class CategoriesController < AuthenticatedController
 
   def category_params
     CategoryPermitter.permit(params)
-  end
-
-  def find_common_comment
-    @common_comment = CommonComment.find(params[:id])
   end
 end
