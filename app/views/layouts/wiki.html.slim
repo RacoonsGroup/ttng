@@ -30,20 +30,20 @@ html
             .pull-right
               = link_to new_category_path, class: 'btn btn-primary btn-xs' do
                 = icon(:plus)
-          - active_parents = []
-          ul
-            - Category.all.each do |category|
-              - active_parents.each do |p|
-                - if !category.is_descendant_of(p)
-                  - active_parents.delete(p)
-                  = '</ul></li>'
-              li
-                = category.name
-                - if category.leaf?
-                - else
-                  - active_parents << category.id
-                  = '<ul>'
-          /- Category.all.each do |category|
+          / - active_parents = []
+          / ul
+          /   - Category.all.each do |category|
+          /     - active_parents.each do |p|
+          /       - if !category.is_descendant_of(p)
+          /         - active_parents.delete(p)
+          /         = '</ul></li>'
+          /     li
+          /       = category.name
+          /       - if category.leaf?
+          /       - else
+          /         - active_parents << category.id
+          /         = '<ul>'
+          / /- Category.all.each do |category|
             /.pull-left = "#{category.name}(parent - #{category.parent.try(:name)})"
 
         .col-lg-9

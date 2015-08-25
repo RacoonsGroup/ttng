@@ -1,4 +1,5 @@
 class CategoriesController < AuthenticatedController
+  include TheSortableTreeController::Rebuild
   load_and_authorize_resource
   inject :category_manager
   layout 'wiki'
@@ -8,6 +9,10 @@ class CategoriesController < AuthenticatedController
 
   def new
 
+  end
+
+  def manage
+    @categories = Category.nested_set.select('id, name, parent_id').all
   end
 
   def create
