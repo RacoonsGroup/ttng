@@ -11,10 +11,6 @@ class CategoriesController < AuthenticatedController
 
   end
 
-  def manage
-    @categories = Category.nested_set.select('id, name, parent_id').all
-  end
-
   def create
     category_manager.create(category_params) do |category, saved|
       if saved
