@@ -32,5 +32,9 @@ html
           .sidebar
             ol.sortable_tree data={ max_levels: 3, rebuild_url: rebuild_categories_url }
               = sortable_tree categories
-        .col-lg-9
+        .col-lg-8
           = yield
+        .col-lg-1
+          .sidebar
+            = link_to new_wiki_page_path, class: 'btn btn-primary btn-xs', title: 'New wiki page' do
+              = icon(:plus)
