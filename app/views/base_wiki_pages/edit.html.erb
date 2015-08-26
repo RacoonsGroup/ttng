@@ -13,6 +13,10 @@
   <%= hidden_field_tag :path, @page.path %>
 
   <p><%=wt 'Title:' %><br /><%= f.text_field :title %></p>
+  <p>
+    <%= label_tag "page[category_id]", 'Category' %><br />
+    <%= select_tag "page[category_id]", options_from_collection_for_select(Category.all, 'id', 'name', @page.category.try(:id) ), { include_blank: true, class: 'form-control' } %>
+  </p>
   <p><%=wt 'Content:' %><br /><%= f.textile_editor(:content, :rows => 20) %></p>
   <p><%=wt 'Comment on this change (optional):' %><br /><%= f.text_field :comment %></p>
 

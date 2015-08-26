@@ -137,6 +137,7 @@ class WikiPagesController < AuthenticatedController
   end
 
   def wiki_page_params
-    params.require(:page).permit(:creator_id, :updator_id, :path, :title, :content)
+    params.require(:page).permit(:creator_id, :updator_id, :path, :title,
+                   :content, :category_id, :previous_version_number, :comment)
   end
 end

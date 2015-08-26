@@ -9,6 +9,10 @@
 
   <p><%=wt 'Title:' %><br /><%= f.text_field :title %></p>
   <p>
+    <%= label_tag "page[category_id]", 'Category' %><br />
+    <%= select_tag "page[category_id]", options_for_select(nested_set_options(Category) {|i| "#{'-' * i.level} #{i.name}" } ), { include_blank: true, class: 'form-control' } %>
+  </p>
+  <p>
     <%=wt 'Content:' %><br />
     <%= f.textile_editor :content %>
   </p>
