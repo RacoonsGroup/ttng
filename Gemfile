@@ -46,6 +46,7 @@ gem 'acts-as-taggable-on'
 gem 'activeadmin', github: 'activeadmin'
 gem 'best_in_place'
 gem 'whenever', :require => false
+gem 'execjs'
 gem 'irwi', github: 'Programatica/irwi'
 gem 'RedCloth', :require => 'redcloth'
 gem 'state_machine'

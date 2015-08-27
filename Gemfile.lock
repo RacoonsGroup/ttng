@@ -491,6 +491,7 @@ DEPENDENCIES
   did_you_mean
   encrypted_strings
   enum_help
+  execjs
   factory_girl
   faker
   gon
