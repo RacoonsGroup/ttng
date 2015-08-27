@@ -2,6 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'
+require 'mina/whenever'
 
 set :domain, '78.46.73.243'
 set :deploy_to, '/home/deployer/ttng'
@@ -92,9 +93,9 @@ namespace :unicorn do
   desc "Stop unicorn"
   task :stop => :environment do
     queue 'echo "Stop Unicorn"'
-    queue! %{cd #{deploy_to}/#{current_path} && 
-      if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; 
-        then kill -QUIT `cat #{unicorn_pid}`; 
+    queue! %{cd #{deploy_to}/#{current_path} &&
+      if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ];
+        then kill -QUIT `cat #{unicorn_pid}`;
       fi}
   end
 
