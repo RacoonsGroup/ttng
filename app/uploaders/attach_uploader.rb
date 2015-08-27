@@ -6,7 +6,7 @@ class AttachUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(jpg jpeg gif png doc docx pdf xls xlsx djvu rp mp3 html sql)
+    %w(jpg jpeg gif png doc docx pdf xls xlsx djvu rp mp3 html sql pages)
   end
 
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
