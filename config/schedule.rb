@@ -8,10 +8,10 @@ set :output, "#{path}/log/cron.log"
 #   runner "RemindersController.birth_dates"
 # end
 
-every :minute do
+every 2.minutes do
   runner "RemindersController.attestation_day"
 end
 
-every :minute do
+every 2.minutes do
   runner "RemindersController.birth_dates"
 end
