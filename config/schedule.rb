@@ -9,9 +9,9 @@ set :output, "#{path}/log/cron.log"
 # end
 
 every 2.minutes do
-  runner "RemindersController.attestation_day"
+  rake 'attestation_day'
 end
 
 every 2.minutes do
-  runner "RemindersController.birth_dates"
+  rake 'birth_dates'
 end
