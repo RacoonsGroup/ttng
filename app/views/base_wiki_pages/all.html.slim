@@ -1,0 +1,17 @@
+= wiki_page_style
+h1
+  = wt 'All pages'
+.island
+  table.table.project-info
+    thead
+      th style='width: 40%'
+        = t('wiki_page.headers.title')
+      th = t('wiki_page.headers.category')
+      th = t('project_info.headers.updated_at')
+      th = t('project_info.headers.actions')
+    - @pages.each do |page|
+      tr
+        td = link_to page.title, wiki_page_path( page )
+        td = page.category.try(:name)
+        td = page.updated_at.strftime("%d.%m.%y")
+        td = actions_for(page, size: 'xs')

@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require jquery.purr
@@ -31,3 +32,7 @@
 //= require_tree ./angular
 //= require_tree ./ext
 //= require_tree ./libs
+//= require jquery.ui.nestedSortable
+//= require sortable_tree/initializer
+//= require textile-editor
+//= require ./textile-editor-config

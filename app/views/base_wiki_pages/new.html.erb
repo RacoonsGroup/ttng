@@ -8,9 +8,17 @@
   <%= f.hidden_field :updator_id, value: current_user.id %>
 
   <p><%=wt 'Title:' %><br /><%= f.text_field :title %></p>
-  <p><%=wt 'Content:' %><br /><%= f.text_area :content %></p>
+  <p>
+    <%= label_tag "page[category_id]", 'Category' %><br />
+    <%= select_tag "page[category_id]", options_for_select(nested_set_options(Category) {|i| "#{'-' * i.level} #{i.name}" } ), { include_blank: true, class: 'form-control' } %>
+  </p>
+  <p>
+    <%=wt 'Content:' %><br />
+    <%= f.textile_editor :content %>
+  </p>
   <%= f.hidden_field :comment, value: 'First Revision'%>
   <%= hidden_field_tag :path, @page.path %>
 
   <input type="submit" value="<%=wt 'Create page' %>" class="submit" />
 <% end %>
+<%= textile_editor_initialize %>

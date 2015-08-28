@@ -19,6 +19,8 @@ en:
           attributes:
             user:
               user_position: cannot have a position nobody
+    models:
+    categoty: Category
     state_machines:
       states:
         first_contact: Первый контакт

@@ -23,6 +23,18 @@ html
     .container#main
       = bootstrap_flash
       .row
-        .col-lg-3
-        .col-lg-9
+        .col-lg-3 style='padding-top: 30px'
+          h4.pull-left Categories:
+          - if can? :create, Category
+            .pull-right
+              = link_to new_category_path, class: 'btn btn-primary btn-xs' do
+                = icon(:plus)
+          .sidebar
+            ol.sortable_tree data={ max_levels: 3, rebuild_url: rebuild_categories_url }
+              = sortable_tree categories
+        .col-lg-8
           = yield
+        .col-lg-1
+          .sidebar
+            = link_to new_wiki_page_path, class: 'btn btn-primary btn-xs', title: 'New wiki page' do
+              = icon(:plus)

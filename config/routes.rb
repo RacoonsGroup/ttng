@@ -43,6 +43,13 @@ Rails.application.routes.draw do
   resources :customers
   resources :common_comments
 
+  resources :categories do
+    collection do
+      # required for Sortable GUI server side actions
+      post :rebuild
+    end
+  end
+
   post 'contacts/add_new_comment' => 'contacts#add_new_comment'
   post 'customers/add_new_comment' => 'customers#add_new_comment'
   get 'wiki' => 'wiki_pages#all'

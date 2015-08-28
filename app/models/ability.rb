@@ -20,6 +20,7 @@ class Ability
       can :manage, RelatedTask, user_id: user.id
       can :manage, TimeEntry, related_task: { id: user.related_task_ids }
       can :manage, Article, user_id: user.id
+      can :manage, WikiPage, creator_id: user.id
       can [:read, :unread], Article
     end
 
@@ -36,6 +37,7 @@ class Ability
       can :read, Customer
       can :manage, Contact
       can :manage, Article, user_id: user.id
+      can :manage, WikiPage, creator_id: user.id
       can [:read, :unread], Article
     end
 
@@ -46,6 +48,7 @@ class Ability
       can :manage, Customer
       can :read, Contact
       can :manage, Article, user_id: user.id
+      can :manage, WikiPage, creator_id: user.id
       can [:read, :unread], Article
     end
 
@@ -55,6 +58,7 @@ class Ability
       can :manage, Customer
       can :read, Contact
       can :manage, Article, user_id: user.id
+      can :manage, WikiPage, creator_id: user.id
       can :read, TimeEntry
       can :read, RelatedTask
       can [:read, :unread], Article
@@ -73,6 +77,7 @@ class Ability
       can :read, Customer
       can :read, Contact
       can :manage, Article, user_id: user.id
+      can :manage, WikiPage, creator_id: user.id
       can [:read, :unread], Article
     end
 
@@ -90,6 +95,7 @@ class Ability
       can :read, Project, id: user.project_ids
       can :manage, Customer
       can :manage, Contact
+      can :manage, WikiPage, creator_id: user.id
       can [:read, :unread], Article
     end
   end

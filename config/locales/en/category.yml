@@ -1,0 +1,11 @@
+en:
+  simple_form:
+    labels:
+      category:
+        name: Name
+        parent_id: 'Parent category'
+
+  category:
+    headers:
+      edit: 'Edit category'
+      new: 'New category'
