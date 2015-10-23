@@ -52,18 +52,8 @@ task deploy: :environment do
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
     invoke :'unicorn:restart'
-    # to :launch do
-    # invoke :'whenever:clear'
+    invoke :'whenever:clear'
     invoke :'whenever:update'
-    # end
-  end
-end
-
-namespace :whenever do
-  task :update => :environment do
-    queue %{
-      echo "-----> Update crontab for #{domain}"}
-    queue! "cd #{deploy_to}/#{current_path} && bundle exec whenever --update-crontab #{domain} --set 'environment=production'"
   end
 end
 
