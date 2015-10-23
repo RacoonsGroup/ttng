@@ -51,30 +51,31 @@ task deploy: :environment do
     invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
+    invoke :'unicorn:restart'
     to :launch do
+      invoke :'whenever:clear'
       invoke :'whenever:update'
     end
-    invoke :'unicorn:restart'
   end
 end
 
 namespace :whenever do
   desc "Clear crontab"
-  task :clear do
+  task :clear => :environment do
     queue %{
       echo "-----> Clear crontab for #{domain}"
       #{echo_cmd %[cd #{deploy_to!}/#{current_path!} ; bundle exec whenever --clear-crontab #{domain} --set 'environment=production&path=#{deploy_to!}/#{current_path!}']}
     }
   end
   desc "Update crontab"
-  task :update do
+  task :update => :environment do
     queue %{
       echo "-----> Update crontab for #{domain}"
       #{echo_cmd %[cd #{deploy_to!}/#{current_path!} ; bundle exec whenever --update-crontab #{domain} --set 'environment=production&path=#{deploy_to!}/#{current_path!}']}
     }
   end
   desc "Write crontab"
-  task :write do
+  task :write => :environment do
     queue %{
       echo "-----> Update crontab for #{domain}"
       #{echo_cmd %[cd #{deploy_to!}/#{current_path!} ; bundle exec whenever --write-crontab #{domain} --set 'environment=production&path=#{deploy_to!}/#{current_path!}']}
