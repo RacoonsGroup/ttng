@@ -86,6 +86,9 @@ GEM
       activerecord (>= 3.2, < 5)
     acts_as_commentable (4.0.2)
     addressable (2.3.8)
+    airbrake (4.3.3)
+      builder
+      multi_json
     angularjs-rails (1.3.8)
     arbre (1.0.3)
       activesupport (>= 3.0.0)
@@ -479,6 +482,7 @@ DEPENDENCIES
   activeadmin!
   acts-as-taggable-on
   acts_as_commentable
+  airbrake
   angularjs-rails (= 1.3.8)
   awesome_nested_set
   awesome_print
