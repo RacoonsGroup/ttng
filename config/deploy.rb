@@ -19,7 +19,7 @@ task :environment do
   invoke :'rvm:use[ruby-2.1.5@ttng]'
 end
 
-set :shared_paths, ['config/database.yml', 'config/secrets.yml','log', 'tmp', 'public']
+set :shared_paths, ['config/database.yml', 'config/secrets.yml','log', 'tmp', 'public', 'config/application.yml']
 
 task setup: :environment do
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
