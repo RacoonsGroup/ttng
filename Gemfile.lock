@@ -43,6 +43,18 @@ GIT
   specs:
     simple_presenter (0.2.3)
 
+PATH
+  remote: /home/kinnarts/rails_projects/racoonsgroup/suggestion_box
+  specs:
+    suggestion_box (0.0.1)
+      acts_as_commentable
+      acts_as_votable (~> 0.10.0)
+      font-awesome-rails
+      jquery-rails
+      rails (~> 4.2.0)
+      simple_form
+      slim-rails
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -85,6 +97,7 @@ GEM
     acts-as-taggable-on (3.5.0)
       activerecord (>= 3.2, < 5)
     acts_as_commentable (4.0.2)
+    acts_as_votable (0.10.0)
     addressable (2.3.8)
     airbrake (4.3.3)
       builder
@@ -188,6 +201,8 @@ GEM
       faraday (>= 0.7.4, < 0.10)
     figaro (1.1.1)
       thor (~> 0.14)
+    font-awesome-rails (4.4.0.0)
+      railties (>= 3.2, < 5.0)
     formtastic (3.1.3)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.4.1)
@@ -545,6 +560,7 @@ DEPENDENCIES
   slim-rails
   spring
   state_machine
+  suggestion_box!
   the_sortable_tree (~> 2.5.0)
   thin
   timecop

@@ -57,4 +57,5 @@ Rails.application.routes.draw do
   post '/wiki/:title' => 'wiki_pages#update'
   wiki_root '/wiki'
   root to: 'welcome#show'
+  mount SuggestionBox::Engine, at: '/suggestion_box'
 end
