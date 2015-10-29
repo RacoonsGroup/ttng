@@ -32,6 +32,8 @@ describe Project do
           expect{ project.users << user }.to change{ project.users.count }
         end
       end
+    end
+  end
 
   describe '#search' do
     context 'when differ case' do
