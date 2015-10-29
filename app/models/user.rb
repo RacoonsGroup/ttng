@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
       hr: 5,
       buh: 6,
       teamleader: 7,
-      saler: 8
+      saler: 8,
+      freelancer: 9
   }
 
   scope :developers, -> { where(position: [User.positions[:developer], User.positions[:teamleader], User.positions[:manager]]) }
@@ -28,6 +29,7 @@ class User < ActiveRecord::Base
   scope :buhs, -> { where(position: User.positions[:buh]) }
   scope :teamleaders, -> { where(position: User.positions[:teamleader]) }
   scope :salers, -> { where(position: User.positions[:sale]) }
+  scope :freelancers, -> { where(position: User.positions[:freelancer]) }
   scope :available, -> { where('position != ?', User.positions[:nobody]) }
 
   self.per_page = 10

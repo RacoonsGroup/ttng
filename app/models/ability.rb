@@ -98,5 +98,14 @@ class Ability
       can :manage, WikiPage, creator_id: user.id
       can [:read, :unread], Article
     end
+
+    if user.freelancer?
+      can :read, Project, id: user.project_ids
+      can :read, Comment, form: 'developer', project: { id: user.project_ids }
+      can :manage, RelatedTask, user_id: user.id
+      can :manage, TimeEntry, related_task: { id: user.related_task_ids }
+      can :manage, Article, user_id: user.id
+      can [:read, :unread], Article
+    end
   end
 end
