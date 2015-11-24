@@ -12,14 +12,14 @@ html
         =main_navigation
         ul.nav.navbar-nav.navbar-right
           -if user_signed_in?
-            li=link_to t('navigation.profile'), main_app.edit_user_registration_path
+            li=link_to t('navigation.profile'), edit_user_registration_path
             -if current_user.chief?
-              li=link_to t('navigation.admin'), main_app.admin_root_path
+              li=link_to t('navigation.admin'), admin_root_path
 
-            li =link_to t('navigation.sign_out'), main_app.destroy_user_session_path, method: :delete
+            li =link_to t('navigation.sign_out'), destroy_user_session_path, method: :delete
           -else
-            li=link_to t('navigation.sign_up'), main_app.new_user_registration_path
-            li=link_to t('navigation.sign_in'), main_app.new_user_session_path
+            li=link_to t('navigation.sign_up'), new_user_registration_path
+            li=link_to t('navigation.sign_in'), new_user_session_path
     .container#main
       = bootstrap_flash
       .row
