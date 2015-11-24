@@ -12,6 +12,7 @@ module NavigationHelper
       primary.item :key_1_6, t('navigation.users'), users_path, class: 'item', highlights_on: :subpath if can? :read, User
       primary.item :key_1_7, t('navigation.customers'), customers_path, class: 'item', highlights_on: :subpath if can? :read, Customer
       primary.item :key_1_8, t('navigation.contacts'), contacts_path, class: 'item', highlights_on: :subpath if can? :read, Contact
+      primary.item :key_1_9, t('navigation.suggestion_box'), suggestion_box.suggestions_path, class: 'item', highlights_on: :subpath if can? :read, Article
     end
   end
 
@@ -27,6 +28,7 @@ module NavigationHelper
       primary.item :key_1_6, t('navigation.contacts'), admin_contacts_path, class: 'item', highlights_on: :subpath if can? :read, Contact
       primary.item :key_1_7, t('navigation.articles'), admin_articles_path, class: 'item', highlights_on: :subpath if can? :read, Article
       primary.item :key_1_8, t('navigation.days'), admin_days_path, class: 'item', icon: 'user', highlights_on: :subpath if can? :read, Project
+      primary.item :key_1_9, t('navigation.suggestion_box'), suggestion_box.suggestions_path, class: 'item', highlights_on: :subpath if can? :read, Article
     end
   end
 end
