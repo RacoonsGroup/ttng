@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
+  mount SuggestionBox::Engine, at: '/suggestion_box'
 
   namespace :api do
     resources :projects, except: :all do
@@ -57,6 +58,4 @@ Rails.application.routes.draw do
   post '/wiki/:title' => 'wiki_pages#update'
   wiki_root '/wiki'
   root to: 'welcome#show'
-
-  mount SuggestionBox::Engine => '/suggestion_box', as: 'suggestion_box'
 end
