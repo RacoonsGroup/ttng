@@ -1,9 +1,9 @@
--if current_user.developer? || current_user.teamleader? || current_user.freelancer?
+- if ['developer', 'teamleader', 'freelancer'].include?(current_user.position)
   aside.island.sidebar
     .pull-right
       =link_to new_related_task_path, class: 'btn btn-success btn-xs', title: t('task.headers.create'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
         =glyph(:plus)
     =render('layouts/developer_statistics')
--elsif current_user.chief? || current_user.manager? || current_user.buh?
+- elsif ['chief', 'manager', 'buh'].include?(current_user.position)
   aside.island.sidebar
     =render('layouts/manager_statistics')
