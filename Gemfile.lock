@@ -38,19 +38,6 @@ GIT
       mime-types (>= 1.16)
 
 GIT
-  remote: git://github.com/kinnarts/suggestion_box.git
-  revision: 9569679a23fd682b28bfa0c3a9e255c3eab479a4
-  specs:
-    suggestion_box (0.0.1)
-      acts_as_commentable
-      acts_as_votable (~> 0.10.0)
-      devise
-      jquery-rails
-      rails (~> 4.2.0)
-      simple_form
-      slim-rails
-
-GIT
   remote: git://github.com/zhulik/simple_presenter.git
   revision: 0d6f3bd164d3cdc8b2766ee6cd74e8154ab400d3
   specs:
@@ -98,7 +85,6 @@ GEM
     acts-as-taggable-on (3.5.0)
       activerecord (>= 3.2, < 5)
     acts_as_commentable (4.0.2)
-    acts_as_votable (0.10.0)
     addressable (2.3.8)
     airbrake (4.3.3)
       builder
@@ -559,7 +545,6 @@ DEPENDENCIES
   slim-rails
   spring
   state_machine
-  suggestion_box!
   the_sortable_tree (~> 2.5.0)
   thin
   timecop
