@@ -1,0 +1,22 @@
+language: ruby
+sudo: false
+rvm:
+  - 2.2.1
+  - ruby-head
+  - jruby-head
+bundler_args: --without production
+addons:
+  postgresql: '9.4'
+before_install:
+  - gem update bundler
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - bundle exec rake db:create db:migrate
+script:
+  - bundle exec rspec
+branches:
+  only:
+    - master
+env:
+  global:
+    secure: 0ac9da3766b5fe72a3a89243ae3bb60fde41c7d6ec2602e0bf9171f922ae24c59fa54fe1c4c650c801c59ca427e0cef7c0c110a371990ce35ca966f425d8bf1a
