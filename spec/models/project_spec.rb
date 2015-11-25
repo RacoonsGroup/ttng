@@ -19,8 +19,8 @@ describe Project do
 
     describe 'when user position is not nobody' do
       let(:users) do
-        availables = User.positions
-        availables.delete(:nobody)
+        availables = User.positions.to_hash
+        availables.delete('nobody')
         availables.map do |position, number|
            FactoryGirl.create(:user, position.to_sym)
         end

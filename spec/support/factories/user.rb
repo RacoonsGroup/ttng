@@ -6,6 +6,8 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password 'password'
     password_confirmation 'password'
+    position 'developer'
+
 
     trait :chief do
       position 'chief'
@@ -44,6 +46,10 @@ FactoryGirl.define do
 
     trait :customer do
       position 'customer'
+    end
+
+    trait :freelancer do
+      position 'freelancer'
     end
 
     trait :invalid do

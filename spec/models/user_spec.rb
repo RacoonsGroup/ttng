@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe User do
-  let!(:user) { FactoryGirl.create(:user, salary_kopeks: 1000, official_salary_kopeks: 100) }
+  let(:user) { FactoryGirl.create(:user, salary_kopeks: 1000, official_salary_kopeks: 100) }
 
   describe '#salary' do
     it 'returns Money' do
@@ -41,21 +41,21 @@ describe User do
     context 'when form is general' do
       let(:groupe) { users.groupe(Comment.forms[:general]) }
       let(:positions) { ['chief', 'developer', 'manager', 'teamleader'] }
-      it { expect(groupe.map(&:position).uniq).to eq(positions) }
+      it { expect(groupe.map(&:position).uniq).to match_array(positions) }
       it { expect(groupe.count).to eq(positions.size * 2) }
     end
 
     context 'when form is developer' do
       let(:groupe) { users.groupe(Comment.forms[:developer]) }
       let(:positions) { ['chief', 'developer', 'teamleader'] }
-      it { expect(groupe.map(&:position).uniq).to eq(positions) }
+      it { expect(groupe.map(&:position).uniq).to match_array(positions) }
       it { expect(groupe.count).to eq(positions.size * 2) }
     end
 
     context 'when form is commercial' do
       let(:groupe) { users.groupe(Comment.forms[:commercial]) }
       let(:positions) { ['chief', 'manager'] }
-      it { expect(groupe.map(&:position).uniq).to eq(positions) }
+      it { expect(groupe.map(&:position).uniq).to match_array(positions) }
       it { expect(groupe.count).to eq(positions.size * 2) }
     end
   end
