@@ -39,9 +39,9 @@ GIT
 
 GIT
   remote: git://github.com/kinnarts/suggestion_box.git
-  revision: f2a827c448d69598b1e93266bd165bfc1a0b7315
+  revision: 0e424595a0b454cb7246929f6455a5588293ecaf
   specs:
-    suggestion_box (0.0.2)
+    suggestion_box (0.0.3)
       acts_as_commentable
       acts_as_votable (~> 0.10.0)
       devise
@@ -559,7 +559,7 @@ DEPENDENCIES
   slim-rails
   spring
   state_machine
-  suggestion_box (~> 0.0.2)!
+  suggestion_box (~> 0.0.3)!
   the_sortable_tree (~> 2.5.0)
   thin
   timecop

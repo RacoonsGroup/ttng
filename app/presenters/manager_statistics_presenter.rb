@@ -2,15 +2,15 @@ class ManagerStatisticsPresenter < StatisticsPresenter
 
   def initialize
     @task_searcher = ManagerTESearcher.new
-    @developers = User.developers
+    @developers_count = (User.developers - User.managers).count
   end
 
   def total_hours
-    Date.today.iteration.total_hours * @developers.count
+    Date.today.iteration.total_hours * @developers_count
   end
 
   def hours
-    @hours ||= "#{total_hours} (#{Date.today.iteration.business_hours * @developers.count})"
+    @hours ||= "#{total_hours} (#{Date.today.iteration.business_hours * @developers_count})"
   end
 
   def spent_hours
