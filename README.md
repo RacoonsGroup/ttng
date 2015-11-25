@@ -1,7 +1,9 @@
 Task Tracker next generation
 ====================
 
-# Перенос данных со старого TT
+[![Code Climate](https://codeclimate.com/github/RacoonsGroup/ttng/badges/gpa.svg)](https://codeclimate.com/github/RacoonsGroup/ttng)
+
+## Перенос данных со старого TT
 
 * Выполнить pg_dump на production - pg_dump -Fc -U tasktrack -W -h localhost tasktrack > tasktrack_bd6.dump
 * Выполнить pg_restore - на локальной копии старого TT. pg_restore -h localhost -U postgresuser -d timetrack_development ~/name.dump
@@ -11,11 +13,11 @@ Task Tracker next generation
 * Пользователи импортируются с позицией nobody - выставить после импорта
 *
 
-# PG::DatetimeFieldOverflow: ERROR:  date/time field value out of range
+## PG::DatetimeFieldOverflow: ERROR:  date/time field value out of range
 
 * ALTER DATABASE ttng_production SET datestyle TO "ISO, DMY";
 
-# Список email оповещений
+## Список email оповещений
 
 * Создание/редактирование проекта
 * Добавление к проекту комментариев с опцией "оповестить сотрудников по email"
