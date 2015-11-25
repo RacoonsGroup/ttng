@@ -38,10 +38,15 @@ GIT
       mime-types (>= 1.16)
 
 GIT
-  remote: git://github.com/kinnarts/suggestion_box.git
-  revision: f2a827c448d69598b1e93266bd165bfc1a0b7315
+  remote: git://github.com/zhulik/simple_presenter.git
+  revision: 0d6f3bd164d3cdc8b2766ee6cd74e8154ab400d3
   specs:
-    suggestion_box (0.0.2)
+    simple_presenter (0.2.3)
+
+PATH
+  remote: /home/kinnarts/rails_projects/racoonsgroup/suggestion_box
+  specs:
+    suggestion_box (0.0.3)
       acts_as_commentable
       acts_as_votable (~> 0.10.0)
       devise
@@ -49,12 +54,6 @@ GIT
       rails (~> 4.2.0)
       simple_form
       slim-rails
-
-GIT
-  remote: git://github.com/zhulik/simple_presenter.git
-  revision: 0d6f3bd164d3cdc8b2766ee6cd74e8154ab400d3
-  specs:
-    simple_presenter (0.2.3)
 
 GEM
   remote: http://rubygems.org/
