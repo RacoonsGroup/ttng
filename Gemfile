@@ -56,8 +56,8 @@ gem 'awesome_nested_set'
 gem 'the_sortable_tree', '~> 2.5.0'
 gem 'figaro'
 gem 'airbrake'
-# gem 'suggestion_box', '~> 0.0.4', path: '/home/kinnarts/rails_projects/racoonsgroup/suggestion_box'
-gem 'suggestion_box', '~> 0.0.4', github: 'kinnarts/suggestion_box'
+# gem 'suggestion_box', '~> 0.0.5', path: '/home/kinnarts/rails_projects/racoonsgroup/suggestion_box'
+gem 'suggestion_box', '~> 0.0.5', github: 'kinnarts/suggestion_box'
 
 group :development do
   gem 'spring'
