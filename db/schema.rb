@@ -191,7 +191,6 @@ ActiveRecord::Schema.define(version: 20151127122405) do
     t.integer  "user_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "author_id"
     t.boolean  "anonymous"
     t.integer  "status",     default: 0
   end
@@ -251,9 +250,9 @@ ActiveRecord::Schema.define(version: 20151127122405) do
     t.boolean  "admin",                  default: false,        null: false
     t.string   "first_name",             default: "",           null: false
     t.string   "last_name",              default: "",           null: false
-    t.date     "birth_date",             default: '2015-10-10', null: false
+    t.date     "birth_date",             default: '2015-11-25', null: false
     t.integer  "position",               default: 0,            null: false
-    t.date     "hire_date",              default: '2015-10-10', null: false
+    t.date     "hire_date",              default: '2015-11-25', null: false
     t.date     "fire_date"
     t.integer  "salary_kopeks",          default: 0,            null: false
     t.integer  "official_salary_kopeks", default: 0,            null: false
