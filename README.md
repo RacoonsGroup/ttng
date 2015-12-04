@@ -2,7 +2,6 @@ Task Tracker next generation
 ====================
 
 [![Build Status](https://travis-ci.org/RacoonsGroup/ttng.svg)](https://travis-ci.org/RacoonsGroup/ttng)
-
 [![Code Climate](https://codeclimate.com/github/RacoonsGroup/ttng/badges/gpa.svg)](https://codeclimate.com/github/RacoonsGroup/ttng)
 
 ## Перенос данных со старого TT

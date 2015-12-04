@@ -3,6 +3,7 @@ sudo: false
 rvm:
   - 2.2.1
   - 2.2
+  - 2.2-head
 bundler_args: --without production
 addons:
   postgresql: '9.4'
