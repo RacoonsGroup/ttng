@@ -2,8 +2,7 @@ language: ruby
 sudo: false
 rvm:
   - 2.2.1
-  - ruby-head
-  - jruby-head
+  - 2.2
 bundler_args: --without production
 addons:
   postgresql: '9.4'
