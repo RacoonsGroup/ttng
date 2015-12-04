@@ -10,6 +10,7 @@ addons:
 before_install:
   - gem update bundler
 before_script:
+  - cp config/secrets.yml.example config/secrets.yml
   - cp config/database.travis.yml config/database.yml
   - bundle exec rake db:create db:migrate
 script:
