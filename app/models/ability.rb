@@ -22,6 +22,7 @@ class Ability
       can :manage, Article, user_id: user.id
       can :manage, WikiPage, creator_id: user.id
       can [:read, :unread], Article
+      can :manage, Category
     end
 
     if user.manager?
@@ -39,6 +40,7 @@ class Ability
       can :manage, Article, user_id: user.id
       can :manage, WikiPage, creator_id: user.id
       can [:read, :unread], Article
+      can :manage, Category
     end
 
     if user.hr?
@@ -50,6 +52,7 @@ class Ability
       can :manage, Article, user_id: user.id
       can :manage, WikiPage, creator_id: user.id
       can [:read, :unread], Article
+      can :manage, Category
     end
 
     if user.buh?
@@ -62,6 +65,7 @@ class Ability
       can :read, TimeEntry
       can :read, RelatedTask
       can [:read, :unread], Article
+      can :manage, Category
     end
 
     if user.teamleader?
@@ -79,6 +83,7 @@ class Ability
       can :manage, Article, user_id: user.id
       can :manage, WikiPage, creator_id: user.id
       can [:read, :unread], Article
+      can :manage, Category
     end
 
     if user.customer?
@@ -87,6 +92,7 @@ class Ability
       can :read, Customer, projects: { id: user.project_ids }
       can :read, Contact, customer: { projects: { id: user.project_ids } }
       can [:read, :unread], Article
+      can :manage, Category
     end
 
     if user.saler?
@@ -97,6 +103,7 @@ class Ability
       can :manage, Contact
       can :manage, WikiPage, creator_id: user.id
       can [:read, :unread], Article
+      can :manage, Category
     end
 
     if user.freelancer?
@@ -106,6 +113,7 @@ class Ability
       can :manage, TimeEntry, related_task: { id: user.related_task_ids }
       can :manage, Article, user_id: user.id
       can [:read, :unread], Article
+      can :manage, Category
     end
   end
 end
