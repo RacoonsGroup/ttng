@@ -24,7 +24,7 @@ html
       = bootstrap_flash
       .row
         .col-lg-3 style='padding-top: 30px'
-          h4.pull-left Categories:
+          h4.pull-left(style="margin-top:0") Categories:
           - if can? :create, Category
             .pull-right
               = link_to new_category_path, class: 'btn btn-primary btn-xs' do
@@ -33,10 +33,7 @@ html
             ol.sortable_tree data={ max_levels: 3, rebuild_url: rebuild_categories_url }
               = sortable_tree categories
         .col-lg-9
-          = link_to new_wiki_page_path, class: 'btn btn-primary btn-xs add-wiki', title: 'New wiki page' do
+          = link_to new_wiki_page_path, class: 'btn btn-primary add-wiki pull-right', title: 'New wiki page' do
             = icon(:plus)
           = yield
-        / .col-lg-1
-        /   .sidebar
-        /     = link_to new_wiki_page_path, class: 'btn btn-primary btn-xs', title: 'New wiki page' do
-        /       = icon(:plus)
+       

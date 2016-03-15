@@ -43,10 +43,15 @@ module RenderSortableTreeHelper
         destroy_path = h.url_for(:controller => options[:klass].pluralize, :action => :destroy, :id => node)
 
         "
-          <div class='controls'>
-            #{ h.link_to '', edit_path, :class => :edit }
-            #{ h.link_to '', destroy_path, :class => :delete, :method => :delete, :data => { :confirm => 'This will delete all child category! Are you sure?' } }
-          </div>
+          <div class='controls btn-group btn-group-xs'>
+            <a href='#{edit_path}'' class='btn btn-default'>
+              <span class='glyphicon glyphicon-pencil'></span>
+            </a>
+            <a data-method='delete' class='btn btn-default' href='#{destroy_path}' data-confirm='This will delete all child category! Are you sure?'>
+              <span class='glyphicon glyphicon-remove'></span>
+            </a>
+
+           
         "
       end
 

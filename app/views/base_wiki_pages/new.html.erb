@@ -8,10 +8,10 @@
     <%= label_tag 'Title:' %>
     <%= f.text_field :title, class: 'form-control'%>
   </div>
-  <p>
+  <div class="form-group">
     <%= label_tag "page[category_id]", 'Category' %><br />
-    <%= select_tag "page[category_id]", options_for_select(nested_set_options(Category) {|i| "#{'-' * i.level} #{i.name}" } ), { include_blank: true, class: 'form-control' } %>
-  </p>
+    <%= select_tag "page[category_id]", options_for_select(nested_set_options(Category) {|i| "#{'-' * i.level} #{i.name}" } ), { include_blank: true, class: 'form-control', selectize2: true} %>
+  </div>
   <p>
     <%= label_tag 'Content:' %><br />
     <%= f.textile_editor :content %>

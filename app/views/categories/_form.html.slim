@@ -4,5 +4,5 @@
       = f.input :name
     .col-lg-6
       = label_tag "category[parent_id]", 'Parent category'
-      = select_tag "category[parent_id]", options_from_collection_for_select(Category.all, 'id', 'name', category.parent.try(:id) ), { include_blank: true, class: 'form-control' }
+      = select_tag "category[parent_id]", options_from_collection_for_select(Category.all, 'id', 'name', category.parent.try(:id) ), { include_blank: true, class: 'form-control', selectize2: true }
   = f.button :submit, class: 'btn-success'

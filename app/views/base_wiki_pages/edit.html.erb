@@ -15,7 +15,7 @@
   </div>
   <p>
     <%= label_tag "page[category_id]", 'Category' %><br />
-    <%= select_tag "page[category_id]", options_from_collection_for_select(Category.all, 'id', 'name', @page.category.try(:id) ), { include_blank: true, class: 'form-control' } %>
+    <%= select_tag "page[category_id]", options_from_collection_for_select(Category.all, 'id', 'name', @page.category.try(:id) ), { include_blank: true, class: 'form-control', selectize2: true } %>
   </p>
   <p><%=wt 'Content:' %><br /><%= f.textile_editor(:content, :rows => 20) %></p>
   <div class="form-group">

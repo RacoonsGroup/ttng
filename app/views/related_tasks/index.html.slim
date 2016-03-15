@@ -55,4 +55,4 @@ h1.nav-header
               - if current_user.chief?
                 td = best_in_place te.related_task, :payable, type: :select, collection: [["true", "Yes"], ["false", "No"]]
                 td = best_in_place te, :delivered_time, path: related_task_time_entry_path(te.related_task, te), inner_class: 'bestinplace_style'
-  = will_paginate @time_entries, container: false
+  = will_paginate @time_entries, class: 'pagination'

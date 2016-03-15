@@ -4,9 +4,9 @@ h1.nav-header
   - if can? :create, Customer
     =link_to new_customer_path, class: 'btn btn-success' do
       =icon(:plus)
-= form_tag customers_path, method: 'get', id: "customers_search" do
-  p
-    = text_field_tag :search, params[:search]
-    = submit_tag "Search", name: nil
+= form_tag customers_path, method: 'get', id: "customers_search", class: 'form-inline' do
+  .form-group
+    = text_field_tag :search, params[:search], class: 'form-control'
+    = submit_tag "Search", name: nil, class: 'btn btn-default'
   #customers
     =render 'customers'

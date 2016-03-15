@@ -67,11 +67,21 @@
   color: #EF2828;
 }
 .add-wiki{
-	position: absolute;
-	top: 30px;
-	right: 15px;
+	margin-top: 0;
+}
+@media (min-width: 1200px){
+	.add-wiki{
+		margin-top: 20px;
+	}
 }
 #page_content{
 	width: 100%;
 	min-height: 300px;
+}
+
+.sortable_tree .controls{
+	top:5px !important;
+	a{
+		padding: 1px !important; 
+	}
 }
