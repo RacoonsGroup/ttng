@@ -2,13 +2,15 @@
   <form action="<%=wiki_page_compare_path local_assigns[:page]%>" method="get">
 <% end %>
 
-<table class="wiki_history">
-  <tr class="wiki_history_header">
-    <td><%=wt 'Version' %></td>
-    <td><%=wt 'Date' %></td>
-    <td><%=wt 'Author' %></td>
-    <td><%=wt 'Comment' %></td>
-  </tr>
+<table class="table island">
+  <thead>
+    <tr>
+      <th><%=wt 'Version' %></th>
+      <th><%=wt 'Date' %></th>
+      <th><%=wt 'Author' %></th>
+      <th><%=wt 'Comment' %></th>
+    </tr>
+  </thead>
   <% versions.each do |v| %>
     <tr>
       <td>

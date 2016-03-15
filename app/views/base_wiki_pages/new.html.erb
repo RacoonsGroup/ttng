@@ -1,24 +1,24 @@
-<%= wiki_page_style %>
-
 <h1><%=wt 'Creating a new wiki page' %></h1>
 
-<%= wiki_page_form do |f| %>
+<%= wiki_page_form html: { class: 'island' } do |f| %>
   <%= f.hidden_field :previous_version_number, value: f.object.last_version_number %>
   <%= f.hidden_field :creator_id, value: current_user.id %>
   <%= f.hidden_field :updator_id, value: current_user.id %>
-
-  <p><%=wt 'Title:' %><br /><%= f.text_field :title %></p>
+  <div class="form-group">
+    <%= label_tag 'Title:' %>
+    <%= f.text_field :title, class: 'form-control'%>
+  </div>
   <p>
     <%= label_tag "page[category_id]", 'Category' %><br />
     <%= select_tag "page[category_id]", options_for_select(nested_set_options(Category) {|i| "#{'-' * i.level} #{i.name}" } ), { include_blank: true, class: 'form-control' } %>
   </p>
   <p>
-    <%=wt 'Content:' %><br />
+    <%= label_tag 'Content:' %><br />
     <%= f.textile_editor :content %>
   </p>
   <%= f.hidden_field :comment, value: 'First Revision'%>
   <%= hidden_field_tag :path, @page.path %>
 
-  <input type="submit" value="<%=wt 'Create page' %>" class="submit" />
+  <input type="submit" value="<%=wt 'Create page' %>" class="submit btn btn-success" />
 <% end %>
 <%= textile_editor_initialize %>
