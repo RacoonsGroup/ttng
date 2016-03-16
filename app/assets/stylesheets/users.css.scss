@@ -2,4 +2,8 @@ table.admin-table {
   th:last-child {
     width: 95px;
   }
+  th,
+  td{
+  	padding: 8px 0 !important;
+  }
 }

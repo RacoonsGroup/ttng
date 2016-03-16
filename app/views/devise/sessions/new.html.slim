@@ -5,4 +5,4 @@ h1.nav-header=t('devise.headers.sign_in')
     = f.input :password, required: false, placeholder: t('devise.forms.password'), label: false
     = f.input :remember_me, as: :boolean, label: t('devise.forms.remember_me') if devise_mapping.rememberable?
     = f.button :submit, t('devise.buttons.sign_in')
-  =link_to t('devise.headers.forgot_your_password'), new_user_password_path
+  	=link_to t('devise.headers.forgot_your_password'), new_user_password_path, class: 'sign-in_psw'

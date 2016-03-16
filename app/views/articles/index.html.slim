@@ -30,4 +30,4 @@ h1.nav-header
               -if can? :destroy, article
                 =link_to article_path(article), method: :DELETE, class: 'btn btn-danger', title: t('actions.destroy'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do
                   =glyph(:remove)
-  = will_paginate @articles, container: false
+  = will_paginate @articles

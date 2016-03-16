@@ -19,4 +19,4 @@
             td =contact.skype
             td =link_to contact.customer.name, contact.customer if contact.customer
             td =actions_for(contact, size: 'xs')
-  = will_paginate @contacts, container: false
+  = will_paginate @contacts

@@ -2,7 +2,8 @@ h1.nav-header = t('navigation.users')
 .user-list
   -@users.each do |user|
     .island.user
-      = actions_for(user)
+      .pull-right
+        = actions_for(user)
       = link_to user
         = image_tag(user.avatar, size: '74x74', class: 'img-circle')
         h4 = user.full_name
@@ -11,4 +12,4 @@ h1.nav-header = t('navigation.users')
       div = user.position_i18n
       div = ll(user.birth_date)
       div = ll(user.fire_date)
-  = will_paginate @users, container: false
+  = will_paginate @users
