@@ -5,9 +5,12 @@ h1.nav-header
   - if can? :create, Project
     =link_to new_project_path, class: 'btn btn-success' do
       =icon(:plus)
-= form_tag projects_path, method: 'get', id: "projects_search", class: 'form-inline' do
+= form_tag projects_path, method: 'get', id: "projects_search" do
   .form-group
-    = text_field_tag :search, params[:search], class: 'form-control'
-    = submit_tag "Search", name: nil, class: 'btn btn-default'
+    .row
+      .col-xs-10.col-md-11
+        = text_field_tag :search, params[:search], class: 'form-control'
+      .col-xs-2.col-md-1
+        = submit_tag "Search", name: nil, class: 'btn btn-default pull-right'
   #projects
     =render 'projects'
