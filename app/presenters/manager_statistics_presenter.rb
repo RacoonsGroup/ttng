@@ -27,4 +27,7 @@ class ManagerStatisticsPresenter < StatisticsPresenter
     end
   end
 
+  def delay
+    (elapsed_hours * @developers_count) - spent_hours
+  end
 end
