@@ -18,7 +18,7 @@ module RenderSortableTreeHelper
         "
           <li data-node-id='#{ node.id }'>
             <div class='item'>
-              <i class='handle'></i>
+              <i class='handle glyphicon glyphicon-option-vertical'></i>
               #{ show_link }
               #{ controls }
             </div>

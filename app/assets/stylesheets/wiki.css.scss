@@ -82,6 +82,15 @@
 .sortable_tree .controls{
 	top:5px !important;
 	a{
-		padding: 1px !important; 
+		padding: 1px !important;
 	}
+}
+
+.handle{
+  background: none !important;
+}
+
+.sortable_tree ol{
+  margin-top: 11px !important;
+  border-left: none !important;
 }
