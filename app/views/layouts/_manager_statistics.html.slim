@@ -10,7 +10,10 @@ p
 
 p
   b=t('statistics.finished')
-
   span.pull-right=statistics.finished
+
+p
+  b = t('statistics.delay')
+  span.pull-right = statistics.delay
 
 canvas[iteration_stat_chart height='116' width='233' hours="#{statistics.total_hours}" finished="#{statistics.spent_hours}" id='iteration-stat-chart']
