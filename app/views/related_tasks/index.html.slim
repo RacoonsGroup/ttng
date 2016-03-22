@@ -23,7 +23,7 @@ h1.nav-header
           th
             = t('simple_form.labels.task.real_time')
             '
-            |(#{@sum})
+            |(#{@sum.round(2)})
           th = t('common.labels.actions')
           - if current_user.chief?
             th = t('simple_form.labels.task.payable')
@@ -44,7 +44,7 @@ h1.nav-header
             - unless current_user.customer?
               td
                 div title = "#{te.description}"
-                  = te.duration
+                  = te.duration.round(2)
               td.btn-group.btn-group-xs
                 - if can? :modify, te
                   = link_to edit_related_task_path(te.related_task), class: 'btn btn-default', title: t('actions.edit'), :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', tooltip: true do

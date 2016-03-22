@@ -23,11 +23,11 @@ class ManagerStatisticsPresenter < StatisticsPresenter
       '0'
     else
       percentage = spent_hours / hours.to_f * 100
-      percentage.nan? ? '0' : "#{spent_hours} (#{percentage.round}%)"
+      percentage.nan? ? '0' : "#{spent_hours.round(2)} (#{percentage.round}%)"
     end
   end
 
   def delay
-    (elapsed_hours * @developers_count) - spent_hours
+    ((elapsed_hours * @developers_count) - spent_hours).round(2)
   end
 end

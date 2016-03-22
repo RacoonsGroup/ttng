@@ -28,10 +28,10 @@ class StatisticsPresenter
 
   def finished
     percentage = spent_hours / hours.to_f * 100
-    "#{spent_hours} (#{percentage.round}%)"
+    "#{spent_hours.round(2)} (#{percentage.round}%)"
   end
 
   def delay
-    elapsed_hours - spent_hours
+    (elapsed_hours - spent_hours).round(2)
   end
 end

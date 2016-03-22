@@ -14,4 +14,4 @@
           td.table-name = task.description
           td = task.user.try(:full_name)
           td = l(task.date)
-          td = task.duration
+          td = task.duration.round(2)
