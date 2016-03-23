@@ -44,7 +44,7 @@ class Iteration
   end
 
   def elapsed_hours
-    dates.count { |d| d <= Date.today } * WORK_HOURS
+    dates.count { |d| d <= Date.today && d.business_day? } * WORK_HOURS
   end
 end
 
