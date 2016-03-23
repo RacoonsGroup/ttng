@@ -1,0 +1,21 @@
+toolbar:
+  - undo redo | paste | searchreplace | formatselect fontselect | fontsizeselect | forecolor backcolor
+  - bold italic | underline strikethrough | subscript superscript | alignleft aligncenter alignright alignjustify | ltr rtl | bullist	numlist	outdent	indent | numlist bullist | outdent indent | blockquote
+plugins:
+  - charmap
+  - image
+  - link
+  - code
+  - fullscreen
+  - table
+  - textcolor
+  - hr
+  - searchreplace
+  - visualblocks
+  - visualchars
+  - insertdatetime
+  - directionality
+  - paste
+  - preview
+  - pagebreak
+  - searchreplace
