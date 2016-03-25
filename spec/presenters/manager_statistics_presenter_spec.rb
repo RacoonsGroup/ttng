@@ -41,7 +41,7 @@ describe ManagerStatisticsPresenter do
 
     describe '#hours' do
       it 'return all hours which must be work' do
-        expect(subject.hours).to eq("160 (#{160})")
+        expect(subject.hours).to eq("64 (#{160})")
       end
     end
 
