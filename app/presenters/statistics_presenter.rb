@@ -18,7 +18,7 @@ class StatisticsPresenter
   end
 
   def hours
-    @hours ||= "#{total_hours} (#{Date.today.iteration.business_hours})"
+    @hours ||= "#{elapsed_hours} (#{Date.today.iteration.business_hours})"
   end
 
   def spent_hours
