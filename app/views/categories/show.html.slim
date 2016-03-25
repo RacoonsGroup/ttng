@@ -10,6 +10,6 @@ h1
       th = t('project_info.headers.actions')
     - @category.wiki_pages.each do |page|
       tr
-        td = link_to page.title, wiki_page_path( page )
+        td = link_to page.title, controller: 'wiki_pages', action: 'show', path: page.title
         td = page.updated_at.strftime("%d.%m.%y")
         td = actions_for(page, size: 'xs')
