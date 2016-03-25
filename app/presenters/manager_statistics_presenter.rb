@@ -26,7 +26,7 @@ class ManagerStatisticsPresenter < StatisticsPresenter
     if hours.to_i == 0
       '0'
     else
-      percentage = spent_hours / hours.to_f * 100
+      percentage = spent_hours / total_hours.to_f * 100
       percentage.nan? ? '0' : "#{spent_hours.round(2)} (#{percentage.round}%)"
     end
   end
