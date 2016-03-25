@@ -49,27 +49,19 @@ div.form-group.boolean {
   margin-left: 20px;
 }
 
-ul.users {
+.users {
   list-style: none;
-  display: inline-block;
+  display: block;
   margin: 0;
   padding: 0;
-  max-width: 80px;
-
-  li {
-    padding: 0;
-    margin: 0;
-    margin-right: 15px;
-  }
-
-  div.user {
-    img {
-      display: block;
-      margin-right: auto;
-      margin-left: auto;
-    }
-    text-align: center;
-    word-wrap: break-word;
+  max-width: 95px;
+  text-align: center;
+  margin: 0 5px 10px;
+  float: left;
+  word-wrap: break-word;
+  height: 110px;
+  .user-img_p{
+    margin-bottom: 5px;
   }
 }
 
