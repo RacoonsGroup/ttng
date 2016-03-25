@@ -30,7 +30,7 @@ describe StatisticsPresenter do
 
     describe '#hours' do
       it 'return all hours which must be work' do
-        expect(subject.hours).to eq("80 (#{80})")
+        expect(subject.hours).to eq("32 (#{80})")
       end
     end
 

@@ -18,7 +18,7 @@ class StatisticsPresenter
   end
 
   def hours
-    @hours ||= "#{total_hours} (#{Date.today.iteration.business_hours})"
+    @hours ||= "#{elapsed_hours} (#{Date.today.iteration.business_hours})"
   end
 
   def spent_hours
@@ -27,7 +27,7 @@ class StatisticsPresenter
   end
 
   def finished
-    percentage = spent_hours / hours.to_f * 100
+    percentage = spent_hours / total_hours.to_f * 100
     "#{spent_hours.round(2)} (#{percentage.round}%)"
   end
 
