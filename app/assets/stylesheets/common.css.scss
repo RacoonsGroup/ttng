@@ -202,8 +202,8 @@ h1.nav-header {
   margin-top: 69px;
 
   canvas#iteration-stat-chart {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 50% !important;
   }
 }
 
