@@ -8,7 +8,10 @@ class CategoriesController < AuthenticatedController
   end
 
   def new
+  end
 
+  def show
+    @categories = [@category, @category.nested_categories].flatten
   end
 
   def create
