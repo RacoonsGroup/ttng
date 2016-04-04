@@ -15,10 +15,13 @@ module RenderSortableTreeHelper
         @h, @options = h, options
         node = options[:node]
 
+        expand_button = "<b class='expand'>+</b>"
+
         "
           <li data-node-id='#{ node.id }'>
             <div class='item'>
               <i class='handle'></i>
+              #{ expand_button if children }
               #{ show_link }
               #{ controls }
             </div>
@@ -50,6 +53,8 @@ module RenderSortableTreeHelper
             <a data-method='delete' class='btn btn-default' href='#{destroy_path}' data-confirm='This will delete all child category! Are you sure?'>
               <span class='glyphicon glyphicon-remove'></span>
             </a>
+
+
         "
       end
 
