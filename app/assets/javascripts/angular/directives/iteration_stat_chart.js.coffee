@@ -41,5 +41,5 @@ angular.module('gs.iterationStatChart', []).directive 'iterationStatChart', [->
       ]
 
     myNewChart = new Chart(elem.get(0).getContext('2d')).Pie(data, animation: false)
-
+    myNewChart.options.responsive = true
 ]
