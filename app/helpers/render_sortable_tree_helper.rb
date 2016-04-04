@@ -33,7 +33,7 @@ module RenderSortableTreeHelper
         url = h.url_for(:controller => options[:klass].pluralize, :action => :show, :id => node)
         title_field = 'name'
 
-        "<h4>#{ h.link_to(node.send(title_field) + '(' + String(Category.find(node).wiki_pages.count) + ')', url) }</h4>"
+        "<h4>#{ h.link_to(node.send(title_field) + '(' + String(Category.find(node).wiki_pages.count + node.nested_articles_count) + ')', url) }</h4>"
       end
 
       def controls
@@ -50,8 +50,6 @@ module RenderSortableTreeHelper
             <a data-method='delete' class='btn btn-default' href='#{destroy_path}' data-confirm='This will delete all child category! Are you sure?'>
               <span class='glyphicon glyphicon-remove'></span>
             </a>
-
-           
         "
       end
 
