@@ -79,9 +79,20 @@
 	min-height: 300px;
 }
 
-.sortable_tree .controls{
-	top:5px !important;
-	a{
-		padding: 1px !important; 
-	}
+.sortable_tree {
+  .expand{
+    float: left;
+    font-size: 20px;
+    margin: -3px 7px 0 0;
+    cursor: pointer;
+  }
+  h4{
+        margin-left: 40px;
+  }
+  .controls{
+  	top:5px !important;
+  	a{
+  		padding: 1px !important; 
+  	}
+  }
 }
