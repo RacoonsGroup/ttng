@@ -20,6 +20,7 @@ module RenderSortableTreeHelper
         "
           <li data-node-id='#{ node.id }'>
             <div class='item'>
+              <i class='handle glyphicon glyphicon-option-vertical'></i>
               <i class='handle'></i>
               #{ expand_button if children }
               #{ show_link }

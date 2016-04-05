@@ -79,6 +79,14 @@
 	min-height: 300px;
 }
 
+.handle{
+  background: none !important;
+}
+
+.sortable_tree ol{
+  margin-top: 11px !important;
+  border-left: none !important;
+
 .sortable_tree {
   .expand{
     float: left;
@@ -92,7 +100,7 @@
   .controls{
   	top:5px !important;
   	a{
-  		padding: 1px !important; 
+  		padding: 1px !important;
   	}
   }
 }
