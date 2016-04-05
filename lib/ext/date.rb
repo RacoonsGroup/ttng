@@ -42,6 +42,10 @@ class Iteration
   def total_hours
     dates.reject(&:weekend?).count * WORK_HOURS
   end
+
+  def elapsed_hours
+    dates.count { |d| d <= Date.today && d.business_day? } * WORK_HOURS
+  end
 end
 
 class Date

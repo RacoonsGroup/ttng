@@ -4,6 +4,5 @@
 <%= wiki_page_actions %>
 
 <div class="wiki_content island">
-  <%=wiki_content @page.content %>
+  <%= @page.content.html_safe %>
 </div>
-

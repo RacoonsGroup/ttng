@@ -9,8 +9,12 @@ class ManagerStatisticsPresenter < StatisticsPresenter
     Date.today.iteration.total_hours * @developers_count
   end
 
+  def elapsed_hours
+    Date.today.iteration.elapsed_hours * @developers_count
+  end
+
   def hours
-    @hours ||= "#{total_hours} (#{Date.today.iteration.business_hours * @developers_count})"
+    @hours ||= "#{elapsed_hours} (#{Date.today.iteration.business_hours * @developers_count})"
   end
 
   def spent_hours
@@ -22,9 +26,12 @@ class ManagerStatisticsPresenter < StatisticsPresenter
     if hours.to_i == 0
       '0'
     else
-      percentage = spent_hours / hours.to_f * 100
-      percentage.nan? ? '0' : "#{spent_hours} (#{percentage.round}%)"
+      percentage = spent_hours / total_hours.to_f * 100
+      percentage.nan? ? '0' : "#{spent_hours.round(2)} (#{percentage.round}%)"
     end
   end
 
+  def delay
+    (elapsed_hours - spent_hours).round(2)
+  end
 end

@@ -15,10 +15,14 @@ module RenderSortableTreeHelper
         @h, @options = h, options
         node = options[:node]
 
+        expand_button = "<b class='expand'>+</b>"
+
         "
           <li data-node-id='#{ node.id }'>
             <div class='item'>
               <i class='handle glyphicon glyphicon-option-vertical'></i>
+              <i class='handle'></i>
+              #{ expand_button if children }
               #{ show_link }
               #{ controls }
             </div>
@@ -33,7 +37,7 @@ module RenderSortableTreeHelper
         url = h.url_for(:controller => options[:klass].pluralize, :action => :show, :id => node)
         title_field = 'name'
 
-        "<h4>#{ h.link_to(node.send(title_field) + '(' + String(Category.find(node).wiki_pages.count) + ')', url) }</h4>"
+        "<h4>#{ h.link_to(node.send(title_field) + '(' + String(Category.find(node).wiki_pages.count + node.nested_articles_count) + ')', url) }</h4>"
       end
 
       def controls
@@ -51,7 +55,7 @@ module RenderSortableTreeHelper
               <span class='glyphicon glyphicon-remove'></span>
             </a>
 
-           
+
         "
       end
 

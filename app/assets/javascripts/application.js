@@ -34,5 +34,5 @@
 //= require_tree ./libs
 //= require jquery.ui.nestedSortable
 //= require sortable_tree/initializer
-//= require textile-editor
-//= require ./textile-editor-config
+//= require tinymce
+//= require expand_tree

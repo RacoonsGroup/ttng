@@ -12,13 +12,13 @@ angular.module('gs.iterationStatChart', []).directive 'iterationStatChart', [->
     if overtime != 0
       data = [
         {
-          value: overtime,
+          value: overtime.toFixed(2),
           color: '#F7464A',
           highlight: '#FF5A5E',
           label: 'Overtime'
         },
         {
-          value: finished
+          value: finished.toFixed(2),
           color: '#46BFBD',
           highlight: '#5AD3D1',
           label: 'Finished'
@@ -27,13 +27,13 @@ angular.module('gs.iterationStatChart', []).directive 'iterationStatChart', [->
     else
       data = [
         {
-          value: total-finished,
+          value: (total-finished).toFixed(2),
           color: '#F7464A',
           highlight: '#FF5A5E',
           label: 'Left'
         },
         {
-          value: finished
+          value: finished.toFixed(2),
           color: '#46BFBD',
           highlight: '#5AD3D1',
           label: 'Finished'
@@ -41,5 +41,5 @@ angular.module('gs.iterationStatChart', []).directive 'iterationStatChart', [->
       ]
 
     myNewChart = new Chart(elem.get(0).getContext('2d')).Pie(data, animation: false)
-
+    myNewChart.options.responsive = true
 ]

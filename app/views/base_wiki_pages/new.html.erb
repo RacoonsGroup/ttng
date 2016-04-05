@@ -14,11 +14,12 @@
   </div>
   <p>
     <%= label_tag 'Content:' %><br />
-    <%= f.textile_editor :content %>
+    <%= f.text_area :content, class: 'tinymce', rows: 40, cols: 120 %>
   </p>
   <%= f.hidden_field :comment, value: 'First Revision'%>
   <%= hidden_field_tag :path, @page.path %>
 
   <input type="submit" value="<%=wt 'Create page' %>" class="submit btn btn-success" />
 <% end %>
-<%= textile_editor_initialize %>
+
+<%= tinymce %>
